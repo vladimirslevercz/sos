@@ -1,0 +1,80 @@
+{block content}
+
+<!-- Clanek Section -->
+<section id="article" class="container content-section">
+    <div class="row">
+        <div class="col-md-12 col-lg-12">
+            <div class="container">
+                <article class="main-article">
+                    <h1>{$article->name}</h1>
+                    <div class="date">{$article->created_at|date:'j.n.Y H:i'}</div>
+                    <div class="text">
+                        {$article->text}
+                    </div>
+                </article>
+            </div>
+        </div>
+
+        {if $article->author}
+        {var $author = $article->author}
+        <!-- Author -->
+        <div class="col-md-12 col-lg-12">
+            <div class="container">
+                <article class="about-author">
+                    <div class="col-xs-12 col-sm-3 col-md-2 col-lg-1">
+                        {if $author->file}
+                        <img src="{$basePath}/content/{$author->file->path}"
+                             class="avatar"
+                             title="{$author->file->nice_name}"
+                             alt="{$author->file->keywords}" />
+                        {else}
+                        není obrázek
+                        {/if}
+                        {if $author->user->ingress_acount}
+                        <div class="{$author->user->ingress_acount->faction} ingress-name">@{$author->user->ingress_acount->name}</div>
+                        <div class="ingress-level">level {$author->user->ingress_acount->level}</div>
+                        <div class="role"><abbr title="{$author->user->role->description}">{$author->user->role->name}</abbr></div>
+                        {/if}
+                    </div>
+                        <div class="col-xs-12 col-sm-9 col-md-10 col-lg-11">
+                            <h2>{$article->author->name}</h2>
+                            <p>{$article->author->bio}</p>
+                        </div>
+                        <div class="col-lg-12 navesti">
+                            Poslední články autora:
+                        </div>
+                        {foreach $article->author->related('article')->limit(6) as $authorArticle}
+                        <div class="col-xs-6 col-md-4 col-lg-2">
+                            <div class="category">{$authorArticle->category->name}</div>
+                            <div class="date">{$authorArticle->created_at|date:'j.n.Y H:i'}</div>
+                            <a n:href="Article:show $article->id">{$authorArticle->name|truncate:30}</a>
+                        </div>
+                        {/foreach}
+                    <div class="clearfix"></div>
+                </article>
+            </div>
+        </div>
+        {/if}
+
+        <!-- related posts -->
+        <div class="col-md-12 col-lg-12">
+            <div class="container">
+                <article class="related-posts">
+                    <div class="col-lg-12 navesti">
+                        Související:
+                    </div>
+                    {foreach $article->category->related('article')->limit(6) as $categoryArticle}
+                    <div class="col-xs-6 col-md-4 col-lg-2">
+                        <div class="author">{$categoryArticle->author->name}</div>
+                        <div class="date">{$categoryArticle->created_at|date:'j.n.Y H:i'}</div>
+                        <a n:href="Article:show $article->id">{$categoryArticle->name|truncate:30}</a>
+                    </div>
+                    {/foreach}
+                    <div class="clearfix"></div>
+                </article>
+            </div>
+        </div>
+    </div>
+</section>
+
+{/block}
