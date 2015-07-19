@@ -8,51 +8,18 @@ SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 DROP TABLE IF EXISTS `article`;
 CREATE TABLE `article` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `category_id` int(11) DEFAULT NULL,
-  `created_at` datetime NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `name` varchar(255) NOT NULL,
-  `author_id` int(11) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `annotation` text,
   `text` text NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `category_id` (`category_id`),
-  KEY `author_id` (`author_id`),
-  CONSTRAINT `article_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`) ON DELETE SET NULL,
-  CONSTRAINT `article_ibfk_2` FOREIGN KEY (`author_id`) REFERENCES `author` (`id`) ON DELETE SET NULL
+  KEY `author_id` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO `article` (`id`, `category_id`, `created_at`, `name`, `author_id`, `text`) VALUES
-(1,	1,	'2015-04-06 22:11:21',	'Spouštíme nový web',	1,	'Fuckin awesome!!!! Jsme online!');
-
-DROP TABLE IF EXISTS `author`;
-CREATE TABLE `author` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `bio` text NOT NULL COMMENT 'Biography about author.',
-  `name` varchar(255) NOT NULL COMMENT 'Author name to display',
-  `user_id` int(11) DEFAULT NULL,
-  `file_id` int(11) DEFAULT NULL COMMENT 'Author avatar',
-  PRIMARY KEY (`id`),
-  KEY `user_id` (`user_id`),
-  KEY `file_id` (`file_id`),
-  CONSTRAINT `author_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE SET NULL,
-  CONSTRAINT `author_ibfk_2` FOREIGN KEY (`file_id`) REFERENCES `file` (`id`) ON DELETE SET NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-INSERT INTO `author` (`id`, `bio`, `name`, `user_id`, `file_id`) VALUES
-(1,	'Jsem studentem infotmatiky na ČVUT. Ingress je mým koníčkem. Hraju téměř od začátku, hru jsem začal hrát spolu se svým provním chytrým telefonem a dnes se hře věnuji se svými přáteli, cestujeme za anomáliemi a obracíme města na stranu osvícení. FIGHT THE RESISTANCE!',	'Vláďa',	2,	1);
-
-DROP TABLE IF EXISTS `category`;
-CREATE TABLE `category` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `code` varchar(63) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `code` (`code`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-INSERT INTO `category` (`id`, `code`, `name`) VALUES
-(1,	'update',	'Aktualizace'),
-(2,	'mechanism',	'Herní mechanismy'),
-(3,	'interview',	'Rozhovory');
+INSERT INTO `article` (`id`, `created_at`, `name`, `user_id`, `annotation`, `text`) VALUES
+(1,	'2015-04-06 22:11:21',	'První článek z editoru',	1,	'<p>Jek&eacute; je vlastně heslo do administrace.</p>',	'<p>Asi bych to sem nměl ps&aacute;t, ale heslo je \"sosprohudbu\" ale pst ;-)</p>\n<p>&nbsp;</p>\n<p>&nbsp;</p>'),
+(3,	'2015-07-19 11:13:42',	'O projektu',	3,	'<h2>O projektu Hudební S.O.S</h2>\n<ul>\n<li>o čem to má být</li>\n<li>jak to vzniklo</li>\n<li>co to vše zahrnuje</li>\n</ul>',	'<h1>Zakladatelka (1)</h1>\n<h2>Sponzoři (2)</h2>\n<h3>Spolupracujeme (3)</h3>\n<p>další informace a odkazy na weby spolupracovníků Hudebního S.O.S.</p>\n<p>povídání o Majce vzdělání atd.</p>\n<p>publikační činnost... náhledy obálek publikací a popis</p>\n<p>youtube fotoprezenatce &sbquo;z mého života&lsquo; (vložená nebo odkaz) nebo pár fotek</p>\n<p>Soukromé pedagogické nakladateství dělá bla bla atd... jak sponzoruje Hudební S.O.S.</p>\n<p>kde můžete koupit publikace apod.</p>\n<p>odkaz na web</p>\n<p>další informace a odkazy na weby sponzorů Hudebního S.O.S.</p>\n<p>Ficae voluptaepro dolupta distius andanda con parcia doluptiae. Et dus duntiorum nullab il eum sum, sam sequi quasped magnim nia por am essequa ernatur?</p>\n<p>Metur, sollam natis audis alibusdam ea dolore nos ab ium fugitis eosae. Nam aut laut maxim quo quamento mi, sandici ducimporum quidi culluptatur, sus res ipitatur? Quibus esequo que perum experchit occuptaquae porepro bea dolumqui te delenet laborehentia volupitat magnat velecepta eos ditatur re mint evelitatem et am quiae ium ea prat aliciet anis id mos ipsunt am aborehe ndelentet quaerfe rnatemporro eatempore ma comniscium aut experem rent, quaes dolor saest aspicipic te con pelecto cum hitem rem liquatem quatent ioribus ex est explab ipic tem rendis ut et qui vent vellore rcillandaes entotasim quame pori utempor eseritat quam, volendamus cumquas pellento is dolor magnat.</p>');
 
 DROP TABLE IF EXISTS `file`;
 CREATE TABLE `file` (
@@ -68,64 +35,40 @@ CREATE TABLE `file` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Paths to pictures, documents and other files.';
 
 INSERT INTO `file` (`id`, `path`, `type`, `user_id`, `nice_name`, `keywords`) VALUES
-(1,	'author/vml.jpg',	'picture',	2,	'vml',	'author profile picture, vml');
+(1,	'author/vml.jpg',	'picture',	NULL,	'vml',	'author profile picture, vml');
 
-DROP TABLE IF EXISTS `ingress_acount`;
-CREATE TABLE `ingress_acount` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL COMMENT 'Ingress name',
-  `faction` enum('ENL','RES','RED','BAN') DEFAULT NULL COMMENT 'faction: ENL, RES, RED, BAN',
-  `level` tinyint(4) DEFAULT NULL COMMENT 'Level',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-INSERT INTO `ingress_acount` (`id`, `name`, `faction`, `level`) VALUES
-(1,	'vml',	'ENL',	15);
-
-DROP TABLE IF EXISTS `ingress_version`;
-CREATE TABLE `ingress_version` (
+DROP TABLE IF EXISTS `menu`;
+CREATE TABLE `menu` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
-  `description` text,
-  `teardown` varchar(255) DEFAULT 'Link to teardown',
-  `release` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
+  `url` text,
+  `article_id` int(11) DEFAULT NULL,
+  `menu_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `article_id` (`article_id`),
+  KEY `menu_id` (`menu_id`),
+  CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`article_id`) REFERENCES `article` (`id`) ON DELETE SET NULL,
+  CONSTRAINT `menu_ibfk_2` FOREIGN KEY (`menu_id`) REFERENCES `menu` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO `ingress_version` (`id`, `name`, `description`, `teardown`, `release`) VALUES
-(1,	'1.78.0',	'MUFG Capsule, čeština, reorganizace medailí',	'https://fevgames.net/ingress-apk-teardown-1-78-0/',	'2002-06-20 15:00:00'),
-(2,	'1.79.0',	'Ultra Link Amp, barevné spojnice mezi rezonátory a portálem, linkovatelnost se řeší nejprve na klientské straně a poté na serveru',	'https://fevgames.net/ingress-apk-teardown-1-79-0/',	'2015-06-16 22:39:59');
-
-DROP TABLE IF EXISTS `role`;
-CREATE TABLE `role` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  `description` tinytext NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-INSERT INTO `role` (`id`, `name`, `description`) VALUES
-(1,	'visitor',	'Čtenář webu, zákazník.'),
-(2,	'moderator',	'Moderátor webu, správce diskuzí, autor článků.'),
-(3,	'client',	'Klient webu dodávající zboží.'),
-(4,	'admin',	'Administrátor webu.');
+INSERT INTO `menu` (`id`, `name`, `url`, `article_id`, `menu_id`) VALUES
+(1,	'První menu',	'',	1,	NULL),
+(2,	'První podřazené',	'',	3,	1),
+(3,	'O projektu',	'',	3,	NULL),
+(4,	'Seznam',	'http://seznam.cz',	NULL,	NULL);
 
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(255) NOT NULL COMMENT 'email and login',
   `password` varchar(255) NOT NULL COMMENT 'hashed password',
-  `role_id` int(11) DEFAULT NULL COMMENT 'user_role',
-  `ingress_acount_id` int(11) DEFAULT NULL,
+  `role` varchar(255) DEFAULT 'guest' COMMENT 'user_role',
   PRIMARY KEY (`id`),
-  UNIQUE KEY `email` (`email`),
-  KEY `role_id` (`role_id`),
-  KEY `ingress_acount_id` (`ingress_acount_id`),
-  CONSTRAINT `user_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `role` (`id`) ON DELETE SET NULL,
-  CONSTRAINT `user_ibfk_2` FOREIGN KEY (`ingress_acount_id`) REFERENCES `ingress_acount` (`id`) ON DELETE SET NULL
+  UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO `user` (`id`, `email`, `password`, `role_id`, `ingress_acount_id`) VALUES
-(2,	'mlazovla@gmail.com',	'*02A2758B5D1D639CE9FCC3403DF9EDE1FFD9DC03',	4,	1);
+INSERT INTO `user` (`id`, `email`, `password`, `role`) VALUES
+(3,	'liskovamaj@gmail.com',	'$2y$10$FIrpbNKoJLM7RHvfLwVwgOP6d/ct..o8xHzwXQA.q/plDMvbXMV8m',	'guest'),
+(4,	'mlazovla@gmail.com',	'$2y$10$7bq17HuG2Rk266U/0VGTYOrFYFATNuwNUxm5WqC6fKLkqw7EZRbIC',	'guest');
 
--- 2015-06-16 22:35:13
+-- 2015-07-19 14:06:49

@@ -11,5 +11,14 @@ use Nette,
  */
 abstract class BasePresenter extends Nette\Application\UI\Presenter
 {
+	/**
+	 * @var Model\Menu
+	 * @inject
+	 */
+	public $menu;
 
+	public function beforeRender()
+	{
+		$this->template->menus = $this->menu->where('menu_id', null);
+	}
 }
