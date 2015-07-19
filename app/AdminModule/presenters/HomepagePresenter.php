@@ -13,16 +13,15 @@ use Nette\Database\Context;
  */
 class HomepagePresenter extends BasePresenter
 {
-    
-    /**
-     * @var Category
-     * @inject
-     */    
-    public $category;    
-        
+	public function actionDefault() {
+		if (! $this->user->loggedIn) {
+			$this->redirect('Sign:in');
+		}
+	}
+
 	public function renderDefault()
 	{
-
+		// DASHBOARD
 	}
 
 }

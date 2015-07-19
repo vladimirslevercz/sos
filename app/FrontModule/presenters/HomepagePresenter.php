@@ -14,12 +14,7 @@ use Nette\Database\Context;
  */
 class HomepagePresenter extends BasePresenter
 {
-    
-    /**
-     * @var Category
-     * @inject
-     */    
-    public $category;    
+
         
 	public function renderDefault()
 	{

@@ -5,8 +5,8 @@ namespace App\Model;
 /**
  * Persistent object Category.
  */
-class Category extends \Nette\Database\Table\Selection {
-    private $table = "category";
+class Menu extends \Nette\Database\Table\Selection {
+    private $table = "menu";
     private $db;
     
     public function __construct(\Nette\Database\Context $database) {

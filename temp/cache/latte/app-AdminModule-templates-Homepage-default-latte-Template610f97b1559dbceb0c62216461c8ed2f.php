@@ -12,9 +12,11 @@ list($_b, $_g, $_l) = $template->initialize('91f8a0f452', 'html')
 // block content
 //
 if (!function_exists($_b->blocks['content'][] = '_lbeacb73d232_content')) { function _lbeacb73d232_content($_b, $_args) { foreach ($_args as $__k => $__v) $$__k = $__v
-?><h1>Hello world!</h1>
+?><h1>Dashboard</h1>
 
-<p>Admin</p>
+<p>Welcome back.</p>
+<p>Pro editaci či správu webu si vyber položku z horního meníčka.</p>
+
 
 <?php
 }}

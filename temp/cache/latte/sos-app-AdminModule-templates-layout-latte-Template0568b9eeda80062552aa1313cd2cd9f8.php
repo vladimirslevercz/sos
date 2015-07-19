@@ -21,6 +21,10 @@ if (!function_exists($_b->blocks['scripts'][] = '_lb1ced2cd762_scripts')) { func
     <!-- Plugin JavaScript -->
     <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
 	<script src="//nette.github.io/resources/js/netteForms.min.js"></script>
+
+    <!-- tinyMCE -->
+    <script src="<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($basePath), ENT_COMPAT) ?>/js/tinymce/tinymce.min.js"></script>
+    <script>tinymce.init({ selector:'textarea' });</script>
 <?php
 }}
 
@@ -68,10 +72,13 @@ if (empty($_l->extends) && !empty($_control->snippetMode)) {
     <meta name="author" content="">
 
 	<title><?php if (isset($_b->blocks["title"])) { ob_start(); Latte\Macros\BlockMacrosRuntime::callBlock($_b, 'title', $template->getParameters()); echo $template->striptags(ob_get_clean()) ?>
- | <?php } ?>SOS</title>
+ | <?php } ?>Bohemia Ingress</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($basePath), ENT_COMPAT) ?>/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($basePath), ENT_COMPAT) ?>/css/admin.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
 
@@ -90,11 +97,22 @@ call_user_func(reset($_b->blocks['scripts']), $_b, get_defined_vars())  ?>
 
 <body>
 
-    <!-- Navigation -->
-    <div class="navbar">
-        Navigace
+<?php $_b->templates['4bb58969b7']->renderChildTemplate('navigation.inc', $template->getParameters()) ?>
+    <div class="container">
+<?php if (count($flashes)>0) { ?>        <div id="flashmessages">
+<?php $iterations = 0; foreach ($flashes as $flash) { ?>            <div class='alert alert-<?php echo Latte\Runtime\Filters::escapeHtml($flash->type, ENT_QUOTES) ?> alert-dismissible' role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <?php echo $flash->message ?>
+
+            </div>
+<?php $iterations++; } ?>
+        </div>
+<?php } ?>
+
+        <?php call_user_func(reset($_b->blocks['content']), $_b, get_defined_vars())  ?>
+
     </div>
-    <?php call_user_func(reset($_b->blocks['content']), $_b, get_defined_vars())  ?>
+
 
 
     <!-- Footer -->
@@ -103,7 +121,18 @@ call_user_func(reset($_b->blocks['scripts']), $_b, get_defined_vars())  ?>
             <p>Copyright &copy; Vladimír Mlázovský 2015</p>
         </div>
     </footer>
-    
+
+    <!-- on ready scripts -->
+    <script>
+        $(document).ready(function(){
+            $('.btn-danger').on('click', function(){
+                var answer = confirm("Určitě?");
+                if (!answer) {
+                    event.preventDefault();
+                }
+            });
+        });
+    </script>
 </body>
 </html><?php
 }}
