@@ -132,3 +132,17 @@ img.corner-logo {
 .article h3 {
     font-size: 12px;
 }
+
+img.article-main-image {
+    width: 100%;
+    max-width: 800px;
+    max-height: 800px;
+}
+
+.social-media-item img {
+    width: 40px;
+}
+
+.menu a.active {
+    color: firebrick;
+}

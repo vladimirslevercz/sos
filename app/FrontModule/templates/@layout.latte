@@ -64,30 +64,42 @@
                 <div class="row">
                     {foreach $menus as $menu}
                     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 menu-item">
-
                         {if $menu->url}
-                            <a href="{$menu->url}">
+                        <a href="{$menu->url}" {if isset($selectedMenu) && $selectedMenu && ($selectedMenu->id == $menu->id || ($selectedMenu->menu && $selectedMenu->menu->id == $menu->id))} class="active"{/if}>{$menu->name}</a>
                         {elseif $menu->article}
-                            <a n:href="Article:show $menu->article->id">
+                        <a n:href="Article:show $menu->id">{$menu->name}</a>
                         {else}
-                            <a href="#">
+                        <a href="#">{$menu->name}</a>
                         {/if}
-                            {$menu->name}
-                        </a>
                     </div>
                     {/foreach}
                 </div>
+                {if isset($selectedMenu)}
+                <div class="row" style="margin-top:25px;">
+                    {foreach $selectedMenu->related('menu')->limit(6) as $subMenu}
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 menu-item">
+                            {if $subMenu->url}
+                            <a href="{$subMenu->url}">{$subMenu->name}</a>
+                            {elseif $subMenu->article}
+                            <a n:href="Article:show $subMenu->id">{$subMenu->name}</a>
+                            {else}
+                            <a href="#">{$subMenu->name}</a>
+                            {/if}
+                        </div>
+                    {/foreach}
+                </div>
+                {/if}
             </div>
         </div>
         <div class="col-lg-2 col-md-12 col-xs-12 social-media">
             <div class="col-lg-4 col-md-1 col-sm-1 col-xs-4 social-media-item">
-                YOUTUBE
+                <a href="#"><img src="{$basePath}/img/social_ic2.png" /></a>
             </div>
             <div class="col-lg-4 col-md-1 col-sm-1 col-xs-4 social-media-item">
-                FACEBOOK
+                <a href="#"><img src="{$basePath}/img/social_ic1.png" /></a>
             </div>
             <div class="col-lg-4 col-md-1 col-sm-1 col-xs-4 social-media-item">
-                MAIL
+                <a href="#"><img src="{$basePath}/img/social_ic3.png" /></a>
             </div>
         </div>
     </div>

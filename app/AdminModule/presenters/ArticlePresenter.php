@@ -15,6 +15,8 @@ use Nette\Application\UI;
  */
 class ArticlePresenter extends BasePresenter
 {
+	const FILE_PATH = 'article/';
+
 	/**
 	 * @var Model\Article
 	 * @inject
@@ -47,6 +49,11 @@ class ArticlePresenter extends BasePresenter
 		$form->addText('name', 'Název článku:')
 			->setRequired();
 
+		$form->addUpload('image', 'Obrázek JPG')
+			->addCondition($form::FILLED)
+				->addRule($form::IMAGE, 'Zvolený soubor není obrázek.')
+				->addRule($form::MAX_FILE_SIZE, 'Maximální velikost souboru je 2 MB.', 3 * 1024 * 1024 /* v bytech */);
+
 		$form->addTextArea('annotation', 'Annotace:')
 			->setAttribute('class', 'tinyMCE');
 
@@ -64,21 +71,32 @@ class ArticlePresenter extends BasePresenter
 
 	public function articleFormSucceeded(UI\Form $form, $values)
 	{
+		$articleData = [
+			'name' => $values['name'],
+			'user_id' => $this->user->id,
+			'annotation' => $values['annotation'],
+			'text' => $values['text'],
+		];
+
 		$articleId = $this->getParameter('id');
 		if ($articleId) {
 			$article = $this->article->get($articleId);
 			if (!$article) {
 				$this->error('Data nebyla nalezena v databázi.', '404');
 			} else {
-				$article->update($values);
+				$article->update($articleData);
 			}
 			$this->flashMessage('Změny uloženy.', 'success');
 
 		} else {
-			$values['user_id'] = $this->user->id;
-			$article = $this->article->insert($values);
+			$article = $this->article->insert($articleData);
 			$this->flashMessage('Článek vložen do databáze.', 'success');
 		}
+
+		if ($this->saveFile($values['image'], self::FILE_PATH . $article->id . '.jpg')) {
+			$this->flashMessage('Obrázek uložen.', 'success');
+		}
+
 		$this->redirect('edit', $article->id);
 	}
 

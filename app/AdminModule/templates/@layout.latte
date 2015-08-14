@@ -47,7 +47,13 @@
 
     <!-- tinyMCE -->
     <script src="{$basePath}/js/tinymce/tinymce.min.js"></script>
-    <script>tinymce.init({ selector:'textarea' });</script>
+    <script>tinymce.init({
+        selector:'textarea',
+        paste_data_images: true,
+        paste_as_text: true,
+        plugins: ["code","autoresize"],
+        autoresize_on_init: true
+    });</script>
 	{/block}
 
 

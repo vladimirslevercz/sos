@@ -25,5 +25,7 @@ services:
 	router: App\RouterFactory::createRouter
 	article: App\Model\Article
 	menu: App\Model\Menu
+	event: App\Model\Event
+	contact: App\Model\Contact
 	database: @Nette\Database\Context
 

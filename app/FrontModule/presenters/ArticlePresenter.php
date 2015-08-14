@@ -15,10 +15,10 @@ use Nette\Database\Context;
 class ArticlePresenter extends BasePresenter
 {
 	/**
-	 * @var Model\Article
+	 * @var Model\Menu
 	 * @inject
 	 */
-	public $article;
+	public $menu;
 
 	public function renderDefault()
 	{
@@ -26,7 +26,20 @@ class ArticlePresenter extends BasePresenter
 	}
 
 	public function renderShow($id) {
-		$this->template->article = $this->article->get($id);
+		$this->menu = new Model\Menu($this->getDatabase());
+		$selectedMenu = $this->menu->get($id);
+		$selectedSubMenu = null;
+		if ($selectedMenu->menu) {
+			$selectedSubMenu = $selectedMenu;
+			$selectedMenu = $selectedMenu->menu;
+		}
+
+		if (!$selectedMenu) {
+			$this->redirect('Homepage:default');
+		}
+		$this->template->article = $selectedMenu->article;
+		$this->template->selectedMenu = $selectedMenu;
+		$this->template->selectedSubmenu = $selectedSubMenu;
 	}
 
 }

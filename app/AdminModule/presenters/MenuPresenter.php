@@ -76,7 +76,14 @@ class MenuPresenter extends BasePresenter
 
 	public function menuFormSucceeded(UI\Form $form, $values)
 	{
+		$this->menu = new Model\Menu($this->getDatabase());
 		$menuId = $this->getParameter('id');
+		if(!$values['menu_id']) {
+			$values['menu_id'] = null;
+		}
+		if(!$values['article_id']) {
+			$values['article_id'] = null;
+		}
 		if ($menuId) {
 			$menu = $this->menu->get($menuId);
 			if (!$menu) {
@@ -87,13 +94,7 @@ class MenuPresenter extends BasePresenter
 			$this->flashMessage('Změny uloženy.', 'success');
 
 		} else {
-			if(!$values['menu_id']) {
-				$values['menu_id'] = null;
-			}
-			if(!$values['article_id']) {
-				$values['article_id'] = null;
-			}
-			$menu = $this->menu->insert($values);
+			$this->menu->insert($values);
 			$this->flashMessage('Položka menu "' . $values['name'] . '" vložena.', 'success');
 		}
 		$this->redirect('default');

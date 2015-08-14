@@ -25,9 +25,9 @@
                 </td>
                 <td>
                     {if $m->url}
-                        ODKAZ: <a href="{$m->url}">{$m->url}</a>
+                        <i class="glyphicon glyphicon-link"></i> <a href="{$m->url}">{$m->url}</a>
                     {elseif $m->article}
-                        ČLÁNEK: {$m->article->name}
+                        <i class="glyphicon glyphicon glyphicon-file"></i> {$m->article->name}
                     {/if}
                 </td>
                 <td>

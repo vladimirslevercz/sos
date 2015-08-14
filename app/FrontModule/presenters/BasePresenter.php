@@ -21,4 +21,8 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
 	{
 		$this->template->menus = $this->menu->where('menu_id', null);
 	}
+
+	protected function getDatabase() {
+		return $this->context->getService('database');
+	}
 }
