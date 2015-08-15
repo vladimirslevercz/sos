@@ -11,7 +11,38 @@
     background-image: url('../img/stave-lines-bg.png');
     background-repeat: repeat-x;
     background-size: auto 120px;
-    height: 120px;
+    height: 130px;
+    padding-top: 15px;
+}
+
+.stave-lines .white-background {
+    width: 200px;
+    height: 200px;
+    border-right: 10px solid white;
+    border-left: 10px solid white;
+    overflow: hidden;
+    background-color: white;
+    margin-left: -15px;
+    text-align: center;
+}
+
+.stave-lines .green-background, .stave-lines .orange-background {
+    border-right: 10px solid white;
+    height: 107px;
+    overflow: hidden;
+}
+
+.stave-lines .green-background {
+    background-color: rgb(197, 230, 235);
+}
+
+.stave-lines .orange-background {
+    background-color: rgb(250, 216, 199);
+}
+.stave-lines .white-background img {
+    min-height: 115px;
+    min-width: 180px;
+    width: 100%;
 }
 
 img.corner-logo {
@@ -99,7 +130,7 @@ img.corner-logo {
     }
 }
 
-.article {
+.article, .event-thumbnail {
     margin-top: 18px;
     padding-top: 15px;
     padding-bottom: 15px;
@@ -119,18 +150,23 @@ img.corner-logo {
     border: 1px solid rgb(0, 192, 192);
 }
 
-.article h1, .article h2, .article h3 {
+h1, h2, h3 {
     color: rgb(226, 9, 25);
 }
 
-.article h1 {
+h1 {
     font-size: 15px;
 }
-.article h2 {
+h2 {
     font-size: 13px;
 }
-.article h3 {
+h3 {
     font-size: 12px;
+}
+
+.event-thumbnail h1, .event-thumbnail h2, .event-thumbnail h3 {
+    margin-top: 3px;
+    pargin-bottom: 6px;
 }
 
 img.article-main-image {
@@ -145,4 +181,23 @@ img.article-main-image {
 
 .menu a.active {
     color: firebrick;
+}
+
+.event-thumbnail {
+    height: 100%;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-top: 5px;
+    padding-left: 200px;
+    background-color: transparent;
+}
+
+.article a, .event-thumbnail a {
+    color: firebrick;
+    text-decoration: none;
+}
+
+.article a:hover, .event-thumbnail a:hover {
+    color: firebrick;
+    text-decoration: underline;
 }

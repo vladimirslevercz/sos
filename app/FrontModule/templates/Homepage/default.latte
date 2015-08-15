@@ -26,6 +26,25 @@
 <div class="clearfix"></div>
 
 <div class="container-fluid">
-    Akce......
+    {foreach $event as $e}
+    <div class="row stave-lines">
+        <div class="col-xs-12 col-md-11 col-lg-9 col-lg-offset-1 {if $e->main}orange{else}green{/if}-background">
+            <div class="white-background pull-left">
+                <a n:href="Event:show $e->id">
+                    <img src="{$basePath}/content/event/{$e->id}.jpg" class=" pull-left" title="{$e->name}" />
+                </a>
+            </div>
+            <div class="event-thumbnail">
+                <h2>{$e->name}</h2>
+                {$e->annotation|noescape}
+                <br />
+                <a n:href="Event:show $e->id">více ...</a>
+            </div>
+
+        </div>
+        <div class="clearfix"></div>
+    </div>
+
+    {/foreach}
 </div>
 {/block}

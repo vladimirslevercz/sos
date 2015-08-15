@@ -12,7 +12,7 @@ use Nette\Database\Context;
 /**
  * Homepage presenter.
  */
-class HomepagePresenter extends BasePresenter
+class EventPresenter extends BasePresenter
 {
 	/**
 	 * @var Model\Event
@@ -20,9 +20,13 @@ class HomepagePresenter extends BasePresenter
 	 */
 	public $event;
 
-	public function renderDefault()
-	{
-		$this->template->event = $this->event->order('date DESC');
+
+	public function renderShow($id) {
+		$event = $this->event->get($id);
+		if (!$event) {
+			$this->error('Akci nelze otevřít', 404);
+		}
+		$this->template->event = $event;
 	}
 
 }

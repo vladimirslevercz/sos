@@ -43,7 +43,13 @@ class MenuPresenter extends BasePresenter
 		if(!$menu) {
 			$this->error('Data nebyla nalezena v databázi.', 404);
 		}
-		$this['menuForm']->setDefaults($menu->toArray());
+		//dump($menu->toArray());exit;
+		$defaults = $menu->toArray();
+		if (!$defaults['menu_id']) {
+			$defaults['menu_id'] = '';
+		}
+		$this['menuForm']->setDefaults($defaults);
+
 	}
 
 	protected function createComponentMenuForm()

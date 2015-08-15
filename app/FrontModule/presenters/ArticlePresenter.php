@@ -20,6 +20,12 @@ class ArticlePresenter extends BasePresenter
 	 */
 	public $menu;
 
+	/**
+	 * @var Model\Article
+	 * @inject
+	 */
+	public $article;
+
 	public function renderDefault()
 	{
 
@@ -27,7 +33,8 @@ class ArticlePresenter extends BasePresenter
 
 	public function renderShow($id) {
 		$this->menu = new Model\Menu($this->getDatabase());
-		$selectedMenu = $this->menu->get($id);
+		$menuToOpen = $selectedMenu = $this->menu->get($id);
+
 		$selectedSubMenu = null;
 		if ($selectedMenu->menu) {
 			$selectedSubMenu = $selectedMenu;
@@ -37,9 +44,24 @@ class ArticlePresenter extends BasePresenter
 		if (!$selectedMenu) {
 			$this->redirect('Homepage:default');
 		}
-		$this->template->article = $selectedMenu->article;
+
+
+		$article = $menuToOpen->article;
+		if (!$article) {
+			$this->error('Menu nelze otevřít', 404);
+		}
+
+		$this->template->article = $article;
 		$this->template->selectedMenu = $selectedMenu;
 		$this->template->selectedSubmenu = $selectedSubMenu;
+	}
+
+	public function renderArticle($id) {
+		$article = $this->article->get($id);
+		if (!$article) {
+			$this->error('Článek nelze otevřít', 404);
+		}
+		$this->template->article = $article;
 	}
 
 }

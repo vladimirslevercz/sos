@@ -47,11 +47,11 @@ class EventPresenter extends BasePresenter
 		$form->addUpload('eventImage', 'Obrázek akce')
 			->addCondition($form::FILLED)
 				->addRule($form::IMAGE, 'Zvolený soubor není obrázek.')
-				->addRule($form::MAX_FILE_SIZE, 'Maximální velikost souboru je 2 MB.', 2 * 1024 * 1024 /* v bytech */);
+				->addRule($form::MAX_FILE_SIZE, 'Maximální velikost souboru je 2 MB.', 10 * 1024 * 1024 /* v bytech */);
 
 
 		$form->addText('date', 'Datum a čas začátku události')
-			->addRule($form::PATTERN, 'Vyplňte datum a čas ve tvaru 13.8.2014 18:00.', '[0-3]?[0-9]\.[0-1]?[0-9]\.[0-9]{4}( [0-2]?[0-9]:[0-5][0-9](:[0-5][0-9])?)?')
+			->addRule($form::PATTERN, 'Vyplňte datum a čas ve tvaru 13.8.2014 18:00.', '([0-3]?[0-9]\.[0-1]?[0-9]\.[0-9]{4}( [0-2]?[0-9]:[0-5][0-9](:[0-5][0-9])?)?)|([0-9]{4}-[0-9]{2}-[0-9]{2}( [0-9]{2}:[0-9]{2}:[0-9]{2})?)')
 			->setRequired();
 
 		$form->addTextArea('annotation', 'Annotace:')
@@ -81,7 +81,7 @@ class EventPresenter extends BasePresenter
 			->setOption('id', 'ticket-image')
 			->addCondition($form::FILLED)
 			->addRule($form::IMAGE, 'Zvolený soubor není obrázek.')
-			->addRule($form::MAX_FILE_SIZE, 'Maximální velikost souboru je 2 MB.', 3 * 1024 * 1024 /* v bytech */);
+			->addRule($form::MAX_FILE_SIZE, 'Maximální velikost souboru je 2 MB.', 10 * 1024 * 1024 /* v bytech */);
 
 		$form->addSubmit('save', 'Uložit')
 			->setAttribute('class', 'btn btn-primary');
