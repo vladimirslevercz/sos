@@ -37,3 +37,18 @@ form .error {
 	color: #D00;
 	font-weight: bold;
 }
+
+img.article-preview-image {
+	max-height: 80px;
+	max-width: 100px;
+}
+
+img.preview-image {
+	max-height: 80px;
+	max-width: 100px;
+}
+
+img.preview-image-small {
+	max-height: 40px;
+	max-width: 50px;
+}

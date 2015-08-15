@@ -30,11 +30,11 @@ class EventPresenter extends BasePresenter
 	 * @param $id
 	 */
 	public function actionEdit($id) {
-		$article = $this->article->get($id);
-		if(!$article) {
+		$event = $this->event->get($id);
+		if(!$event) {
 			$this->error('Data nebyla nalezena v databázi.', 404);
 		}
-		$this['articleForm']->setDefaults($article->toArray());
+		$this['eventForm']->setDefaults($event->toArray());
 	}
 
 	protected function createComponentEventForm()
@@ -129,36 +129,26 @@ class EventPresenter extends BasePresenter
 			$event = $this->event->insert($eventData);
 			$this->flashMessage('Akce vložena do databáze.', 'success');
 		}
+
+		// obrázky
+		if ($this->saveFile($values['eventImage'], 'event/' . $event->id . '.jpg')) {
+			$this->flashMessage('Obrázek akce uložen.', 'success');
+		}
+		if ($this->saveFile($values['ticketImage'], 'ticket/' . $event->id . '.jpg')) {
+			$this->flashMessage('Obrázek vstupenky uložen.', 'success');
+		}
+
+		// PDFko
+		/** @var Nette\Http\FileUpload $attachedDocument */
+		$attachedDocument = $values['attachedDocument'];
+		if ($attachedDocument->isOk() || self::getExtensionByName($attachedDocument->getName()) == 'pdf') {
+			$attachedDocument->move(self::SAVE_DIR . '/event-pdf/' . $event->id . '.pdf');
+			$this->flashMessage('Dokument uložen.', 'success');
+		}
+
 		$this->redirect('edit', $event->id);
 	}
 
-	protected function createComponentEventEditForm()
-	{
-		$form = new UI\Form;
-
-		$form->addText('name', 'Název události:')
-			->setRequired();
-
-		$form->addText('date', 'Datum a čas začátku události')
-			->addRule($form::PATTERN, 'Vyplňte datum a čas ve tvaru 13.8.2014 18:00.', '[0-3]?[0-9]\.[0-1]?[0-9]\.[0-9]{4}( [0-2]?[0-9]:[0-5][0-9](:[0-5][0-9])?)?')
-			->setRequired();
-
-		$form->addTextArea('annotation', 'Annotace:')
-			->setAttribute('class', 'tinyMCE');
-
-		$form->addTextArea('description', 'Článek:')
-			->setAttribute('class', 'tinyMCE');
-
-		$form->addCheckbox('main', 'Hlavní akce?');
-
-
-		$form->addSubmit('save', 'Uložit')
-			->setAttribute('class', 'btn btn-primary');
-
-		$form->onSuccess[] = array($this, 'formSucceeded');
-
-		return $form;
-	}
 
 	public function actionDelete($id)
 	{

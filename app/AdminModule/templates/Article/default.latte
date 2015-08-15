@@ -5,12 +5,19 @@
 {block content}
 
 <h1 n:block=title>Články</h1>
+    <div>
+        <p>
+            Jednotlivé články se zakládají do databáze. Každý článek by měl obsahovat svůj obrázek, který se pak promítne po jeho levé části.
+        </p>
+    </div>
+
     <div class="pull-right">
         <a n:href="create" class="btn btn-success">Nový článek</a>
     </div>
 {if count($article)}
     <table class="table table-bordered table-responsive">
         <thead>
+            <th>Obrázek</th>
             <th>Název</th>
             <th>Vytvořeno</th>
             <th>Annotace</th>
@@ -19,6 +26,9 @@
         <tbody>
             {foreach $article as $a}
             <tr>
+                <td>
+                    <img src="{$basePath}/content/article/{$a->id}.jpg" class="article-preview-image" />
+                </td>
                 <td>
                     {$a->name}
                 </td>

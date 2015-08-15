@@ -5,6 +5,16 @@
 {block content}
 
 <h1 n:block=title>Akce</h1>
+
+    <div>
+        <p>
+            Akce jsou nebo události typu konference nebo koncert. Akce by měla mít svůj úvodní obrázek, který se
+            zobrazí po levé části popisu akce. K akci je možné přiřadit dokument PDF ke stažení. Pokud je akce
+            označena jako konference, je možné se na tuto akci registrovat pomocí formuláře. Je-li označena jako
+            koncert, je možné nechat si zaslat na email vstupenku.
+        </p>
+    </div>
+
     <div class="pull-right">
         <a n:href="create" class="btn btn-success">Nová Akce</a>
     </div>
@@ -12,18 +22,23 @@
 {if count($event)}
     <table class="table table-bordered table-responsive">
         <thead>
+            <th>Obrázek</th>
             <th>Název</th>
             <th>Annotace</th>
             <th>Date</th>
             <th>Hlavní</th>
-            <th>Koncert<br />lístek</th>
-            <th>Konference<br />registrace</th>
+            <th>Koncert<br /><small>lístek</small></th>
+            <th>Konference<br /><small>registrace</small></th>
+            <th>Dokument</th>
 
             <th>Akce</th>
         </thead>
         <tbody>
             {foreach $event as $e}
             <tr>
+                <td>
+                    <img src="{$basePath}/content/event/{$e->id}.jpg" class="preview-image" />
+                </td>
                 <td>
                     {$e->name}
                 </td>
@@ -40,12 +55,20 @@
                 </td>
                 <td>
                     {if $e->ticket}
-                        <i class="glyphicon glyphicon-ok"></i>
+                        <i class="glyphicon glyphicon-ok"></i> <br />
+                        <img src="{$basePath}/content/ticket/{$e->id}.jpg" class="preview-image small" />
                     {/if}
                 </td>
                 <td>
                     {if $e->registration}
                         <i class="glyphicon glyphicon-ok"></i>
+                    {/if}
+                </td>
+                <td>
+                    {if $e->document}
+                        <a href="{$basePath}/content/event-pdf/{$e->id}.pdf">
+                            <i class="glyphicon glyphicon-download"></i>
+                        </a>
                     {/if}
                 </td>
                 <td>
