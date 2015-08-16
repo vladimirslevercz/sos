@@ -62,12 +62,15 @@
         <div class="col-lg-9 col-md-10 col-sm-4 col-xs-6 menu">
             <div class="container">
                 <div class="row">
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 menu-item">
+                        <a n:href="Event:default" {if $presenter->getName() == 'Front:Event'} class="active"{/if}>Akce</a>
+                    </div>
                     {foreach $menus as $menu}
                     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 menu-item">
                         {if $menu->url}
-                        <a href="{$menu->url}" {if isset($selectedMenu) && $selectedMenu && ($selectedMenu->id == $menu->id || ($selectedMenu->menu && $selectedMenu->menu->id == $menu->id))} class="active"{/if}>{$menu->name}</a>
+                        <a href="{$menu->url}">{$menu->name}</a>
                         {elseif $menu->article}
-                        <a n:href="Article:show $menu->id">{$menu->name}</a>
+                        <a n:href="Article:show $menu->id"{if isset($selectedMenu) && $selectedMenu && ($selectedMenu->id == $menu->id || ($selectedMenu->menu && $selectedMenu->menu->id == $menu->id))} class="active"{/if}>{$menu->name}</a>
                         {else}
                         <a href="#">{$menu->name}</a>
                         {/if}
@@ -81,7 +84,7 @@
                             {if $subMenu->url}
                             <a href="{$subMenu->url}">{$subMenu->name}</a>
                             {elseif $subMenu->article}
-                            <a n:href="Article:show $subMenu->id">{$subMenu->name}</a>
+                            <a n:href="Article:show $subMenu->id" {if isset($selectedSubMenu) && $selectedSubMenu && ($selectedSubMenu->id == $subMenu->id || ($selectedSubMenu->menu && $selectedSubMenu->menu->id == $subMenu->id))} class="active"{/if}>{$subMenu->name}</a>
                             {else}
                             <a href="#">{$subMenu->name}</a>
                             {/if}

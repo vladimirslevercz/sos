@@ -24,7 +24,19 @@ if (!function_exists($_b->blocks['scripts'][] = '_lb1ced2cd762_scripts')) { func
 
     <!-- tinyMCE -->
     <script src="<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($basePath), ENT_COMPAT) ?>/js/tinymce/tinymce.min.js"></script>
-    <script>tinymce.init({ selector:'textarea' });</script>
+    <script>tinymce.init({
+        selector:'textarea',
+        paste_data_images: true,
+        paste_as_text: true,
+        plugins: [
+            "advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker",
+            "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
+            "save table contextmenu directionality emoticons template paste textcolor"
+        ],
+        height: 400,
+        autoresize_on_init: true,
+        toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview media fullpage | forecolor backcolor emoticons"
+    });</script>
 <?php
 }}
 
@@ -72,7 +84,7 @@ if (empty($_l->extends) && !empty($_control->snippetMode)) {
     <meta name="author" content="">
 
 	<title><?php if (isset($_b->blocks["title"])) { ob_start(); Latte\Macros\BlockMacrosRuntime::callBlock($_b, 'title', $template->getParameters()); echo $template->striptags(ob_get_clean()) ?>
- | <?php } ?>Bohemia Ingress</title>
+ | <?php } ?>SOS</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($basePath), ENT_COMPAT) ?>/css/bootstrap.min.css" rel="stylesheet">

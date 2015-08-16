@@ -28,13 +28,20 @@
 <div class="container-fluid">
     {foreach $event as $e}
     <div class="row stave-lines">
-        <div class="col-xs-12 col-md-11 col-lg-9 col-lg-offset-1 {if $e->main}orange{else}green{/if}-background">
+        <div class="col-xs-12 col-md-11 col-lg-9 col-lg-offset-1 {if $e->main}green{else}orange{/if}-background">
             <div class="white-background pull-left">
                 <a n:href="Event:show $e->id">
                     <img src="{$basePath}/content/event/{$e->id}.jpg" class=" pull-left" title="{$e->name}" />
                 </a>
             </div>
             <div class="event-thumbnail">
+                <div class="pull-right tools">
+                    <a n:href="Event:show $e->id"><i class="glyphicon glyphicon-eye-open"></i> </a>
+                    {if $e->document}<a href="{$basePath}/content/event-pdf/{$e->id}.pdf"><i class="glyphicon glyphicon-download-alt"></i></a> {/if}
+                    {if $e->ticket}<a href="{link Event:show $e->id}#ticketForm">Lístek</a> {/if}
+                    {if $e->registration}<a href="{link Event:show $e->id}#registrationForm">Registrace</a> {/if}
+                    {if $e->main}<img src="{$basePath}/img/sos-flag.png" class="sos-flag" />{/if}
+                </div>
                 <h2>{$e->name}</h2>
                 {$e->annotation|noescape}
                 <br />

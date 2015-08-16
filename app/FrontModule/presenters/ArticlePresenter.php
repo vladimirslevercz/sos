@@ -53,7 +53,7 @@ class ArticlePresenter extends BasePresenter
 
 		$this->template->article = $article;
 		$this->template->selectedMenu = $selectedMenu;
-		$this->template->selectedSubmenu = $selectedSubMenu;
+		$this->template->selectedSubMenu = $selectedSubMenu;
 	}
 
 	public function renderArticle($id) {

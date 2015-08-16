@@ -188,8 +188,9 @@ img.article-main-image {
     margin-top: 0px;
     margin-bottom: 0px;
     padding-top: 5px;
-    padding-left: 200px;
+    padding-left: 10px;
     background-color: transparent;
+    overflow: auto;
 }
 
 .article a, .event-thumbnail a {
@@ -205,6 +206,42 @@ img.article-main-image {
 h2.event-group {
     font-family: 'Wellfleet', 'Arial', sans-serif;
     color: #333;
+}
+
+.green-background .event-thumbnail .tools a {
+    color: #007576;
+    font-family: "Helvetica Neue", "Montserrat", 'Helvetica', 'Arial', sans-serif;
+    transition: color 0.8s;
+}
+
+.green-background .event-thumbnail .tools a:hover {
+    color: #004099;
+    text-decoration: none;
+}
+
+.orange-background .event-thumbnail .tools a {
+    color: rgb(226, 9, 25);
+    font-family: "Helvetica Neue", "Montserrat", 'Helvetica', 'Arial', sans-serif;
+    transition: color 0.8s;
+}
+
+.orange-background .event-thumbnail .tools a:hover {
+    color: rgb(200, 9, 40);
+    text-decoration: none;
+}
+
+.orange-background .event-thumbnail .tools {
+    padding-right: 45px;
+}
+
+.event-thumbnail .tools img.sos-flag {
+    height: 40px;
+    margin-top: -5px;
+    padding-right: -5px;
+}
+
+.green-background, .orange-background {
+    padding-right: 0px;
 }
 
 

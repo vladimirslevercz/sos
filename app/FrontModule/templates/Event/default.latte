@@ -11,7 +11,7 @@
     </div>
     {foreach $eventMain as $e}
     <div class="row stave-lines">
-        <div class="col-xs-12 col-md-11 col-lg-9 col-lg-offset-1 {if $e->main}orange{else}green{/if}-background">
+        <div class="col-xs-12 col-md-11 col-lg-9 col-lg-offset-1 {if $e->main}green{else}orange{/if}-background">
             <div class="white-background pull-left">
                 <a n:href="Event:show $e->id">
                     <img src="{$basePath}/content/event/{$e->id}.jpg" class=" pull-left" title="{$e->name}" />
@@ -38,7 +38,7 @@
     </div>
     {foreach $eventNotMain as $e}
     <div class="row stave-lines">
-        <div class="col-xs-12 col-md-11 col-lg-9 col-lg-offset-1 {if $e->main}orange{else}green{/if}-background">
+        <div class="col-xs-12 col-md-11 col-lg-9 col-lg-offset-1 {if $e->main}green{else}orange{/if}-background">
             <div class="white-background pull-left">
                 <a n:href="Event:show $e->id">
                     <img src="{$basePath}/content/event/{$e->id}.jpg" class=" pull-left" title="{$e->name}" />
@@ -65,11 +65,12 @@
     </div>
     {foreach $eventPast as $e}
     <div class="row stave-lines">
-        <div class="col-xs-12 col-md-11 col-lg-9 col-lg-offset-1 {if $e->main}orange{else}green{/if}-background">
+        <div class="col-xs-12 col-md-11 col-lg-9 col-lg-offset-1 {if $e->main}green{else}orange{/if}-background">
             <div class="white-background pull-left">
                 <a n:href="Event:show $e->id">
                     <img src="{$basePath}/content/event/{$e->id}.jpg" class=" pull-left" title="{$e->name}" />
                 </a>
+
             </div>
             <div class="event-thumbnail">
                 <h2>{$e->name}  {$e->date|date:'j.n.Y'}</h2>
