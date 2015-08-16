@@ -1,0 +1,16 @@
+{block content}
+<div class="container-fluid article">
+    <div class="col-lg-10 col-lg-offset-1 col-md-12">
+        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+            <img
+                class="article-main-image"
+                src="{$basePath}/content/event/{$event->id}.jpg"
+                />
+        </div>
+        <div class="col-lg-9 col-md-8 col-sm-6 col-xs-12">
+            {$event->description|noescape}
+        </div>
+    </div>
+</div>
+
+{/block}

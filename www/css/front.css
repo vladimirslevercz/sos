@@ -201,3 +201,10 @@ img.article-main-image {
     color: firebrick;
     text-decoration: underline;
 }
+
+h2.event-group {
+    font-family: 'Wellfleet', 'Arial', sans-serif;
+    color: #333;
+}
+
+
