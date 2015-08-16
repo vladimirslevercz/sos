@@ -42,7 +42,7 @@
                     {if $e->registration}<a href="{link Event:show $e->id}#registrationForm">Registrace</a> {/if}
                     {if $e->main}<img src="{$basePath}/img/sos-flag.png" class="sos-flag" />{/if}
                 </div>
-                <h2>{$e->name}</h2>
+                <h2>{$e->name}  {$e->date|date:'j.n.Y'}</h2>
                 {$e->annotation|noescape}
                 <br />
                 <a n:href="Event:show $e->id">více ...</a>

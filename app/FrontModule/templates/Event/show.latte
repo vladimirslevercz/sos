@@ -8,7 +8,38 @@
                 />
         </div>
         <div class="col-lg-9 col-md-8 col-sm-6 col-xs-12">
+            <div class="pull-right" style="text-align: right">
+                {$event->date|date:'j.n.Y'}
+                {if $event->main}<br />Tuto akci pořádá SOS Hudebně.{/if}
+            </div>
+            {if $event->ticket && $event->date > $now}<a href="#ticketForm">Lístek</a> {/if}
+            {if $event->registration && $event->date > $now}<a href="#registrationForm">Registrace</a> {/if}
+            {if $event->document}<a href="{$basePath}/content/event-pdf/{$event->id}.pdf"><i class="glyphicon glyphicon-download-alt"></i>Stáhnout dokument</a> {/if}
+
+            {if $event->annotation}
+            <hr />
+            {$event->annotation|noescape}
+            {/if}
+
+            <hr />
+            <h1>{$event->name}</h1>
             {$event->description|noescape}
+
+            {if $event->registration && $event->date > $now}
+            <hr />
+            <a name="registrationForm"></a>
+            <p>Pro navštívení konference se prosím registrujte v následujícím formuláři. Věnujte pozornost poznámce.</p>
+
+            {control eventRegistrationForm}
+            {/if}
+
+            {if $event->ticket && $event->date > $now}
+            <hr />
+            <a name="ticketForm"></a>
+            <p>Pro získání vstupenky vyplňte email, ne který bude zaslána.</p>
+
+            {control eventTicketForm}
+            {/if}
         </div>
     </div>
 </div>

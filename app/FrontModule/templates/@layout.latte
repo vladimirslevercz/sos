@@ -109,6 +109,16 @@
 </div>
 
 <div class="clearfix"></div>
+
+<div class="container">
+    <div n:if="count($flashes)>0" id="flashmessages">
+        <div n:foreach="$flashes as $flash" class='alert alert-{$flash->type} alert-dismissible' role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            {$flash->message|noescape}
+        </div>
+    </div>
+</div>
+
 {block content}{/block}
 
 
@@ -124,7 +134,7 @@
 <!-- Footer -->
 <footer>
     <div class="container text-center">
-        <p>Copyright &copy; Vladimír Mlázovský 2015</p>
+        <p>autorka Marie Lišková liskovamaj@gmail.com | web Vladimír Mlázovský 2015 </p>
     </div>
 </footer>
 
