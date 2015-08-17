@@ -1,14 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="351b827f-2a2b-4d1e-ae9e-6c70c301ef94" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/FrontModule/templates/@layout.latte" afterPath="$PROJECT_DIR$/app/FrontModule/templates/@layout.latte" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/temp/cache/Nette.Configurator/Container_5c449a8ec0.php.meta" afterPath="$PROJECT_DIR$/temp/cache/Nette.Configurator/Container_5c449a8ec0.php.meta" />
+    <list default="true" id="351b827f-2a2b-4d1e-ae9e-6c70c301ef94" name="Default" comment="[add] sending notifications, adminis">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/model/Registration.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/AdminModule/presenters/RegistrationPresenter.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/model/Ticket.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/AdminModule/presenters/TicketPresenter.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/AdminModule/templates/Registration/default.latte" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/AdminModule/templates/Ticket/default.latte" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/cache/Nette.Configurator/Container_5c449a8ec0.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/cache/Nette.Configurator/Container_5c449a8ec0.php.lock" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/cache/Nette.Configurator/Container_5c449a8ec0.php.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/cache/_Nette.Database.Structure.cb6581ef8932fe2f2f23c76fc3f88988/_07414f4e15ca943e6cde032dec85d92f" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/cache/_Nette.RobotLoader/_5259dfa56fb05944ba6851cf21195413" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/cache/latte/app-AdminModule-templates-Homepage-default-latte-Template610f97b1559dbceb0c62216461c8ed2f.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/cache/latte/app-AdminModule-templates-Homepage-default-latte-Template610f97b1559dbceb0c62216461c8ed2f.php.lock" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/cache/latte/sos-app-AdminModule-templates-layout-latte-Template0568b9eeda80062552aa1313cd2cd9f8.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/cache/latte/sos-app-AdminModule-templates-layout-latte-Template0568b9eeda80062552aa1313cd2cd9f8.php.lock" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/AdminModule/presenters/ArticlePresenter.php" afterPath="$PROJECT_DIR$/app/AdminModule/presenters/ArticlePresenter.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/FrontModule/presenters/BasePresenter.php" afterPath="$PROJECT_DIR$/app/FrontModule/presenters/BasePresenter.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/AdminModule/presenters/EventPresenter.php" afterPath="$PROJECT_DIR$/app/AdminModule/presenters/EventPresenter.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/FrontModule/presenters/EventPresenter.php" afterPath="$PROJECT_DIR$/app/FrontModule/presenters/EventPresenter.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/temp/cache/_Nette.RobotLoader/_5259dfa56fb05944ba6851cf21195413" afterPath="$PROJECT_DIR$/temp/cache/_Nette.RobotLoader/_5259dfa56fb05944ba6851cf21195413" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/FrontModule/templates/Event/default.latte" afterPath="$PROJECT_DIR$/app/FrontModule/templates/Event/default.latte" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/FrontModule/templates/Homepage/default.latte" afterPath="$PROJECT_DIR$/app/FrontModule/templates/Homepage/default.latte" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/css/front.css" afterPath="$PROJECT_DIR$/www/css/front.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/AdminModule/presenters/MenuPresenter.php" afterPath="$PROJECT_DIR$/app/AdminModule/presenters/MenuPresenter.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/config.neon" afterPath="$PROJECT_DIR$/app/config/config.neon" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/AdminModule/templates/Article/default.latte" afterPath="$PROJECT_DIR$/app/AdminModule/templates/Article/default.latte" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/AdminModule/templates/Event/default.latte" afterPath="$PROJECT_DIR$/app/AdminModule/templates/Event/default.latte" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/AdminModule/templates/navigation.inc" afterPath="$PROJECT_DIR$/app/AdminModule/templates/navigation.inc" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/FrontModule/templates/Event/show.latte" afterPath="$PROJECT_DIR$/app/FrontModule/templates/Event/show.latte" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -38,11 +55,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="EventPresenter.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/FrontModule/presenters/EventPresenter.php">
+      <file leaf-file-name="BasePresenter.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/AdminModule/presenters/BasePresenter.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.50642675">
-              <caret line="71" column="37" selection-start-line="71" selection-start-column="37" selection-end-line="71" selection-end-column="37" />
+            <state vertical-scroll-proportion="-15.083333">
+              <caret line="99" column="5" selection-start-line="96" selection-start-column="4" selection-end-line="99" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BasePresenter.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/FrontModule/presenters/BasePresenter.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-16.75">
+              <caret line="61" column="29" selection-start-line="61" selection-start-column="29" selection-end-line="61" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -51,8 +78,8 @@
       <file leaf-file-name="show.latte" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/FrontModule/templates/Event/show.latte">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-16.0">
-              <caret line="24" column="29" selection-start-line="24" selection-start-column="29" selection-end-line="24" selection-end-column="29" />
+            <state vertical-scroll-proportion="-25.333334">
+              <caret line="38" column="54" selection-start-line="38" selection-start-column="54" selection-end-line="38" selection-end-column="54" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
               </folding>
@@ -60,51 +87,73 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="@layout.latte" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/FrontModule/templates/@layout.latte">
+      <file leaf-file-name="default.latte" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/AdminModule/templates/Ticket/default.latte">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-18.416666">
-              <caret line="135" column="37" selection-start-line="135" selection-start-column="37" selection-end-line="135" selection-end-column="37" />
+            <state vertical-scroll-proportion="-14.0">
+              <caret line="37" column="40" selection-start-line="37" selection-start-column="40" selection-end-line="37" selection-end-column="40" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EventPresenter.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/AdminModule/presenters/EventPresenter.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-13.333333">
+              <caret line="25" column="63" selection-start-line="25" selection-start-column="63" selection-end-line="25" selection-end-column="63" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MenuPresenter.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/AdminModule/presenters/MenuPresenter.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-6.0">
+              <caret line="34" column="61" selection-start-line="34" selection-start-column="61" selection-end-line="34" selection-end-column="61" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RegistrationPresenter.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/AdminModule/presenters/RegistrationPresenter.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.7312253">
+              <caret line="36" column="30" selection-start-line="36" selection-start-column="30" selection-end-line="36" selection-end-column="30" />
+              <folding>
+                <element signature="e#46#68#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="default.latte" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/AdminModule/templates/Event/default.latte">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-17.333334">
+              <caret line="79" column="116" selection-start-line="79" selection-start-column="94" selection-end-line="79" selection-end-column="116" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="default.latte" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/FrontModule/templates/Homepage/default.latte">
+        <entry file="file://$PROJECT_DIR$/app/AdminModule/templates/Article/default.latte">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-18.416666">
-              <caret line="42" column="97" selection-start-line="39" selection-start-column="20" selection-end-line="42" selection-end-column="97" />
+            <state vertical-scroll-proportion="-12.083333">
+              <caret line="43" column="121" selection-start-line="43" selection-start-column="121" selection-end-line="43" selection-end-column="121" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="default.latte" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/FrontModule/templates/Event/default.latte">
+      <file leaf-file-name="ArticlePresenter.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/AdminModule/presenters/ArticlePresenter.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-19.083334">
-              <caret line="92" column="20" selection-start-line="92" selection-start-column="20" selection-end-line="92" selection-end-column="20" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="front.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/css/front.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="247" column="41" selection-start-line="247" selection-start-column="41" selection-end-line="247" selection-end-column="41" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="in.latte" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/FrontModule/templates/Sign/in.latte">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+            <state vertical-scroll-proportion="-7.2083335">
+              <caret line="28" column="67" selection-start-line="28" selection-start-column="49" selection-end-line="28" selection-end-column="67" />
               <folding />
             </state>
           </provider>
@@ -128,33 +177,40 @@
         <option value="$PROJECT_DIR$/app/model/Event.php" />
         <option value="$PROJECT_DIR$/app/model/Contact.php" />
         <option value="$PROJECT_DIR$/app/model/Menu.php" />
-        <option value="$PROJECT_DIR$/app/FrontModule/presenters/BasePresenter.php" />
         <option value="$PROJECT_DIR$/app/AdminModule/presenters/BasePresenter.php" />
         <option value="$PROJECT_DIR$/app/FrontModule/templates/Article/show.latte" />
-        <option value="$PROJECT_DIR$/app/AdminModule/templates/navigation.inc" />
         <option value="$PROJECT_DIR$/app/AdminModule/templates/Event/create.latte" />
         <option value="$PROJECT_DIR$/app/AdminModule/templates/Menu/default.latte" />
         <option value="$PROJECT_DIR$/www/css/admin.css" />
         <option value="$PROJECT_DIR$/app/AdminModule/templates/Event/edit.latte" />
-        <option value="$PROJECT_DIR$/app/AdminModule/templates/Event/default.latte" />
         <option value="$PROJECT_DIR$/app/bootstrap.php" />
-        <option value="$PROJECT_DIR$/app/AdminModule/presenters/MenuPresenter.php" />
-        <option value="$PROJECT_DIR$/app/AdminModule/presenters/EventPresenter.php" />
-        <option value="$PROJECT_DIR$/app/AdminModule/presenters/ArticlePresenter.php" />
         <option value="$PROJECT_DIR$/app/AdminModule/templates/@layout.latte" />
         <option value="$PROJECT_DIR$/app/FrontModule/presenters/HomepagePresenter.php" />
-        <option value="$PROJECT_DIR$/app/AdminModule/templates/Article/default.latte" />
         <option value="$PROJECT_DIR$/app/FrontModule/templates/Sign/in.latte" />
         <option value="$PROJECT_DIR$/app/init.sql" />
-        <option value="$PROJECT_DIR$/app/config/config.neon" />
         <option value="$PROJECT_DIR$/app/FrontModule/presenters/ArticlePresenter.php" />
         <option value="$PROJECT_DIR$/app/config/config.local.neon" />
         <option value="$PROJECT_DIR$/app/FrontModule/templates/Homepage/default.latte" />
         <option value="$PROJECT_DIR$/app/FrontModule/templates/@layout.latte" />
         <option value="$PROJECT_DIR$/www/css/front.css" />
         <option value="$PROJECT_DIR$/app/FrontModule/templates/Event/default.latte" />
+        <option value="$PROJECT_DIR$/app/model/Registration.php" />
+        <option value="$PROJECT_DIR$/app/model/Ticket.php" />
+        <option value="$PROJECT_DIR$/app/config/config.neon" />
+        <option value="$PROJECT_DIR$/app/AdminModule/presenters/TicketPresenter.php" />
+        <option value="$PROJECT_DIR$/app/AdminModule/presenters/RegisterPresenter.php" />
+        <option value="$PROJECT_DIR$/app/AdminModule/presenters/RegistrationPresenter.php" />
+        <option value="$PROJECT_DIR$/app/AdminModule/templates/navigation.inc" />
+        <option value="$PROJECT_DIR$/app/AdminModule/templates/Registration/default.latte" />
         <option value="$PROJECT_DIR$/app/FrontModule/presenters/EventPresenter.php" />
+        <option value="$PROJECT_DIR$/app/FrontModule/presenters/BasePresenter.php" />
         <option value="$PROJECT_DIR$/app/FrontModule/templates/Event/show.latte" />
+        <option value="$PROJECT_DIR$/app/AdminModule/templates/Ticket/default.latte" />
+        <option value="$PROJECT_DIR$/app/AdminModule/templates/Event/default.latte" />
+        <option value="$PROJECT_DIR$/app/AdminModule/templates/Article/default.latte" />
+        <option value="$PROJECT_DIR$/app/AdminModule/presenters/ArticlePresenter.php" />
+        <option value="$PROJECT_DIR$/app/AdminModule/presenters/EventPresenter.php" />
+        <option value="$PROJECT_DIR$/app/AdminModule/presenters/MenuPresenter.php" />
       </list>
     </option>
   </component>
@@ -298,73 +354,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="model" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sos" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sos" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="FrontModule" />
+              <option name="myItemId" value="AdminModule" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sos" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sos" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="FrontModule" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Event" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sos" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sos" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="FrontModule" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -387,6 +381,62 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="templates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Ticket" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sos" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sos" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AdminModule" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Registration" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sos" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sos" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AdminModule" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Event" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -433,6 +483,10 @@
               <option name="myItemId" value="AdminModule" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="presenters" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
@@ -445,7 +499,7 @@
     <property name="FullScreen" value="true" />
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
-    <property name="SearchEverywhereHistoryKey" value="fron&#9;FILE&#9;file:///Users/vml/Zend/workspaces/DefaultWorkspace11/sos/www/css/front.css&#10;homepa/de&#9;FILE&#9;file:///Users/vml/Zend/workspaces/DefaultWorkspace11/sos/app/FrontModule/templates/Homepage/default.latte&#10;homepage/da&#9;null&#9;null&#10;event/defa&#9;FILE&#9;file:///Users/vml/Zend/workspaces/DefaultWorkspace11/sos/app/FrontModule/templates/Event/default.latte&#10;homepage/de&#9;FILE&#9;file:///Users/vml/Zend/workspaces/DefaultWorkspace11/sos/app/FrontModule/templates/Homepage/default.latte&#10;con&#9;FILE&#9;file:///Users/vml/Zend/workspaces/DefaultWorkspace11/sos/app/config/config.local.neon&#10;config&#9;FILE&#9;file:///Users/vml/Zend/workspaces/DefaultWorkspace11/sos/app/config/config.neon&#10;co&#9;FILE&#9;file:///Users/vml/Zend/workspaces/DefaultWorkspace11/sos/app/config/config.local.neon&#10;ini&#9;FILE&#9;file:///Users/vml/Zend/workspaces/DefaultWorkspace11/sos/app/init.sql&#10;boot&#9;FILE&#9;file:///Users/vml/Zend/workspaces/DefaultWorkspace11/sos/app/bootstrap.php&#10;.git&#9;FILE&#9;file:///Users/vml/Zend/workspaces/DefaultWorkspace11/sos/.gitignore&#10;sty&#9;FILE&#9;file:///Users/vml/Zend/workspaces/DefaultWorkspace11/sos/www/css/style.css" />
+    <property name="SearchEverywhereHistoryKey" value="EventPre&#9;FILE&#9;file:///Users/vml/Zend/workspaces/DefaultWorkspace11/sos/app/FrontModule/presenters/EventPresenter.php&#10;show&#9;FILE&#9;file:///Users/vml/Zend/workspaces/DefaultWorkspace11/sos/app/FrontModule/templates/Event/show.latte&#10;fron&#9;FILE&#9;file:///Users/vml/Zend/workspaces/DefaultWorkspace11/sos/www/css/front.css&#10;homepa/de&#9;FILE&#9;file:///Users/vml/Zend/workspaces/DefaultWorkspace11/sos/app/FrontModule/templates/Homepage/default.latte&#10;homepage/da&#9;null&#9;null&#10;event/defa&#9;FILE&#9;file:///Users/vml/Zend/workspaces/DefaultWorkspace11/sos/app/FrontModule/templates/Event/default.latte&#10;homepage/de&#9;FILE&#9;file:///Users/vml/Zend/workspaces/DefaultWorkspace11/sos/app/FrontModule/templates/Homepage/default.latte&#10;con&#9;FILE&#9;file:///Users/vml/Zend/workspaces/DefaultWorkspace11/sos/app/config/config.local.neon&#10;config&#9;FILE&#9;file:///Users/vml/Zend/workspaces/DefaultWorkspace11/sos/app/config/config.neon&#10;co&#9;FILE&#9;file:///Users/vml/Zend/workspaces/DefaultWorkspace11/sos/app/config/config.local.neon&#10;ini&#9;FILE&#9;file:///Users/vml/Zend/workspaces/DefaultWorkspace11/sos/app/init.sql&#10;boot&#9;FILE&#9;file:///Users/vml/Zend/workspaces/DefaultWorkspace11/sos/app/bootstrap.php&#10;.git&#9;FILE&#9;file:///Users/vml/Zend/workspaces/DefaultWorkspace11/sos/.gitignore&#10;sty&#9;FILE&#9;file:///Users/vml/Zend/workspaces/DefaultWorkspace11/sos/www/css/style.css" />
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
@@ -454,11 +508,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/www" />
-      <recent name="$PROJECT_DIR$/app/FrontModule/presenters" />
-      <recent name="$PROJECT_DIR$/app/FrontModule/templates/Article" />
       <recent name="$PROJECT_DIR$/app/AdminModule/templates" />
-      <recent name="$PROJECT_DIR$/app/AdminModule/templates/Menu" />
+      <recent name="$PROJECT_DIR$/app/AdminModule/templates/Article" />
+      <recent name="$PROJECT_DIR$/app/AdminModule/presenters" />
+      <recent name="$PROJECT_DIR$/app/model" />
+      <recent name="$PROJECT_DIR$/www" />
     </key>
   </component>
   <component name="RunManager">
@@ -547,32 +601,38 @@
       <option name="project" value="LOCAL" />
       <updated>1439758499920</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="[add] ticket and reg forms">
+      <created>1439763019934</created>
+      <option name="number" value="00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1439763019934</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3297568" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19670959" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19670959" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32891566" sideWeight="0.5" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3297568" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32771084" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32891566" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.328125" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
@@ -598,55 +658,14 @@
     <MESSAGE value="[ADD] events" />
     <MESSAGE value="[ADD] events detail" />
     <MESSAGE value="[improve] events detail" />
-    <option name="LAST_COMMIT_MESSAGE" value="[improve] events detail" />
+    <MESSAGE value="[add] ticket and reg forms" />
+    <option name="LAST_COMMIT_MESSAGE" value="[add] ticket and reg forms" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/FrontModule/templates/Homepage/default.latte">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/AdminModule/presenters/BasePresenter.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="4" column="10" selection-start-line="4" selection-start-column="10" selection-end-line="4" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/AdminModule/presenters/HomepagePresenter.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/AdminModule/presenters/SignPresenter.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="27" column="21" selection-start-line="27" selection-start-column="21" selection-end-line="27" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/AdminModule/templates/Homepage/default.latte">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="4" column="12" selection-start-line="4" selection-start-column="12" selection-end-line="4" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/router/RouterFactory.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.63589746">
-          <caret line="31" column="5" selection-start-line="31" selection-start-column="5" selection-end-line="31" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/model/UserManager.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-14.0">
@@ -734,13 +753,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/FrontModule/presenters/BasePresenter.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4923077">
-          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="26" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/FrontModule/templates/Article/show.latte">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-3.3333333">
@@ -762,14 +774,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/AdminModule/presenters/BasePresenter.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="99" column="5" selection-start-line="96" selection-start-column="4" selection-end-line="99" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/css/admin.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -785,14 +789,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/AdminModule/presenters/ArticlePresenter.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.20512821">
-          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/AdminModule/templates/Homepage/default.latte">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.082051285">
@@ -800,28 +796,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/AdminModule/presenters/EventPresenter.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.30769232">
-          <caret line="53" column="223" selection-start-line="53" selection-start-column="223" selection-end-line="53" selection-end-column="223" />
-          <folding>
-            <element signature="e#46#68#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/model/Menu.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.2871795">
           <caret line="14" column="5" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/AdminModule/presenters/MenuPresenter.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.24102564">
-          <caret line="50" column="50" selection-start-line="50" selection-start-column="50" selection-end-line="50" selection-end-column="50" />
           <folding />
         </state>
       </provider>
@@ -837,27 +815,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.020512821">
           <caret line="1" column="12" selection-start-line="1" selection-start-column="12" selection-end-line="1" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/AdminModule/templates/Event/default.latte">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2820513">
-          <caret line="58" column="60" selection-start-line="58" selection-start-column="60" selection-end-line="58" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/AdminModule/templates/navigation.inc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.41025642">
-          <caret line="20" column="61" selection-start-line="20" selection-start-column="61" selection-end-line="20" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/AdminModule/templates/Article/default.latte">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="38" column="44" selection-start-line="38" selection-start-column="36" selection-end-line="38" selection-end-column="44" />
         </state>
       </provider>
     </entry>
@@ -888,6 +845,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="103.52533">
           <caret line="201" column="0" selection-start-line="201" selection-start-column="0" selection-end-line="201" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -895,6 +853,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-7.111111">
           <caret line="24" column="33" selection-start-line="0" selection-start-column="0" selection-end-line="159" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -903,16 +862,6 @@
         <state vertical-scroll-proportion="-20.416666">
           <caret line="55" column="37" selection-start-line="55" selection-start-column="37" selection-end-line="55" selection-end-column="37" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/config/config.neon">
-      <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.6666665">
-          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="12" selection-end-column="17" />
         </state>
       </provider>
     </entry>
@@ -942,14 +891,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/AdminModule/templates/@layout.latte">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-14.416667">
-          <caret line="81" column="0" selection-start-line="81" selection-start-column="0" selection-end-line="81" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/css/front.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -974,21 +915,154 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/model/Registration.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.6666665">
+          <caret line="7" column="7" selection-start-line="7" selection-start-column="7" selection-end-line="7" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/model/Ticket.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.0">
+          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/config.neon">
+      <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-24.0">
+          <caret line="36" column="40" selection-start-line="36" selection-start-column="40" selection-end-line="36" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/AdminModule/templates/@layout.latte">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-54.0">
+          <caret line="81" column="0" selection-start-line="81" selection-start-column="0" selection-end-line="81" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/AdminModule/templates/navigation.inc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-16.666666">
+          <caret line="27" column="83" selection-start-line="27" selection-start-column="83" selection-end-line="27" selection-end-column="83" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/AdminModule/templates/Registration/default.latte">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-33.333332">
+          <caret line="50" column="40" selection-start-line="50" selection-start-column="40" selection-end-line="50" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/AdminModule/presenters/TicketPresenter.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.0">
+          <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/FrontModule/presenters/EventPresenter.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-15.75">
+          <caret line="190" column="29" selection-start-line="189" selection-start-column="8" selection-end-line="190" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/AdminModule/presenters/BasePresenter.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-15.083333">
+          <caret line="99" column="5" selection-start-line="96" selection-start-column="4" selection-end-line="99" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/FrontModule/presenters/BasePresenter.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-16.75">
+          <caret line="61" column="29" selection-start-line="61" selection-start-column="29" selection-end-line="61" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/FrontModule/templates/Event/show.latte">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-16.0">
-          <caret line="24" column="29" selection-start-line="24" selection-start-column="29" selection-end-line="24" selection-end-column="29" />
+        <state vertical-scroll-proportion="-25.333334">
+          <caret line="38" column="54" selection-start-line="38" selection-start-column="54" selection-end-line="38" selection-end-column="54" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/FrontModule/presenters/EventPresenter.php">
+    <entry file="file://$PROJECT_DIR$/app/AdminModule/templates/Ticket/default.latte">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.50642675">
-          <caret line="71" column="37" selection-start-line="71" selection-start-column="37" selection-end-line="71" selection-end-column="37" />
+        <state vertical-scroll-proportion="-14.0">
+          <caret line="37" column="40" selection-start-line="37" selection-start-column="40" selection-end-line="37" selection-end-column="40" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/AdminModule/templates/Event/default.latte">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-17.333334">
+          <caret line="79" column="116" selection-start-line="79" selection-start-column="94" selection-end-line="79" selection-end-column="116" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/AdminModule/templates/Article/default.latte">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.083333">
+          <caret line="43" column="121" selection-start-line="43" selection-start-column="121" selection-end-line="43" selection-end-column="121" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/AdminModule/presenters/ArticlePresenter.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.2083335">
+          <caret line="28" column="67" selection-start-line="28" selection-start-column="49" selection-end-line="28" selection-end-column="67" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/AdminModule/presenters/EventPresenter.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-13.333333">
+          <caret line="25" column="63" selection-start-line="25" selection-start-column="63" selection-end-line="25" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/AdminModule/presenters/MenuPresenter.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.0">
+          <caret line="34" column="61" selection-start-line="34" selection-start-column="61" selection-end-line="34" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/AdminModule/presenters/RegistrationPresenter.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7312253">
+          <caret line="36" column="30" selection-start-line="36" selection-start-column="30" selection-end-line="36" selection-end-column="30" />
+          <folding>
+            <element signature="e#46#68#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

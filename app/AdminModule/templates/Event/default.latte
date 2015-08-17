@@ -27,8 +27,8 @@
             <th>Annotace</th>
             <th>Date</th>
             <th>Hlavní</th>
-            <th>Koncert<br /><small>lístek</small></th>
-            <th>Konference<br /><small>registrace</small></th>
+            <th><small>vstupenka</small><br />Koncert</th>
+            <th><small>registrace</small><br />Konference</th>
             <th>Dokument</th>
 
             <th>Akce</th>
@@ -75,6 +75,9 @@
                     <a n:href="edit $e->id" class="btn btn-warning">Upravit</a>
                     <a n:href="delete $e->id" class="btn btn-danger">Smazat</a>
                     <a n:href="toggleMain! $e->id" class="btn btn-warning">{if $e->main}Není{else}Je{/if} hlavní</a>
+                    {if $e->ticket}<a n:href="Ticket:default $e->id" class="btn btn-info">Vstupenky</a>{/if}
+                    {if $e->registration}<a n:href="Registration:default $e->id" class="btn btn-info">Registrace</a>{/if}
+                    <a n:href=":Front:Event:show $e->id" class="btn btn-info" target="_blank" title="Oteřít na webu"><i class="glyphicon glyphicon-eye-open"></i> </a>
                 </td>
             </tr>
             {/foreach}

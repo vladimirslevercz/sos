@@ -20,14 +20,32 @@ class EventPresenter extends BasePresenter
 	 */
 	public $event;
 
+	/**
+	 * @var Model\Ticket
+	 * @inject
+	 */
+	public $ticket;
+
+	/**
+	 * @var Model\Registration
+	 * @inject
+	 */
+	public $registration;
+
 
 	public function renderShow($id) {
 		$event = $this->event->get($id);
 		if (!$event) {
 			$this->error('Akci nelze otevřít', 404);
 		}
+
+		$this['eventRegistrationForm']->setDefaults(['event_id' => $id]);
+		$this['eventTicketForm']->setDefaults(['event_id' => $id]);
+
 		$this->template->event = $event;
 		$this->template->now = new \DateTime('now');
+		$this->template->ticket = $event->related('ticket');
+		$this->template->registration = $event->related('registration');
 	}
 
 	public function renderDefault() {
@@ -42,6 +60,8 @@ class EventPresenter extends BasePresenter
 	protected function createComponentEventRegistrationForm()
 	{
 		$form = new Nette\Application\UI\Form();
+
+		//$form->getElementPrototype()->class = 'form-horizontal';
 
 		$form->addText('name', 'Jméno')
 			->setRequired('Vyplňte prosím jméno')
@@ -81,7 +101,27 @@ class EventPresenter extends BasePresenter
 
 	public function eventRegistrationFormSucceeded(Nette\Application\UI\Form $form, $values)
 	{
-		$this->flashMessage('Byl jste registrován.');
+		$duplicite = $this->registration->where('event_id = ? AND email = ?', [$values['event_id'], $values['email']]);
+		if (count($duplicite)) {
+			$this->flashMessage('Byla nalezena starší registrace, nebyly provedeny žádné změny. Změny konzultujte s pořadatelkou.', 'warning');
+			$this->redirect('this');
+		}
+
+		try {
+			$res = $this->registration->insert($values);
+		} catch (\Exception $e) {
+			$res = false;
+		}
+
+		$event = $this->event->get($values['event_id']);
+
+		if ($res) {
+			$this->mailNotify('SOS - nova registrace', 'Probehla registrace '. $values['name'] .' '. $values['surname'] .' k akci '. $event->name .'.', $values);
+			$this->flashMessage('Registrace proběhla v pořádku.', 'success');
+		} else {
+			$this->flashMessage('Je nám líto, ale došlo k chybě. S registrací se obraťte se pořadatelku akce.', 'danger');
+		}
+
 		$this->redirect('this');
 	}
 
@@ -107,8 +147,47 @@ class EventPresenter extends BasePresenter
 
 	public function eventTicketFormSucceeded(Nette\Application\UI\Form $form, $values)
 	{
-		$this->flashMessage('Byla Vám zaslána vstupenka.', 'success');
+		$duplicite = $this->ticket->where('event_id = ? AND email = ?', [$values['event_id'], $values['email']]);
+		if (count($duplicite)) {
+			$this->flashMessage('Byl nalezen starší požadavek na vstupenku. Nebyla provedena žádná akce.', 'warning');
+			$this->redirect('this');
+		}
+
+		try {
+			$ticket = $this->ticket->insert($values);
+		} catch (\Exception $e) {
+			$ticket = false;
+		}
+
+		$event = $this->event->get($values['event_id']);
+
+		if ($ticket) {
+			$this->mailNotify('SOS - nova vstupenka', 'Uzivatel s emailem '. $values['email'] .' si zazadal o vstupenku na akci '. $event->name .'.', $values);
+			$this->sendTicket($ticket);
+
+			$this->flashMessage('Byla Vám zaslána vstupenka.', 'success');
+		} else {
+			$this->flashMessage('Je nám líto, ale došlo k chybě. Pro vstupenku se obraťte se pořadatelku akce.', 'danger');
+		}
+
 		$this->redirect('this');
 	}
 
+
+	private function sendTicket($ticket)
+	{
+		$event = $ticket->event;
+		$message = "<p>Děkujeme o Váš zájem, zde je Vaše vstupenka, můžete si ji vytisknout nebo připravit do mobilního telefonu.</p>\n"
+			."<img src=\"http://hudebnisos.cz/content/event/". $event->id .".jpg\" width=\"600\" />\n"
+			."<p>Vaše vstupenka má originální číslo <b>". $ticket->id ."</b>.</p><br/><br/>\n"
+			."<p><a href=\"http://hudebnisos.cz/event/show/". $event->id ."\">odkaz na akci ".$event->name."</p>\n"
+			."<p><a href=\"http://hudebnisos.cz/\">www.hudebnisos.cz</a></p>\n";
+
+		$mail = new Nette\Mail\Message();
+		$mail->setSubject('SOS Vstupenka - '.$event->name);
+		$mail->setHtmlBody($message);
+		$mail->addTo($ticket->email);
+		$mailer = new Nette\Mail\SendmailMailer();
+		$mailer->send($mail);
+	}
 }

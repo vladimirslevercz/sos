@@ -1,0 +1,62 @@
+{**
+ * Listing registration
+ * @var $registration database connection to registrations
+ *}
+{block content}
+
+<h1 n:block=title>Registarce</h1>
+    <div>
+        <p>
+            registrace se po vytvoření nedají upravovat, dají se pouze smazat a pak znovu vytvořit na webu.
+        </p>
+        <p>
+            Na tuto akci se zaregistrovalo {count($registration)} lidí.
+        </p>
+    </div>
+{if count($registration)}
+    <table class="table table-bordered table-responsive">
+        <thead>
+            <th>Unikátní ID</th>
+            <th>Název akce</th>
+            <th>Jméno a<br/> příjmení</th>
+            <th>Kontakt</th>
+            <th>Narozen</th>
+            <th>Poznámka</th>
+            <th>Akce</th>
+        </thead>
+        <tbody>
+            {foreach $registration as $r}
+            <tr>
+                <td>
+                    {$r->id}
+                </td>
+                <td>
+                    <a n:href=":Front:Event:show $r->event->id" target="_blank" title="Ukázat na webu"><i class="glyphicon glyphicon-link"> </i></a>
+                    {$r->event->name}
+                </td>
+                <td>
+                    {$r->name} {$r->surname}
+                </td>
+                <td>
+                    {if $r->phone}<i class="glyphicon glyphicon-phone-alt"> </i> {$r->phone}<br />{/if}
+                    <i class="glyphicon glyphicon-envelope"> </i> <a href="mailto:{$r->email}">{$r->email}</a>
+                </td>
+                <td>
+                    {$r->birthdate|date:"j.n.Y"}
+                </td>
+                <td>
+                    {$r->note}
+                </td>
+                <td>
+                    <a n:href="delete $r->id" class="btn btn-danger">Smazat</a>
+                </td>
+            </tr>
+            {/foreach}
+        </tbody>
+    </table>
+{else}
+    <p>Žádné vstupenky.</p>
+{/if}
+
+
+{/block}

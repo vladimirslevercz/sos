@@ -32,7 +32,7 @@ class MenuPresenter extends BasePresenter
 
 	public function renderDefault()
 	{
-		$this->template->menu = $this->menu;
+		$this->template->menu = $this->menu->order('id DESC');
 	}
 
 	/**

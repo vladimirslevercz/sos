@@ -23,7 +23,7 @@ class EventPresenter extends BasePresenter
 
 	public function renderDefault()
 	{
-		$this->template->event = $this->event;
+		$this->template->event = $this->event->order('id DESC');
 	}
 
 	/**

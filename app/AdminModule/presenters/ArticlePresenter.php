@@ -23,12 +23,10 @@ class ArticlePresenter extends BasePresenter
 	 */
 	public $article;
 
-	public function actionDefault() {
-	}
 
 	public function renderDefault()
 	{
-		$this->template->article = $this->article;
+		$this->template->article = $this->article->order('id DESC');
 	}
 
 	/**

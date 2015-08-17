@@ -1,0 +1,49 @@
+{**
+ * Listing tickets
+ * @var $ticket database connection to tickets
+ *}
+{block content}
+
+<h1 n:block=title>Vstupenky</h1>
+    <div>
+        <p>
+            Vstupenky se po vytvoření nedají upravovat, dají se pouze smazat a pak znovu vygenerovat na webu.
+        </p>
+        <p>
+            Na tuto akci si zarezervovalo vstupenku {count($ticket)} lidí.
+        </p>
+    </div>
+{if count($ticket)}
+    <table class="table table-bordered table-responsive">
+        <thead>
+            <th>Unikátní ID</th>
+            <th>Název akce</th>
+            <th>Email</th>
+            <th>Akce</th>
+        </thead>
+        <tbody>
+            {foreach $ticket as $t}
+            <tr>
+                <td>
+                    {$t->id}
+                </td>
+                <td>
+                    <a n:href=":Front:Event:show $t->event->id" target="_blank" title="Ukázat na webu"><i class="glyphicon glyphicon-link"> </i></a>
+                    {$t->event->name}
+                </td>
+                <td>
+                    {$t->email}
+                </td>
+                <td>
+                    <a n:href="delete $t->id" class="btn btn-danger">Smazat</a>
+                </td>
+            </tr>
+            {/foreach}
+        </tbody>
+    </table>
+{else}
+    <p>Žádné vstupenky.</p>
+{/if}
+
+
+{/block}

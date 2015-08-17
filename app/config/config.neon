@@ -33,6 +33,8 @@ services:
 	article: App\Model\Article
 	menu: App\Model\Menu
 	event: App\Model\Event
+	ticket: App\Model\Ticket
+	registration: App\Model\Registration
 	contact: App\Model\Contact
 	database: @Nette\Database\Context
 
