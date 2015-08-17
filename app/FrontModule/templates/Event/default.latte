@@ -4,12 +4,14 @@
 
 <div class="container-fluid">
 
-    <div class="row">
+	{if $filter == 'all' || $filter == 'future'}
+	<div class="row">
         <div class="col-xs-12 col-md-11 col-md-offset-1 col-lg-11 col-lg-offset-1">
-            <h2 class="event-group">Akce pořádané SOS hudbě</h2>
+            <h2 class="event-group">Připravované akce</h2>
         </div>
     </div>
-    {foreach $eventMain as $e}
+
+	{foreach $eventFuture as $e}
     <div class="row stave-lines">
         <div class="col-xs-12 col-md-11 col-lg-9 col-lg-offset-1 {if $e->main}green{else}orange{/if}-background">
             <div class="white-background pull-left">
@@ -21,7 +23,7 @@
                 <div class="pull-right tools">
                     <a n:href="Event:show $e->id"><i class="glyphicon glyphicon-eye-open"></i> </a>
                     {if $e->document}<a href="{$basePath}/content/event-pdf/{$e->id}.pdf"><i class="glyphicon glyphicon-download-alt"></i></a> {/if}
-                    {if $e->ticket}<a href="{link Event:show $e->id}#ticketForm">Lístek</a> {/if}
+                    {if $e->ticket}<a href="{link Event:show $e->id}#ticketForm">Vstupenka</a> {/if}
                     {if $e->registration}<a href="{link Event:show $e->id}#registrationForm">Registrace</a> {/if}
                     {if $e->main}<img src="{$basePath}/img/sos-flag.png" class="sos-flag" />{/if}
                 </div>
@@ -36,14 +38,17 @@
     </div>
     {/foreach}
 
-    <hr />
 
-    <div class="row">
+	{if $filter == 'all'}<hr />{/if}
+	{/if}
+
+	{if $filter == 'all' || $filter == 'now'}
+	<div class="row">
         <div class="col-xs-12 col-md-11 col-md-offset-1 col-lg-11 col-lg-offset-1">
-            <h2 class="event-group">Ostatní akce</h2>
+            <h2 class="event-group">Aktuální</h2>
         </div>
     </div>
-    {foreach $eventNotMain as $e}
+    {foreach $eventNow as $e}
     <div class="row stave-lines">
         <div class="col-xs-12 col-md-11 col-lg-9 col-lg-offset-1 {if $e->main}green{else}orange{/if}-background">
             <div class="white-background pull-left">
@@ -55,7 +60,7 @@
                 <div class="pull-right tools">
                     <a n:href="Event:show $e->id"><i class="glyphicon glyphicon-eye-open"></i> </a>
                     {if $e->document}<a href="{$basePath}/content/event-pdf/{$e->id}.pdf"><i class="glyphicon glyphicon-download-alt"></i></a> {/if}
-                    {if $e->ticket}<a href="{link Event:show $e->id}#ticketForm">Lístek</a> {/if}
+                    {if $e->ticket}<a href="{link Event:show $e->id}#ticketForm">Vstupenka</a> {/if}
                     {if $e->registration}<a href="{link Event:show $e->id}#registrationForm">Registrace</a> {/if}
                     {if $e->main}<img src="{$basePath}/img/sos-flag.png" class="sos-flag" />{/if}
                 </div>
@@ -70,9 +75,11 @@
     </div>
     {/foreach}
 
-    <hr>
+		{if $filter == 'all'}<hr />{/if}
+	{/if}
 
-    <div class="row">
+	{if $filter == 'all' || $filter == 'past'}
+	<div class="row">
         <div class="col-xs-12 col-md-11 col-md-offset-1 col-lg-11 col-lg-offset-1">
             <h2 class="event-group">Proběhlé akce</h2>
         </div>
@@ -102,5 +109,6 @@
         <div class="clearfix"></div>
     </div>
     {/foreach}
+	{/if}
 </div>
 {/block}

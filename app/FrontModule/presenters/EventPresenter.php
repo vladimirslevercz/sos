@@ -48,13 +48,14 @@ class EventPresenter extends BasePresenter
 		$this->template->registration = $event->related('registration');
 	}
 
-	public function renderDefault() {
+	public function renderDefault($filter = 'all') {
 		$eventMain = clone $this->event;
 		$eventNotMain = clone $this->event;
 		$eventPast = clone $this->event;
-		$this->template->eventMain = $eventMain->where('main = ?', 1)->where('date > ?', new \DateTime('now'));
-		$this->template->eventNotMain = $eventNotMain->where('main != ?', 1)->where('date > ?', new \DateTime('now'));
+		$this->template->eventFuture = $eventMain->where('date > ?', new \DateTime('+3months'));
+		$this->template->eventNow = $eventNotMain->where('date > ?', new \DateTime('now'))->where('date < ?', new \DateTime('+3months'))->order('date ASC');
 		$this->template->eventPast = $eventPast->where('date < ?', new \DateTime('now'))->limit(15);
+		$this->template->filter = $filter;
 	}
 
 	protected function createComponentEventRegistrationForm()

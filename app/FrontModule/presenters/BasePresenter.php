@@ -11,7 +11,7 @@ use Nette,
  */
 abstract class BasePresenter extends Nette\Application\UI\Presenter
 {
-	const NOTIFY_EMAIL_ADDRESS = 'mlazovla@gmail.com';
+	const NOTIFY_EMAIL_ADDRESS = 'liskovamaj@gmail.com';
 
 	/**
 	 * @var Model\Menu

@@ -155,13 +155,13 @@ h1, h2, h3 {
 }
 
 h1 {
-    font-size: 15px;
+    font-size: 24px;
 }
 h2 {
-    font-size: 13px;
+    font-size: 18px;
 }
 h3 {
-    font-size: 12px;
+    font-size: 15px;
 }
 
 .event-thumbnail h1, .event-thumbnail h2, .event-thumbnail h3 {
@@ -246,4 +246,9 @@ h2.event-group {
 
 footer  {
     background-color: rgb(197, 230, 235);
+}
+
+.article table tr td {
+    padding: 2px 4px;
+    vertical-align: top;
 }

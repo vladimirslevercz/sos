@@ -15,7 +15,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="author" content="Marie Lišková, Vladimír Mlázovský">
 
     <title>{ifset title}{include title|striptags} | {/ifset}SOS</title>
 
@@ -77,8 +77,24 @@
                     </div>
                     {/foreach}
                 </div>
-                {if isset($selectedMenu)}
+
                 <div class="row" style="margin-top:25px;">
+					{if $presenter->getName() == 'Front:Event'}
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 menu-item">
+							<a n:href="Event:default all" {if isset($filter) && $filter == 'all'}class="active"{/if}>Všechny</a>
+						</div>
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 menu-item">
+							<a n:href="Event:default now" {if isset($filter) && $filter == 'now'}class="active"{/if}>Aktuální</a>
+						</div>
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 menu-item">
+							<a n:href="Event:default future" {if isset($filter) && $filter == 'future'}class="active"{/if}>Připravujeme</a>
+						</div>
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 menu-item">
+							<a n:href="Event:default past" {if isset($filter) && $filter == 'past'}class="active"{/if}>Proběhlé</a>
+						</div>
+					{/if}
+
+					{if isset($selectedMenu)}
                     {foreach $selectedMenu->related('menu')->limit(6) as $subMenu}
                         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 menu-item">
                             {if $subMenu->url}
@@ -90,8 +106,9 @@
                             {/if}
                         </div>
                     {/foreach}
+					{/if}
                 </div>
-                {/if}
+
             </div>
         </div>
         <div class="col-lg-2 col-md-12 col-xs-12 social-media">
@@ -134,7 +151,7 @@
 <!-- Footer -->
 <footer>
     <div class="container text-center">
-        <p>autorka Marie Lišková liskovamaj@gmail.com | web Vladimír Mlázovský 2015 </p>
+        <p>autorka Marie Lišková | web Vladimír Mlázovský 2015 </p>
     </div>
 </footer>
 

@@ -47,7 +47,7 @@ class EventPresenter extends BasePresenter
 		$form->addUpload('eventImage', 'Obrázek akce')
 			->addCondition($form::FILLED)
 				->addRule($form::IMAGE, 'Zvolený soubor není obrázek.')
-				->addRule($form::MAX_FILE_SIZE, 'Maximální velikost souboru je 2 MB.', 10 * 1024 * 1024 /* v bytech */);
+				->addRule($form::MAX_FILE_SIZE, 'Maximální velikost souboru je 5 MB.', 6 * 1024 * 1024 /* v bytech */);
 
 
 		$form->addText('date', 'Datum a čas začátku události')
@@ -60,7 +60,7 @@ class EventPresenter extends BasePresenter
 		$form->addTextArea('description', 'Článek:')
 			->setAttribute('class', 'tinyMCE');
 
-		$form->addCheckbox('main', 'Hlavní akce?');
+		$form->addCheckbox('main', 'Akce SOS?');
 
 		$form->addCheckbox('registration', 'Konference?');
 
@@ -75,13 +75,13 @@ class EventPresenter extends BasePresenter
 
 		$form->addUpload('attachedDocument', 'Dokument PDF')
 			->setOption('id', 'document-to-download')
-			->addRule($form::MAX_FILE_SIZE, 'Maximální velikost souboru je 6 MB.', 9 * 1024 * 1024 /* v bytech */);
+			->addRule($form::MAX_FILE_SIZE, 'Maximální velikost souboru je 12 MB.', 13 * 1024 * 1024 /* v bytech */);
 
 		$form->addUpload('ticketImage', 'Obrázek vstupenky JPG')
 			->setOption('id', 'ticket-image')
 			->addCondition($form::FILLED)
 			->addRule($form::IMAGE, 'Zvolený soubor není obrázek.')
-			->addRule($form::MAX_FILE_SIZE, 'Maximální velikost souboru je 2 MB.', 10 * 1024 * 1024 /* v bytech */);
+			->addRule($form::MAX_FILE_SIZE, 'Maximální velikost souboru je 5 MB.', 6 * 1024 * 1024 /* v bytech */);
 
 		$form->addSubmit('save', 'Uložit')
 			->setAttribute('class', 'btn btn-primary');
@@ -142,7 +142,7 @@ class EventPresenter extends BasePresenter
 		/** @var Nette\Http\FileUpload $attachedDocument */
 		$attachedDocument = $values['attachedDocument'];
 		if ($attachedDocument->isOk() || self::getExtensionByName($attachedDocument->getName()) == 'pdf') {
-			$attachedDocument->move(self::SAVE_DIR . '/event-pdf/' . $event->id . '.pdf');
+			$attachedDocument->move(self::SAVE_DIR . 'event-pdf/' . $event->id . '.pdf');
 			$this->flashMessage('Dokument uložen.', 'success');
 		}
 

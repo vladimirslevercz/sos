@@ -50,7 +50,7 @@ class ArticlePresenter extends BasePresenter
 		$form->addUpload('image', 'Obrázek JPG')
 			->addCondition($form::FILLED)
 				->addRule($form::IMAGE, 'Zvolený soubor není obrázek.')
-				->addRule($form::MAX_FILE_SIZE, 'Maximální velikost souboru je 2 MB.', 3 * 1024 * 1024 /* v bytech */);
+				->addRule($form::MAX_FILE_SIZE, 'Maximální velikost souboru je 5 MB.', 6 * 1024 * 1024 /* v bytech */);
 
 		$form->addTextArea('annotation', 'Annotace:')
 			->setAttribute('class', 'tinyMCE');
