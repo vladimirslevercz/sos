@@ -179,7 +179,7 @@ class EventPresenter extends BasePresenter
 	{
 		$event = $ticket->event;
 		$message = "<p>Děkujeme o Váš zájem, zde je Vaše vstupenka, můžete si ji vytisknout nebo připravit do mobilního telefonu.</p>\n"
-			."<img src=\"http://hudebnisos.cz/content/event/". $event->id .".jpg\" width=\"600\" />\n"
+			."<img src=\"http://hudebnisos.cz/content/ticket/". $event->id .".jpg\" width=\"600\" />\n"
 			."<p>Vaše vstupenka má originální číslo <b>". $ticket->id ."</b>.</p><br/><br/>\n"
 			."<p><a href=\"http://hudebnisos.cz/event/show/". $event->id ."\">odkaz na akci ".$event->name."</p>\n"
 			."<p><a href=\"http://hudebnisos.cz/\">www.hudebnisos.cz</a></p>\n";

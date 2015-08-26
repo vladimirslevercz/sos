@@ -1,0 +1,45 @@
+* {
+    font-family: 'Georgia', serif;
+}
+
+body {
+    background-color: rgb(197, 230, 235);
+    font-family: 'Georgia', serif;
+    line-height: 17px;
+    color: rgb(0, 117, 117);
+    letter-spacing: 0.3px;
+    font-size: 12px;
+}
+
+h1, h2, h3 {
+    color: rgb(226, 9, 25);
+    font-weight: 200;
+}
+
+h1 {
+    font-size: 24px;
+}
+h2 {
+    font-size: 18px;
+}
+h3 {
+    font-size: 15px;
+}
+
+a {
+    color: firebrick;
+    text-decoration: none;
+}
+
+a:hover {
+    color: firebrick;
+    text-decoration: underline;
+}
+
+img {
+    margin-bottom:10px;
+    margin-right: 10px;
+    padding: 2px 2px 2px 2px;
+    background-color: white;
+    border: 1px solid rgb(0, 192, 192);
+}
