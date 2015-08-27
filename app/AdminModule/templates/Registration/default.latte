@@ -39,7 +39,7 @@
                 </td>
                 <td>
                     {if $r->phone}<i class="glyphicon glyphicon-phone-alt"> </i> {$r->phone}<br />{/if}
-                    <i class="glyphicon glyphicon-envelope"> </i> <a href="mailto:{$r->email}">{$r->email}</a>
+                    <a href="mailto:{$r->email}"><i class="glyphicon glyphicon-envelope"></i></a> {$r->email}
                 </td>
                 <td>
                     {$r->birthdate|date:"j.n.Y"}

@@ -32,7 +32,7 @@
                     {$t->event->name}
                 </td>
                 <td>
-                    {$t->email}
+                    <a href="mailto:{$t->email}"><i class="glyphicon glyphicon-envelope"></i></a> {$t->email}
                 </td>
                 <td>
                     <a n:href="delete $t->id" class="btn btn-danger">Smazat</a>
