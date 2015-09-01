@@ -72,7 +72,6 @@ class EventPresenter extends BasePresenter
 			->addCondition($form::EQUAL, true)
 			->toggle('document-to-download');
 
-
 		$form->addUpload('attachedDocument', 'Dokument PDF')
 			->setOption('id', 'document-to-download')
 			->addRule($form::MAX_FILE_SIZE, 'Maximální velikost souboru je 12 MB.', 13 * 1024 * 1024 /* v bytech */);
@@ -82,6 +81,10 @@ class EventPresenter extends BasePresenter
 			->addCondition($form::FILLED)
 			->addRule($form::IMAGE, 'Zvolený soubor není obrázek.')
 			->addRule($form::MAX_FILE_SIZE, 'Maximální velikost souboru je 5 MB.', 6 * 1024 * 1024 /* v bytech */);
+
+		$form->addTextArea('note', 'Poznámka:')
+			->setAttribute('class', 'form-control')
+			->setAttribute('placeholder', 'Poznámka k formuláři přihlášky konference.');
 
 		$form->addSubmit('save', 'Uložit')
 			->setAttribute('class', 'btn btn-primary');
@@ -112,7 +115,8 @@ class EventPresenter extends BasePresenter
 			'main' => $values['main'],
 			'ticket' => $values['ticket'],
 			'registration' => $values['registration'],
-			'document' => $values['document']
+			'document' => $values['document'],
+			'note' => $values['note']
 		];
 
 		$eventId = $this->getParameter('id');

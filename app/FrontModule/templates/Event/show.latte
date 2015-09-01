@@ -28,8 +28,8 @@
             {if $event->registration && $event->date > $now}
             <hr />
             <a name="registrationForm"></a>
-            <p>Pro navštívení konference se prosím registrujte v následujícím formuláři. Věnujte pozornost poznámce.</p>
-
+            <p>Vyplňte prosím následující přihlášku:
+            <p n:if="$event->note" class="alert alert-warning">{$event->note|nl2br|noescape}</p>
             {control eventRegistrationForm}
             {/if}
 
