@@ -4,10 +4,11 @@
  *}
 {block content}
 
-<h1 n:block=title>Registarce</h1>
+<h1 n:block=title>Registrace<small n:if="$filterName"> {$filterName}</small></h1>
     <div>
+
         <p>
-            Přihlášky se po vytvoření nedají upravovat, dají se pouze smazat a pak znovu vytvořit na webu.
+            Registrace se po vytvoření nedají upravovat, dají se pouze smazat a pak znovu vytvořit na webu.
         </p>
         <p>
             Na tuto akci se zaregistrovalo {count($registration)} lidí.

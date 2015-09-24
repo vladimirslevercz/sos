@@ -84,7 +84,7 @@ class EventPresenter extends BasePresenter
 
 		$form->addTextArea('note', 'Poznámka:')
 			->setAttribute('class', 'form-control')
-			->setAttribute('placeholder', 'Poznámka k formuláři přihlášky konference.');
+			->setAttribute('placeholder', 'Poznámka k formuláři registrace konference.');
 
 		$form->addSubmit('save', 'Uložit')
 			->setAttribute('class', 'btn btn-primary');

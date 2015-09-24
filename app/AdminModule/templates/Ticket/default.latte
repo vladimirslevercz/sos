@@ -4,7 +4,7 @@
  *}
 {block content}
 
-<h1 n:block=title>Vstupenky</h1>
+<h1 n:block=title>Vstupenky<small n:if="$filterName"> {$filterName}</small></h1>
     <div>
         <p>
             Vstupenky se po vytvoření nedají upravovat, dají se pouze smazat a pak znovu vygenerovat na webu.

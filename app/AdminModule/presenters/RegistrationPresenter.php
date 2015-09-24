@@ -22,12 +22,19 @@ class RegistrationPresenter extends BasePresenter
 	 */
 	public $registration;
 
+	/**
+	 * @var Model\Event
+	 * @inject
+	 */
+	public $event;
 
 	public function renderDefault($event_id = null)
 	{
 		if ($event_id) {
+			$this->template->filterName = $this->event->get($event_id)->name;
 			$this->template->registration = $this->registration->where('event_id = ?', $event_id)->order('id DESC');
 		} else {
+			$this->template->filterName = '';
 			$this->template->registration = $this->registration->order('id DESC')->limit(100);
 		}
 	}

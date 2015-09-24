@@ -138,7 +138,7 @@ class EventPresenter extends BasePresenter
 
 		$form->addHidden('event_id');
 
-		$form->addSubmit('send', 'Získat lístek')
+		$form->addSubmit('send', 'Získat vstupenku')
 			->setAttribute('class', 'btn btn-primary');
 
 		$form->onSuccess[] = array($this, 'eventTicketFormSucceeded');

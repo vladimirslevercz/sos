@@ -24,8 +24,8 @@
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Nástroje akcí (událostí) <span class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a n:href="Event:default">Akce (události)</a></li>
-						<li><a n:href="Ticket:default">Lístky (koncert)</a></li>
-						<li><a n:href="Registration:default">Přihláška (konference)</a></li>
+						<li><a n:href="Ticket:default">Vstupenky (koncert)</a></li>
+						<li><a n:href="Registration:default">Registrace (konference)</a></li>
 					</ul>
 				</li>
 

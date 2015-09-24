@@ -13,7 +13,7 @@
                 {if $event->main}<br />Tuto akci pořádá SOS Hudebně.{/if}
             </div>
             {if $event->ticket && $event->date > $now}<a href="#ticketForm">Vstupenka {if count($ticket)}({count($ticket)}){/if}</a> {/if}
-            {if $event->registration && $event->date > $now}<a href="#registrationForm">Přihláška {if count($registration)}({count($registration)}){/if}</a> {/if}
+            {if $event->registration && $event->date > $now}<a href="#registrationForm">Registrace {if count($registration)}({count($registration)}){/if}</a> {/if}
             {if $event->document}<a href="{$basePath}/content/event-pdf/{$event->id}.pdf"><i class="glyphicon glyphicon-download-alt"></i>Stáhnout dokument</a> {/if}
 
             {if $event->annotation}
@@ -28,7 +28,7 @@
             {if $event->registration && $event->date > $now}
             <hr />
             <a name="registrationForm"></a>
-            <p>Vyplňte prosím následující přihlášku:
+            <p>Vyplňte prosím následující registraci:
             <p n:if="$event->note" class="alert alert-warning">{$event->note|nl2br|noescape}</p>
             {control eventRegistrationForm}
             {/if}
