@@ -36,7 +36,7 @@
             {if $event->ticket && $event->date > $now}
             <hr />
             <a name="ticketForm"></a>
-            <p>Pro získání vstupenky vyplňte email, na který bude zaslána. Na jeden email může být zaslána maximálně jedna vstupenka.</p>
+            <p>Pro získání vstupenky vyplňte email, na který bude zaslána. Na jeden email {if $event['max_ticket_per_email'] == 1}může být zaslána maximálně jedna vstupenka{elseif $event['max_ticket_per_email'] < 5}mohou být zasláné maximálně {$event['max_ticket_per_email']} vstupenky{else}může být zasláno maximálně {$event['max_ticket_per_email']} vstupenek{/if}.</p>
 
             {control eventTicketForm}
             {/if}

@@ -137,20 +137,20 @@ INSERT INTO `role` (`id`, `name`, `description`) VALUES
 
 DROP TABLE IF EXISTS `user`;# MySQL vrátil prázdný výsledek (tj. nulový počet řádků).
 
-CREATE TABLE `user` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `email` varchar(255) NOT NULL COMMENT 'email and login',
-  `password` varchar(255) NOT NULL COMMENT 'hashed password',
-  `role_id` int(11) DEFAULT NULL COMMENT 'user_role',
-  `ingress_acount_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `email` (`email`),
-  KEY `role_id` (`role_id`),
-  KEY `ingress_acount_id` (`ingress_acount_id`),
-  CONSTRAINT `user_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `role` (`id`) ON DELETE SET NULL,
-  CONSTRAINT `user_ibfk_2` FOREIGN KEY (`ingress_acount_id`) REFERENCES `ingress_acount` (`id`) ON DELETE SET NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;# MySQL vrátil prázdný výsledek (tj. nulový počet řádků).
-
+CREATE TABLE IF NOT EXISTS `event` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  `annotation` longtext,
+  `description` longtext,
+  `date` date DEFAULT NULL,
+  `main` tinyint(4) DEFAULT NULL,
+  `ticket` tinyint(4) DEFAULT NULL COMMENT 'Allow reservation and ticket sending',
+  `registration` tinyint(4) DEFAULT NULL COMMENT 'Allow registration on meeting',
+  `document` tinyint(4) DEFAULT NULL,
+  `note` longtext,
+  `max_ticket_per_email` int(11) NOT NULL DEFAULT '1' COMMENT 'Max ticket per one email.',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=15 ;
 
 INSERT INTO `user` (`id`, `email`, `password`, `role_id`, `ingress_acount_id`) VALUES
 (2,	'mlazovla@gmail.com',	'*02A2758B5D1D639CE9FCC3403DF9EDE1FFD9DC03',	4,	1);# Ovlivněn 1 řádek.

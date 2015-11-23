@@ -102,8 +102,9 @@ class EventPresenter extends BasePresenter
 
 	public function eventRegistrationFormSucceeded(Nette\Application\UI\Form $form, $values)
 	{
+		$event = $this->event->get($values['event_id']);
 		$duplicite = $this->registration->where('event_id = ? AND email = ?', [$values['event_id'], $values['email']]);
-		if (count($duplicite)) {
+		if (count($duplicite) >= $event['max_ticket_per_email']) {
 			$this->flashMessage('Byla nalezena starší registrace, nebyly provedeny žádné změny. Změny konzultujte s pořadatelkou.', 'warning');
 			$this->redirect('this');
 		}
@@ -114,8 +115,7 @@ class EventPresenter extends BasePresenter
 			$res = false;
 		}
 
-		$event = $this->event->get($values['event_id']);
-
+		
 		if ($res) {
 			$this->mailNotify('SOS - nova registrace', 'Probehla registrace '. $values['name'] .' '. $values['surname'] .' k akci '. $event->name .'.', $values);
 			$this->flashMessage('Registrace proběhla v pořádku.', 'success');
@@ -148,20 +148,26 @@ class EventPresenter extends BasePresenter
 
 	public function eventTicketFormSucceeded(Nette\Application\UI\Form $form, $values)
 	{
+		// Udalost
+		$event = $this->event->get($values['event_id']);
+
+		// Drive zamluvene vstupenky
 		$duplicite = $this->ticket->where('event_id = ? AND email = ?', [$values['event_id'], $values['email']]);
-		if (count($duplicite)) {
-			$this->flashMessage('Byl nalezen starší požadavek na vstupenku. Nebyla provedena žádná akce.', 'warning');
+
+		// Vycerpan limit
+		if (count($duplicite) >= $event['max_ticket_per_email']) {
+			$this->flashMessage('Limit na počet vstupenek pro Váš email byl již vyčerpán, použijte jiný email.', 'warning');
 			$this->redirect('this');
 		}
 
+		// Ulozeni do databaze
 		try {
 			$ticket = $this->ticket->insert($values);
 		} catch (\Exception $e) {
 			$ticket = false;
 		}
 
-		$event = $this->event->get($values['event_id']);
-
+		// Notifikace na email a odeslání vstupenky
 		if ($ticket) {
 			$this->mailNotify('SOS - nova vstupenka', 'Uzivatel s emailem '. $values['email'] .' si zazadal o vstupenku na akci '. $event->name .'.', $values);
 			$this->sendTicket($ticket);
@@ -173,7 +179,6 @@ class EventPresenter extends BasePresenter
 
 		$this->redirect('this');
 	}
-
 
 	private function sendTicket($ticket)
 	{
