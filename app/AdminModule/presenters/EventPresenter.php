@@ -62,7 +62,7 @@ class EventPresenter extends BasePresenter
 
 		$form->addCheckbox('main', 'Akce SOS?');
 
-		$form->addText('max_ticket_per_email', 'Maximální počet vstupenek na jeden email.')
+		$form->addText('max_ticket_per_email', 'Max. vstupenek/reg. na email:')
 			->setDefaultValue(1)
 			->setAttribute('type', 'number')
 			->addRule($form::RANGE, 'Počet musí být v rozsahu 1 až 20.', [1, 20]);

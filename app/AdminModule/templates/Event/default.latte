@@ -55,13 +55,13 @@
                 </td>
                 <td>
                     {if $e->ticket}
-                        <i class="glyphicon glyphicon-ok"></i> <br />
+                        <i class="glyphicon glyphicon-ok"></i> (<abbr title="Maximální počet vstupenek na jeden email.">{$e['max_ticket_per_email']}x</abbr>)<br />
                         <img src="{$basePath}/content/ticket/{$e->id}.jpg" class="preview-image small" />
                     {/if}
                 </td>
                 <td>
                     {if $e->registration}
-                        <i class="glyphicon glyphicon-ok"></i>
+                        <i class="glyphicon glyphicon-ok"></i> (<abbr title="Maximální počet registrací na jeden email.">{$e['max_ticket_per_email']}x</abbr>)
                     {/if}
                 </td>
                 <td>
