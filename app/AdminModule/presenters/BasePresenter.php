@@ -13,6 +13,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
 {
 	const SAVE_DIR = "../www/content/";
 	const MAX_DIMENSION = 800;
+	const EMAIL_OPERATOR = 'liskovamaj@gmail.com';
 
 	public function beforeRender()
 	{

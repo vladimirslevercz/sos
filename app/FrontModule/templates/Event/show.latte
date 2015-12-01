@@ -10,7 +10,7 @@
         <div class="col-lg-9 col-md-8 col-sm-6 col-xs-12">
             <div class="pull-right" style="text-align: right">
                 {$event->date|date:'j.n.Y'}
-                {if $event->main}<br />Tuto akci pořádá SOS Hudebně.{/if}
+                {if $event->main}<br />Tuto akci pořádá Hudební S.O.S.{/if}
             </div>
             {if $event->ticket && $event->date > $now}<a href="#ticketForm">Vstupenka {if count($ticket)}({count($ticket)}){/if}</a> {/if}
             {if $event->registration && $event->date > $now}<a href="#registrationForm">Registrace {if count($registration)}({count($registration)}){/if}</a> {/if}
@@ -36,7 +36,7 @@
             {if $event->ticket && $event->date > $now}
             <hr />
             <a name="ticketForm"></a>
-            <p>Pro získání vstupenky vyplňte email, na který bude zaslána. Na jeden email {if $event['max_ticket_per_email'] == 1}může být zaslána maximálně jedna vstupenka{elseif $event['max_ticket_per_email'] < 5}mohou být zasláné maximálně {$event['max_ticket_per_email']} vstupenky{else}může být zasláno maximálně {$event['max_ticket_per_email']} vstupenek{/if}.</p>
+            <p>Pro získání vstupenky vyplňte email, na který bude zaslána. Na jeden email {if $event['max_ticket_per_email'] == 1}může být zaslána maximálně jedna vstupenka{elseif $event['max_ticket_per_email'] < 5}mohou být zaslány maximálně {$event['max_ticket_per_email']} vstupenky{else}může být zasláno maximálně {$event['max_ticket_per_email']} vstupenek{/if}.</p>
 
             {control eventTicketForm}
             {/if}

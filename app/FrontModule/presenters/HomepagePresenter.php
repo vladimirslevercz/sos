@@ -22,7 +22,8 @@ class HomepagePresenter extends BasePresenter
 
 	public function renderDefault()
 	{
-		$this->template->event = $this->event->where('date > ?', new \DateTime('now'))->order('date ASC')->limit(2);
+		$this->template->event = $this->event->where('date > ?', new \DateTime('now'))->where('date < ?', new \DateTime('+3months'))->order('date ASC');
+
 	}
 
 }

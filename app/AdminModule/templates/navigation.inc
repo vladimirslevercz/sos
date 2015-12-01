@@ -21,11 +21,12 @@
 
 
 				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Nástroje akcí (událostí) <span class="caret"></span></a>
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Události <span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a n:href="Event:default">Akce (události)</a></li>
-						<li><a n:href="Ticket:default">Vstupenky (koncert)</a></li>
-						<li><a n:href="Registration:default">Registrace (konference)</a></li>
+						<li><a n:href="Event:default">Události</a></li>
+						<li><a n:href="Ticket:default">Vstupenky</a></li>
+						<li><a n:href="Registration:default">Registrace</a></li>
+						<li><a n:href="Newsletter:default">Newsletter</a></li>
 					</ul>
 				</li>
 

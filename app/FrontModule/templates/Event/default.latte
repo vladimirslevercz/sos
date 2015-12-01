@@ -16,7 +16,7 @@
         <div class="col-xs-12 col-md-11 col-lg-9 col-lg-offset-1 {if $e->main}green{else}orange{/if}-background">
             <div class="white-background pull-left">
                 <a n:href="Event:show $e->id">
-                    <img src="{$basePath}/content/event/{$e->id}.jpg" class=" pull-left" title="{$e->name}" />
+                    <img src="{$basePath}/content/event/{$e->id}.jpg?{=date('d')}" class=" pull-left" title="{$e->name}" />{* ?=date() protoze aktualizovat na strane  *}
                 </a>
             </div>
             <div class="event-thumbnail">
@@ -53,7 +53,7 @@
         <div class="col-xs-12 col-md-11 col-lg-9 col-lg-offset-1 {if $e->main}green{else}orange{/if}-background">
             <div class="white-background pull-left">
                 <a n:href="Event:show $e->id">
-                    <img src="{$basePath}/content/event/{$e->id}.jpg" class=" pull-left" title="{$e->name}" />
+                    <img src="{$basePath}/content/event/{$e->id}.jpg?{=date('d')}" class=" pull-left" title="{$e->name}" />
                 </a>
             </div>
             <div class="event-thumbnail">
@@ -89,7 +89,7 @@
         <div class="col-xs-12 col-md-11 col-lg-9 col-lg-offset-1 {if $e->main}green{else}orange{/if}-background">
             <div class="white-background pull-left">
                 <a n:href="Event:show $e->id">
-                    <img src="{$basePath}/content/event/{$e->id}.jpg" class=" pull-left" title="{$e->name}" />
+                    <img src="{$basePath}/content/event/{$e->id}.jpg?{=date('d')}" class=" pull-left" title="{$e->name}" />
                 </a>
 
             </div>
