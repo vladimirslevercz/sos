@@ -125,7 +125,7 @@ class NewsletterPresenter extends BasePresenter
 		$counter = 0;
 		foreach ($contacts as $contact) {
 			$counter++;
-			$mail->addTo($contact);
+			$mail->addBcc($contact);
 		}
 
 		$mailer = new Nette\Mail\SendmailMailer();
