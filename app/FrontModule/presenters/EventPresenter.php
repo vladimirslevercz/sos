@@ -54,7 +54,7 @@ class EventPresenter extends BasePresenter
 		$eventPast = clone $this->event;
 		$this->template->eventFuture = $eventMain->where('date > ?', new \DateTime('+3months'));
 		$this->template->eventNow = $eventNotMain->where('date > ?', new \DateTime('now'))->where('date < ?', new \DateTime('+3months'))->order('date ASC');
-		$this->template->eventPast = $eventPast->where('date < ?', new \DateTime('now'))->limit(15);
+		$this->template->eventPast = $eventPast->where('date < ?', new \DateTime('now'))->order('date DESC')->limit(15);
 		$this->template->filter = $filter;
 	}
 
