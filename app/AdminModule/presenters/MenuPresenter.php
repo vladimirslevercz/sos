@@ -55,6 +55,10 @@ class MenuPresenter extends BasePresenter
 	protected function createComponentMenuForm()
 	{
 		$menus = $this->menu->where('menu_id', null)->fetchPairs('id', 'name');
+        $menuId = $this->getParameter('id');
+		if ($menuId && array_key_exists($menuId, $menus)) {
+		    unset($menus[$menuId]);
+        }
 		$menus[null] = '-- Není --';
 
 		$articles = $this->article->fetchPairs('id', 'name');
@@ -87,11 +91,11 @@ class MenuPresenter extends BasePresenter
 		if(!$values['menu_id']) {
 			$values['menu_id'] = null;
 		}
-		if(!$values['article_id']) {
+		if(!$values['article_id'] || $values['article_id'] == $menuId) {
 			$values['article_id'] = null;
 		}
 		if ($menuId) {
-			$menu = $this->menu->get($menuId);
+            $menu = $this->menu->get($menuId);
 			if (!$menu) {
 				$this->error('Data nebyla nalezena v databázi.', '404');
 			} else {
