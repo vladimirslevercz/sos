@@ -26,7 +26,7 @@ class ArticlePresenter extends BasePresenter
 	 */
 	public $articleRepo;
 
-	private $article, $menu;
+	private $article, $selectedMenu, $selectedSubMenu;
 
 	public function renderDefault()
 	{
@@ -45,32 +45,41 @@ class ArticlePresenter extends BasePresenter
                 $this->redirect(':Admin:Sign:in');
             }
         }
+	}
+
+    public function actionShow($id)
+    {
+        $menuToOpen = $this->menuRepo->get($id);
+        $this->selectedMenu = $menuToOpen;
+
+        $selectedSubMenu = null;
+        if ($this->selectedMenu->menu) {
+            $this->selectedSubMenu = $this->selectedMenu;
+            $this->selectedMenu = $this->selectedMenu->menu;
+        }
+
+        if (!$this->selectedMenu) {
+            $this->redirect('Homepage:default');
+        }
+
+        $this->article = $menuToOpen->article;
+        if (!$this->article) {
+            $this->error('Menu nelze otevřít', 404);
+        }
+        if ($this->article->secret) {
+            if (!$this->user->isLoggedIn() || !$this->user->isAllowed('article', 'readSecret')) {
+                $this->flashMessage('Tento článek je tajný, je nutné se přihlásit.');
+                $this->redirect(':Admin:Sign:in');
+            }
+        }
 
 	}
 
 	public function renderShow($id) {
-		$this->menuRepo = new Model\Menu($this->getDatabase());
-		$menuToOpen = $selectedMenu = $this->menuRepo->get($id);
 
-		$selectedSubMenu = null;
-		if ($selectedMenu->menu) {
-			$selectedSubMenu = $selectedMenu;
-			$selectedMenu = $selectedMenu->menu;
-		}
-
-		if (!$selectedMenu) {
-			$this->redirect('Homepage:default');
-		}
-
-
-		$article = $menuToOpen->article;
-		if (!$article) {
-			$this->error('Menu nelze otevřít', 404);
-		}
-
-		$this->template->article = $article;
-		$this->template->selectedMenu = $selectedMenu;
-		$this->template->selectedSubMenu = $selectedSubMenu;
+		$this->template->article = $this->article;
+		$this->template->selectedMenu = $this->selectedMenu;
+		$this->template->selectedSubMenu = $this->selectedSubMenu;
 	}
 
 	public function renderArticle($id)
