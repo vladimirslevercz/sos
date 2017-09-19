@@ -1,24 +1,18 @@
 <?php
 
 /**
- * This file is part of the Nette Framework (http://nette.org)
- * Copyright (c) 2004 David Grudl (http://davidgrudl.com)
+ * This file is part of the Nette Framework (https://nette.org)
+ * Copyright (c) 2004 David Grudl (https://davidgrudl.com)
  */
 
 namespace Nette\Http;
 
-use Nette,
-	Nette\Utils\DateTime;
+use Nette;
+use Nette\Utils\DateTime;
 
 
 /**
  * HttpResponse class.
- *
- * @author     David Grudl
- *
- * @property   int $code
- * @property-read bool $sent
- * @property-read array $headers
  */
 class Response extends Nette\Object implements IResponse
 {
@@ -62,7 +56,7 @@ class Response extends Nette\Object implements IResponse
 	/**
 	 * Sets HTTP response code.
 	 * @param  int
-	 * @return self
+	 * @return static
 	 * @throws Nette\InvalidArgumentException  if code is invalid
 	 * @throws Nette\InvalidStateException  if HTTP headers have been sent
 	 */
@@ -74,8 +68,12 @@ class Response extends Nette\Object implements IResponse
 		}
 		self::checkHeaders();
 		$this->code = $code;
-		$protocol = isset($_SERVER['SERVER_PROTOCOL']) ? $_SERVER['SERVER_PROTOCOL'] : 'HTTP/1.1';
-		header($protocol . ' ' . $code, TRUE, $code);
+		if (PHP_VERSION_ID >= 50400) {
+			http_response_code($code);
+		} else {
+			$protocol = isset($_SERVER['SERVER_PROTOCOL']) ? $_SERVER['SERVER_PROTOCOL'] : 'HTTP/1.1';
+			header($protocol . ' ' . $code, TRUE, $code);
+		}
 		return $this;
 	}
 
@@ -94,7 +92,7 @@ class Response extends Nette\Object implements IResponse
 	 * Sends a HTTP header and replaces a previous one.
 	 * @param  string  header name
 	 * @param  string  header value
-	 * @return self
+	 * @return static
 	 * @throws Nette\InvalidStateException  if HTTP headers have been sent
 	 */
 	public function setHeader($name, $value)
@@ -115,7 +113,7 @@ class Response extends Nette\Object implements IResponse
 	 * Adds HTTP header.
 	 * @param  string  header name
 	 * @param  string  header value
-	 * @return self
+	 * @return static
 	 * @throws Nette\InvalidStateException  if HTTP headers have been sent
 	 */
 	public function addHeader($name, $value)
@@ -130,7 +128,7 @@ class Response extends Nette\Object implements IResponse
 	 * Sends a Content-type HTTP header.
 	 * @param  string  mime-type
 	 * @param  string  charset
-	 * @return self
+	 * @return static
 	 * @throws Nette\InvalidStateException  if HTTP headers have been sent
 	 */
 	public function setContentType($type, $charset = NULL)
@@ -160,12 +158,13 @@ class Response extends Nette\Object implements IResponse
 
 	/**
 	 * Sets the number of seconds before a page cached on a browser expires.
-	 * @param  string|int|\DateTime  time, value 0 means "until the browser is closed"
-	 * @return self
+	 * @param  string|int|\DateTime  time, value 0 means no cache
+	 * @return static
 	 * @throws Nette\InvalidStateException  if HTTP headers have been sent
 	 */
 	public function setExpiration($time)
 	{
+		$this->setHeader('Pragma', NULL);
 		if (!$time) { // no cache
 			$this->setHeader('Cache-Control', 's-maxage=0, max-age=0, must-revalidate');
 			$this->setHeader('Expires', 'Mon, 23 Jan 1978 10:00:00 GMT');
@@ -256,7 +255,7 @@ class Response extends Nette\Object implements IResponse
 	 * @param  string
 	 * @param  bool
 	 * @param  bool
-	 * @return self
+	 * @return static
 	 * @throws Nette\InvalidStateException  if HTTP headers have been sent
 	 */
 	public function setCookie($name, $value, $time, $path = NULL, $domain = NULL, $secure = NULL, $httpOnly = NULL)
@@ -303,7 +302,7 @@ class Response extends Nette\Object implements IResponse
 		if (headers_sent($file, $line)) {
 			throw new Nette\InvalidStateException('Cannot send header after HTTP headers have been sent' . ($file ? " (output started at $file:$line)." : '.'));
 
-		} elseif ($this->warnOnBuffer && ob_get_length() && !array_filter(ob_get_status(TRUE), function($i) { return !$i['chunk_size']; })) {
+		} elseif ($this->warnOnBuffer && ob_get_length() && !array_filter(ob_get_status(TRUE), function ($i) { return !$i['chunk_size']; })) {
 			trigger_error('Possible problem: you are sending a HTTP header while already having some data in output buffer. Try Tracy\OutputDebugger or start session earlier.', E_USER_NOTICE);
 		}
 	}

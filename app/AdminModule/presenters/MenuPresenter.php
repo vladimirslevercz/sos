@@ -27,7 +27,17 @@ class MenuPresenter extends BasePresenter
 	 */
 	public $article;
 
-	public function actionDefault() {
+    public function startup()
+    {
+        parent::startup();
+        if (!$this->user->isAllowed('menu', 'edit')) {
+            $this->flashMessage('Na tuto akci nemáte oprávnění.');
+            $this->redirect('Homepage:default');
+        }
+    }
+
+	public function actionDefault()
+    {
 	}
 
 	public function renderDefault()

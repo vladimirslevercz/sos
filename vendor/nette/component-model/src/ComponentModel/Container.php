@@ -1,8 +1,8 @@
 <?php
 
 /**
- * This file is part of the Nette Framework (http://nette.org)
- * Copyright (c) 2004 David Grudl (http://davidgrudl.com)
+ * This file is part of the Nette Framework (https://nette.org)
+ * Copyright (c) 2004 David Grudl (https://davidgrudl.com)
  */
 
 namespace Nette\ComponentModel;
@@ -12,8 +12,6 @@ use Nette;
 
 /**
  * ComponentContainer is default implementation of IContainer.
- *
- * @author     David Grudl
  *
  * @property-read \ArrayIterator $components
  */
@@ -34,7 +32,7 @@ class Container extends Component implements IContainer
 	 * @param  IComponent
 	 * @param  string
 	 * @param  string
-	 * @return self
+	 * @return static
 	 * @throws Nette\InvalidStateException
 	 */
 	public function addComponent(IComponent $component, $name, $insertBefore = NULL)
@@ -116,6 +114,10 @@ class Container extends Component implements IContainer
 	 */
 	public function getComponent($name, $need = TRUE)
 	{
+		if (isset($this->components[$name])) {
+			return $this->components[$name];
+		}
+
 		if (is_int($name)) {
 			$name = (string) $name;
 
@@ -161,7 +163,11 @@ class Container extends Component implements IContainer
 			}
 
 		} elseif ($need) {
-			throw new Nette\InvalidArgumentException("Component with name '$name' does not exist.");
+			$hint = Nette\Utils\ObjectMixin::getSuggestion(array_merge(
+				array_keys($this->components),
+				array_map('lcfirst', preg_filter('#^createComponent([A-Z0-9].*)#', '$1', get_class_methods($this)))
+			), $name);
+			throw new Nette\InvalidArgumentException("Component with name '$name' does not exist" . ($hint ? ", did you mean '$hint'?" : '.'));
 		}
 	}
 
@@ -200,7 +206,8 @@ class Container extends Component implements IContainer
 			$iterator = new \RecursiveIteratorIterator($iterator, $deep);
 		}
 		if ($filterType) {
-			$iterator = new Nette\Iterators\Filter($iterator, function($item) use ($filterType) {
+			$class = PHP_VERSION_ID < 50400 ? 'Nette\Iterators\Filter' : 'CallbackFilterIterator';
+			$iterator = new $class($iterator, function ($item) use ($filterType) {
 				return $item instanceof $filterType;
 			});
 		}

@@ -4,7 +4,7 @@
  * Requirements Checker: This script will check if your system meets
  * the requirements for running Nette Framework.
  *
- * This file is part of the Nette Framework (http://nette.org)
+ * This file is part of the Nette Framework (https://nette.org)
  */
 
 
@@ -51,19 +51,21 @@ $tests[] = array(
 	'message' => ini_get('memory_limit'),
 );
 
-$tests['hf'] = array(
-	'title' => '.htaccess file protection',
-	'required' => FALSE,
-	'description' => 'File protection by <code>.htaccess</code> is not present. You must be careful to put files into document_root folder.',
-	'script' => '<script src="assets/denied/checker.js"></script> <script>displayResult("hf", typeof fileProtectionChecker == "undefined")</script>',
-);
+if (!isset($_SERVER['SERVER_SOFTWARE']) || strpos($_SERVER['SERVER_SOFTWARE'], 'Apache') !== FALSE) {
+	$tests['hf'] = array(
+		'title' => '.htaccess file protection',
+		'required' => FALSE,
+		'description' => 'File protection by <code>.htaccess</code> is not present. You must be careful to put files into document_root folder.',
+		'script' => '<script src="assets/denied/checker.js"></script> <script>displayResult("hf", typeof fileProtectionChecker == "undefined")</script>',
+	);
 
-$tests['hr'] = array(
-	'title' => '.htaccess mod_rewrite',
-	'required' => FALSE,
-	'description' => 'Mod_rewrite is probably not present. You will not be able to use Cool URL.',
-	'script' => '<script src="assets/rewrite/checker"></script> <script>displayResult("hr", typeof modRewriteChecker == "boolean")</script>',
-);
+	$tests['hr'] = array(
+		'title' => '.htaccess mod_rewrite',
+		'required' => FALSE,
+		'description' => 'Mod_rewrite is probably not present. You will not be able to use Cool URL.',
+		'script' => '<script src="assets/rewrite/checker"></script> <script>displayResult("hr", typeof modRewriteChecker == "boolean")</script>',
+	);
+}
 
 $tests[] = array(
 	'title' => 'Function ini_set()',
@@ -203,6 +205,13 @@ $tests[] = array(
 	'required' => FALSE,
 	'passed' => extension_loaded('fileinfo') || function_exists('mime_content_type'),
 	'description' => 'Fileinfo extension or function <code>mime_content_type()</code> are absent. You will not be able to determine mime type of uploaded files.',
+);
+
+$tests[] = array(
+	'title' => 'Intl extension',
+	'required' => FALSE,
+	'passed' => class_exists('Transliterator', FALSE),
+	'description' => 'Class Transliterator is absent, the output of Nette\Utils\Strings::webalize() and Nette\Utils\Strings::toAscii() may not be accurate for non-latin alphabets.',
 );
 
 $tests[] = array(

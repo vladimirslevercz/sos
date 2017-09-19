@@ -1,8 +1,8 @@
 <?php
 
 /**
- * This file is part of the Nette Framework (http://nette.org)
- * Copyright (c) 2004 David Grudl (http://davidgrudl.com)
+ * This file is part of the Nette Framework (https://nette.org)
+ * Copyright (c) 2004 David Grudl (https://davidgrudl.com)
  */
 
 namespace Nette\DI;
@@ -12,8 +12,6 @@ use Nette;
 
 /**
  * The dependency injection container default implementation.
- *
- * @author     David Grudl
  */
 class Container extends Nette\Object
 {
@@ -54,7 +52,7 @@ class Container extends Nette\Object
 	 * Adds the service to the container.
 	 * @param  string
 	 * @param  object
-	 * @return self
+	 * @return static
 	 */
 	public function addService($name, $service)
 	{
@@ -109,6 +107,26 @@ class Container extends Nette\Object
 
 
 	/**
+	 * Gets the service type by name.
+	 * @param  string
+	 * @return string
+	 * @throws MissingServiceException
+	 */
+	public function getServiceType($name)
+	{
+		if (isset($this->meta[self::ALIASES][$name])) {
+			return $this->getServiceType($this->meta[self::ALIASES][$name]);
+
+		} elseif (isset($this->meta[self::SERVICES][$name])) {
+			return $this->meta[self::SERVICES][$name];
+
+		} else {
+			throw new MissingServiceException("Service '$name' not found.");
+		}
+	}
+
+
+	/**
 	 * Does the service exist?
 	 * @param  string service name
 	 * @return bool
@@ -117,7 +135,7 @@ class Container extends Nette\Object
 	{
 		$name = isset($this->meta[self::ALIASES][$name]) ? $this->meta[self::ALIASES][$name] : $name;
 		return isset($this->registry[$name])
-			|| (method_exists($this, $method = Container::getMethodName($name))
+			|| (method_exists($this, $method = self::getMethodName($name))
 				&& ($rm = new \ReflectionMethod($this, $method)) && $rm->getName() === $method);
 	}
 
@@ -146,7 +164,7 @@ class Container extends Nette\Object
 	public function createService($name, array $args = array())
 	{
 		$name = isset($this->meta[self::ALIASES][$name]) ? $this->meta[self::ALIASES][$name] : $name;
-		$method = Container::getMethodName($name);
+		$method = self::getMethodName($name);
 		if (isset($this->creating[$name])) {
 			throw new Nette\InvalidStateException(sprintf('Circular reference detected for services: %s.', implode(', ', array_keys($this->creating))));
 
@@ -181,11 +199,12 @@ class Container extends Nette\Object
 	public function getByType($class, $need = TRUE)
 	{
 		$class = ltrim($class, '\\');
-		$names = & $this->meta[self::TYPES][$class][TRUE];
-		if (count($names) === 1) {
-			return $this->getService($names[0]);
-		} elseif (count($names) > 1) {
+		if (!empty($this->meta[self::TYPES][$class][TRUE])) {
+			if (count($names = $this->meta[self::TYPES][$class][TRUE]) === 1) {
+				return $this->getService($names[0]);
+			}
 			throw new MissingServiceException("Multiple services of type $class found: " . implode(', ', $names) . '.');
+
 		} elseif ($need) {
 			throw new MissingServiceException("Service of type $class not found.");
 		}
@@ -200,11 +219,9 @@ class Container extends Nette\Object
 	public function findByType($class)
 	{
 		$class = ltrim($class, '\\');
-		$meta = & $this->meta[self::TYPES];
-		return array_merge(
-			isset($meta[$class][TRUE]) ? $meta[$class][TRUE] : array(),
-			isset($meta[$class][FALSE]) ? $meta[$class][FALSE] : array()
-		);
+		return empty($this->meta[self::TYPES][$class])
+			? array()
+			: call_user_func_array('array_merge', $this->meta[self::TYPES][$class]);
 	}
 
 
@@ -252,26 +269,12 @@ class Container extends Nette\Object
 	 */
 	public function callInjects($service)
 	{
-		if (!is_object($service)) {
-			throw new Nette\InvalidArgumentException(sprintf('Service must be object, %s given.', gettype($service)));
-		}
-
-		foreach (array_reverse(get_class_methods($service)) as $method) {
-			if (substr($method, 0, 6) === 'inject') {
-				$this->callMethod(array($service, $method));
-			}
-		}
-
-		foreach (Helpers::getInjectProperties(new \ReflectionClass($service), $this) as $property => $type) {
-			$service->$property = $this->getByType($type);
-		}
+		Extensions\InjectExtension::callInjects($this, $service);
 	}
 
 
 	/**
 	 * Calls method using autowiring.
-	 * @param  mixed   class, object, function, callable
-	 * @param  array   arguments
 	 * @return mixed
 	 */
 	public function callMethod($function, array $args = array())

@@ -21,6 +21,15 @@ class EventPresenter extends BasePresenter
 	 */
 	public $event;
 
+    public function startup()
+    {
+        parent::startup();
+        if (!$this->user->isAllowed('event', 'edit')) {
+            $this->flashMessage('Na tuto akci nemáte oprávnění.');
+            $this->redirect('Homepage:default');
+        }
+    }
+
 	public function renderDefault()
 	{
 		$this->template->event = $this->event->order('id DESC');

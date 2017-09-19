@@ -1,25 +1,21 @@
 <?php
 
 /**
- * This file is part of the Nette Framework (http://nette.org)
- * Copyright (c) 2004 David Grudl (http://davidgrudl.com)
+ * This file is part of the Nette Framework (https://nette.org)
+ * Copyright (c) 2004 David Grudl (https://davidgrudl.com)
  */
 
 namespace NetteModule;
 
-use Nette,
-	Nette\Application,
-	Nette\Application\Responses,
-	Nette\Http,
-	Latte;
+use Nette;
+use Nette\Application;
+use Nette\Application\Responses;
+use Nette\Http;
+use Latte;
 
 
 /**
  * Micro presenter.
- *
- * @author     David Grudl
- *
- * @property-read Nette\Application\IRequest $request
  */
 class MicroPresenter extends Nette\Object implements Application\IPresenter
 {
@@ -78,14 +74,15 @@ class MicroPresenter extends Nette\Object implements Application\IPresenter
 		$reflection = Nette\Utils\Callback::toReflection(Nette\Utils\Callback::check($callback));
 		$params = Application\UI\PresenterComponentReflection::combineArgs($reflection, $params);
 
-		foreach ($reflection->getParameters() as $param) {
-			if ($param->getClassName()) {
-				unset($params[$param->getPosition()]);
-			}
-		}
-
 		if ($this->context) {
+			foreach ($reflection->getParameters() as $param) {
+				if ($param->getClassName()) {
+					unset($params[$param->getPosition()]);
+				}
+			}
+
 			$params = Nette\DI\Helpers::autowireArguments($reflection, $params, $this->context);
+			$params['presenter'] = $this;
 		}
 
 		$response = call_user_func_array($callback, $params);
@@ -158,7 +155,7 @@ class MicroPresenter extends Nette\Object implements Application\IPresenter
 
 
 	/**
-	 * @return Nette\Application\IRequest
+	 * @return Nette\Application\Request
 	 */
 	public function getRequest()
 	{

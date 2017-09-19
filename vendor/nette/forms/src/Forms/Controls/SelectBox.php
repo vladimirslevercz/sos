@@ -1,8 +1,8 @@
 <?php
 
 /**
- * This file is part of the Nette Framework (http://nette.org)
- * Copyright (c) 2004 David Grudl (http://davidgrudl.com)
+ * This file is part of the Nette Framework (https://nette.org)
+ * Copyright (c) 2004 David Grudl (https://davidgrudl.com)
  */
 
 namespace Nette\Forms\Controls;
@@ -12,10 +12,6 @@ use Nette;
 
 /**
  * Select box control that allows single item selection.
- *
- * @author     David Grudl
- *
- * @property   bool $prompt
  */
 class SelectBox extends ChoiceControl
 {
@@ -32,7 +28,7 @@ class SelectBox extends ChoiceControl
 	/**
 	 * Sets first prompt item in select box.
 	 * @param  string
-	 * @return self
+	 * @return static
 	 */
 	public function setPrompt($prompt)
 	{
@@ -53,7 +49,7 @@ class SelectBox extends ChoiceControl
 
 	/**
 	 * Sets options and option groups from which to choose.
-	 * @return self
+	 * @return static
 	 */
 	public function setItems(array $items, $useKeys = TRUE)
 	{
@@ -91,7 +87,7 @@ class SelectBox extends ChoiceControl
 			$items,
 			array(
 				'selected?' => $this->value,
-				'disabled:' => is_array($this->disabled) ? $this->disabled : NULL
+				'disabled:' => is_array($this->disabled) ? $this->disabled : NULL,
 			)
 		)->addAttributes(parent::getControl()->attrs);
 	}
@@ -104,7 +100,7 @@ class SelectBox extends ChoiceControl
 	public function validate()
 	{
 		parent::validate();
-		if (!$this->isDisabled() && $this->prompt === FALSE && $this->getValue() === NULL && $this->options) {
+		if (!$this->isDisabled() && $this->prompt === FALSE && $this->getValue() === NULL && $this->options && $this->control->size < 2) {
 			$this->addError(Nette\Forms\Validator::$messages[self::VALID]);
 		}
 	}

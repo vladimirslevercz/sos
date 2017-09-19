@@ -1,8 +1,8 @@
 <?php
 
 /**
- * This file is part of the Nette Framework (http://nette.org)
- * Copyright (c) 2004 David Grudl (http://davidgrudl.com)
+ * This file is part of the Nette Framework (https://nette.org)
+ * Copyright (c) 2004 David Grudl (https://davidgrudl.com)
  */
 
 namespace Nette\Http;
@@ -28,8 +28,6 @@ use Nette;
  * - basePath:    /en/ (everything before relative URI not including the script name)
  * - baseUrl:     http://user:password@nette.org:8042/en/
  * - relativeUrl: manual.php
- *
- * @author     David Grudl
  *
  * @property   string $scheme
  * @property   string $user
@@ -115,7 +113,7 @@ class Url extends Nette\Object
 	/**
 	 * Sets the scheme part of URI.
 	 * @param  string
-	 * @return self
+	 * @return static
 	 */
 	public function setScheme($value)
 	{
@@ -137,7 +135,7 @@ class Url extends Nette\Object
 	/**
 	 * Sets the user name part of URI.
 	 * @param  string
-	 * @return self
+	 * @return static
 	 */
 	public function setUser($value)
 	{
@@ -159,7 +157,7 @@ class Url extends Nette\Object
 	/**
 	 * Sets the password part of URI.
 	 * @param  string
-	 * @return self
+	 * @return static
 	 */
 	public function setPassword($value)
 	{
@@ -181,7 +179,7 @@ class Url extends Nette\Object
 	/**
 	 * Sets the host part of URI.
 	 * @param  string
-	 * @return self
+	 * @return static
 	 */
 	public function setHost($value)
 	{
@@ -204,7 +202,7 @@ class Url extends Nette\Object
 	/**
 	 * Sets the port part of URI.
 	 * @param  int
-	 * @return self
+	 * @return static
 	 */
 	public function setPort($value)
 	{
@@ -228,7 +226,7 @@ class Url extends Nette\Object
 	/**
 	 * Sets the path part of URI.
 	 * @param  string
-	 * @return self
+	 * @return static
 	 */
 	public function setPath($value)
 	{
@@ -253,7 +251,7 @@ class Url extends Nette\Object
 	/**
 	 * Sets the query part of URI.
 	 * @param  string|array
-	 * @return self
+	 * @return static
 	 */
 	public function setQuery($value)
 	{
@@ -265,7 +263,7 @@ class Url extends Nette\Object
 	/**
 	 * Appends the query part of URI.
 	 * @param  string|array
-	 * @return self
+	 * @return static
 	 */
 	public function appendQuery($value)
 	{
@@ -312,7 +310,7 @@ class Url extends Nette\Object
 	/**
 	 * @param string
 	 * @param mixed NULL unsets the parameter
-	 * @return self
+	 * @return static
 	 */
 	public function setQueryParameter($name, $value)
 	{
@@ -324,7 +322,7 @@ class Url extends Nette\Object
 	/**
 	 * Sets the fragment part of URI.
 	 * @param  string
-	 * @return self
+	 * @return static
 	 */
 	public function setFragment($value)
 	{
@@ -423,9 +421,9 @@ class Url extends Nette\Object
 	{
 		$url = new self($url);
 		$query = $url->query;
-		sort($query);
+		ksort($query);
 		$query2 = $this->query;
-		sort($query2);
+		ksort($query2);
 		$http = in_array($this->scheme, array('http', 'https'), TRUE);
 		return $url->scheme === $this->scheme
 			&& !strcasecmp($url->host, $this->host)
@@ -440,13 +438,13 @@ class Url extends Nette\Object
 
 	/**
 	 * Transforms URL to canonical form.
-	 * @return self
+	 * @return static
 	 */
 	public function canonicalize()
 	{
 		$this->path = preg_replace_callback(
 			'#[^!$&\'()*+,/:;=@%]+#',
-			function($m) { return rawurlencode($m[0]); },
+			function ($m) { return rawurlencode($m[0]); },
 			self::unescape($this->path, '%/')
 		);
 		$this->host = strtolower($this->host);
@@ -477,7 +475,7 @@ class Url extends Nette\Object
 		if ($reserved !== '') {
 			$s = preg_replace_callback(
 				'#%(' . substr(chunk_split(bin2hex($reserved), 2, '|'), 0, -1) . ')#i',
-				function($m) { return '%25' . strtoupper($m[1]); },
+				function ($m) { return '%25' . strtoupper($m[1]); },
 				$s
 			);
 		}

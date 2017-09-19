@@ -1,8 +1,8 @@
 <?php
 
 /**
- * This file is part of the Nette Framework (http://nette.org)
- * Copyright (c) 2004 David Grudl (http://davidgrudl.com)
+ * This file is part of the Nette Framework (https://nette.org)
+ * Copyright (c) 2004 David Grudl (https://davidgrudl.com)
  */
 
 namespace Nette\DI\Extensions;
@@ -12,8 +12,6 @@ use Nette;
 
 /**
  * DI extension.
- *
- * @author     David Grudl
  */
 class DIExtension extends Nette\DI\CompilerExtension
 {
@@ -25,10 +23,14 @@ class DIExtension extends Nette\DI\CompilerExtension
 	/** @var bool */
 	private $debugMode;
 
+	/** @var int */
+	private $time;
+
 
 	public function __construct($debugMode = FALSE)
 	{
 		$this->debugMode = $debugMode;
+		$this->time = microtime(TRUE);
 	}
 
 
@@ -47,8 +49,9 @@ class DIExtension extends Nette\DI\CompilerExtension
 		$container = $this->getContainerBuilder();
 
 		if ($this->debugMode && $this->config['debugger']) {
+			Nette\Bridges\DITracy\ContainerPanel::$compilationTime = $this->time;
 			$initialize->addBody($container->formatPhp('?;', array(
-				new Nette\DI\Statement('@Tracy\Bar::addPanel', array(new Nette\DI\Statement('Nette\Bridges\DITracy\ContainerPanel')))
+				new Nette\DI\Statement('@Tracy\Bar::addPanel', array(new Nette\DI\Statement('Nette\Bridges\DITracy\ContainerPanel'))),
 			)));
 		}
 
@@ -62,7 +65,7 @@ class DIExtension extends Nette\DI\CompilerExtension
 			foreach ($definitions as $name => $def) {
 				if (Nette\PhpGenerator\Helpers::isIdentifier($name)) {
 					$type = $def->getImplement() ?: $def->getClass();
-					$class->addDocument("@property $type \$$name");
+					$class->addComment("@property $type \$$name");
 				}
 			}
 		}

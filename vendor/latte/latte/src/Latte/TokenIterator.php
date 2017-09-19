@@ -1,8 +1,8 @@
 <?php
 
 /**
- * This file is part of the Nette Framework (http://nette.org)
- * Copyright (c) 2004 David Grudl (http://davidgrudl.com)
+ * This file is part of the Latte (https://latte.nette.org)
+ * Copyright (c) 2008 David Grudl (https://davidgrudl.com)
  */
 
 namespace Latte;
@@ -10,8 +10,6 @@ namespace Latte;
 
 /**
  * Traversing helper.
- *
- * @author     David Grudl
  * @internal
  */
 class TokenIterator extends Object
@@ -165,7 +163,7 @@ class TokenIterator extends Object
 
 
 	/**
-	 * @return self
+	 * @return static
 	 */
 	public function reset()
 	{

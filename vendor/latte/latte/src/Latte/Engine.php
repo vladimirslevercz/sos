@@ -1,8 +1,8 @@
 <?php
 
 /**
- * This file is part of the Nette Framework (http://nette.org)
- * Copyright (c) 2004 David Grudl (http://davidgrudl.com)
+ * This file is part of the Latte (https://latte.nette.org)
+ * Copyright (c) 2008 David Grudl (https://davidgrudl.com)
  */
 
 namespace Latte;
@@ -10,12 +10,10 @@ namespace Latte;
 
 /**
  * Templating engine Latte.
- *
- * @author     David Grudl
  */
 class Engine extends Object
 {
-	const VERSION = '2.3.0';
+	const VERSION = '2.3.13';
 
 	/** Content types */
 	const CONTENT_HTML = 'html',
@@ -89,7 +87,7 @@ class Engine extends Object
 	{
 		$class = $this->getTemplateClass($name);
 		if (!class_exists($class, FALSE)) {
-			$this->loadCacheFile($name);
+			$this->loadTemplate($name);
 		}
 
 		$template = new $class($params, $this, $name);
@@ -103,9 +101,12 @@ class Engine extends Object
 	 */
 	public function renderToString($name, array $params = array())
 	{
-		ob_start();
+		ob_start(function () {});
 		try {
 			$this->render($name, $params);
+		} catch (\Throwable $e) {
+			ob_end_clean();
+			throw $e;
 		} catch (\Exception $e) {
 			ob_end_clean();
 			throw $e;
@@ -151,12 +152,36 @@ class Engine extends Object
 
 
 	/**
+	 * Compiles template to cache.
+	 * @param  string
 	 * @return void
+	 * @throws \LogicException
 	 */
-	private function loadCacheFile($name)
+	public function warmupCache($name)
 	{
 		if (!$this->tempDirectory) {
-			eval('?>' . $this->compile($name));
+			throw new \LogicException('Path to temporary directory is not set.');
+		}
+
+		$class = $this->getTemplateClass($name);
+		if (!class_exists($class, FALSE)) {
+			$this->loadTemplate($name);
+		}
+	}
+
+
+	/**
+	 * @return void
+	 */
+	private function loadTemplate($name)
+	{
+		if (!$this->tempDirectory) {
+			$code = $this->compile($name);
+			if (@eval('?>' . $code) === FALSE) { // @ is escalated to exception
+				$error = error_get_last();
+				$e = new CompileException('Error in template: ' . $error['message']);
+				throw $e->setSource($code, $error['line'], "$name (compiled)");
+			}
 			return;
 		}
 
@@ -228,7 +253,7 @@ class Engine extends Object
 	 * Registers run-time filter.
 	 * @param  string|NULL
 	 * @param  callable
-	 * @return self
+	 * @return static
 	 */
 	public function addFilter($name, $callback)
 	{
@@ -271,7 +296,8 @@ class Engine extends Object
 					return call_user_func_array(Helpers::checkCallback($this->filters[$lname]), $args);
 				}
 			}
-			throw new \LogicException("Filter '$name' is not defined.");
+			$hint = ($t = Helpers::getSuggestion(array_keys($this->filters), $name)) ? ", did you mean '$t'?" : '.';
+			throw new \LogicException("Filter '$name' is not defined$hint");
 		}
 		return call_user_func_array(Helpers::checkCallback($this->filters[$lname]), $args);
 	}
@@ -279,7 +305,7 @@ class Engine extends Object
 
 	/**
 	 * Adds new macro.
-	 * @return self
+	 * @return static
 	 */
 	public function addMacro($name, IMacro $macro)
 	{
@@ -289,7 +315,7 @@ class Engine extends Object
 
 
 	/**
-	 * @return self
+	 * @return static
 	 */
 	public function setContentType($type)
 	{
@@ -300,7 +326,7 @@ class Engine extends Object
 
 	/**
 	 * Sets path to temporary directory.
-	 * @return self
+	 * @return static
 	 */
 	public function setTempDirectory($path)
 	{
@@ -311,7 +337,7 @@ class Engine extends Object
 
 	/**
 	 * Sets auto-refresh mode.
-	 * @return self
+	 * @return static
 	 */
 	public function setAutoRefresh($on = TRUE)
 	{
@@ -347,7 +373,7 @@ class Engine extends Object
 
 
 	/**
-	 * @return self
+	 * @return static
 	 */
 	public function setLoader(ILoader $loader)
 	{

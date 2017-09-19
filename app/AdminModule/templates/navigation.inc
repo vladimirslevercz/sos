@@ -19,7 +19,6 @@
 				<li><a n:href="Article:default">Články</a></li>
 				<li><a n:href="Menu:default">Meníčko</a></li>
 
-
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Události <span class="caret"></span></a>
 					<ul class="dropdown-menu">
@@ -30,10 +29,13 @@
 					</ul>
 				</li>
 
-				<li class="dropdown">
+                <li><a n:href="User:default">Uživatelé</a></li>
+
+                <li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Ext. nástroje <span class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a href="http://www.google.com/analytics/">Google Analytics</a></li>
+						<li><a href="https://image.online-convert.com/convert-to-jpg">Obrázek do JPG</a></li>
 					</ul>
 				</li>
 			</ul>

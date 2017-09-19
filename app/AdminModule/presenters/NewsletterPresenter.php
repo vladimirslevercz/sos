@@ -33,7 +33,17 @@ class NewsletterPresenter extends BasePresenter
 	 */
 	public $event;
 
-	public function actionDefault() {
+    public function startup()
+    {
+        parent::startup();
+        if (!$this->user->isAllowed('newsletter', 'show')) {
+            $this->flashMessage('Na tuto akci nemáte oprávnění.');
+            $this->redirect('Homepage:default');
+        }
+    }
+
+	public function actionDefault()
+    {
 	}
 
 	public function renderDefault()

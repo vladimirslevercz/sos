@@ -28,6 +28,15 @@ class RegistrationPresenter extends BasePresenter
 	 */
 	public $event;
 
+    public function startup()
+    {
+        parent::startup();
+        if (!$this->user->isAllowed('registration', 'show')) {
+            $this->flashMessage('Na tuto akci nemáte oprávnění.');
+            $this->redirect('Homepage:default');
+        }
+    }
+
 	public function renderDefault($event_id = null)
 	{
 		if ($event_id) {

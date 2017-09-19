@@ -1,8 +1,8 @@
 <?php
 
 /**
- * This file is part of the Nette Framework (http://nette.org)
- * Copyright (c) 2004 David Grudl (http://davidgrudl.com)
+ * This file is part of the Nette Framework (https://nette.org)
+ * Copyright (c) 2004 David Grudl (https://davidgrudl.com)
  */
 
 namespace Nette\Application;
@@ -12,8 +12,6 @@ use Nette;
 
 /**
  * Default presenter loader.
- *
- * @author     David Grudl
  */
 class PresenterFactory extends Nette\Object implements IPresenterFactory
 {
@@ -34,11 +32,11 @@ class PresenterFactory extends Nette\Object implements IPresenterFactory
 
 
 	/**
-	 * @param  callable  function(string $class): IPresenter
+	 * @param  callable  function (string $class): IPresenter
 	 */
 	public function __construct($factory = NULL)
 	{
-		$this->factory = $factory ?: function($class) { return new $class; };
+		$this->factory = $factory ?: function ($class) { return new $class; };
 	}
 
 
@@ -101,10 +99,16 @@ class PresenterFactory extends Nette\Object implements IPresenterFactory
 	public function setMapping(array $mapping)
 	{
 		foreach ($mapping as $module => $mask) {
-			if (!preg_match('#^\\\\?([\w\\\\]*\\\\)?(\w*\*\w*?\\\\)?([\w\\\\]*\*\w*)\z#', $mask, $m)) {
-				throw new Nette\InvalidStateException("Invalid mapping mask '$mask'.");
+			if (is_string($mask)) {
+				if (!preg_match('#^\\\\?([\w\\\\]*\\\\)?(\w*\*\w*?\\\\)?([\w\\\\]*\*\w*)\z#', $mask, $m)) {
+					throw new Nette\InvalidStateException("Invalid mapping mask '$mask'.");
+				}
+				$this->mapping[$module] = array($m[1], $m[2] ?: '*Module\\', $m[3]);
+			} elseif (is_array($mask) && count($mask) === 3) {
+				$this->mapping[$module] = array($mask[0] ? $mask[0] . '\\' : '', $mask[1] . '\\', $mask[2]);
+			} else {
+				throw new Nette\InvalidStateException("Invalid mapping mask for module $module.");
 			}
-			$this->mapping[$module] = array($m[1], $m[2] ?: '*Module\\', $m[3]);
 		}
 		return $this;
 	}

@@ -1,8 +1,8 @@
 <?php
 
 /**
- * This file is part of the Tracy (http://tracy.nette.org)
- * Copyright (c) 2004 David Grudl (http://davidgrudl.com)
+ * This file is part of the Tracy (https://tracy.nette.org)
+ * Copyright (c) 2004 David Grudl (https://davidgrudl.com)
  */
 
 namespace Tracy\Bridges\Nette;
@@ -12,17 +12,18 @@ use Nette;
 
 /**
  * Tracy extension for Nette DI.
- *
- * @author     David Grudl
  */
 class TracyExtension extends Nette\DI\CompilerExtension
 {
 	public $defaults = array(
 		'email' => NULL,
+		'fromEmail' => NULL,
+		'logSeverity' => NULL,
 		'editor' => NULL,
 		'browser' => NULL,
 		'errorTemplate' => NULL,
 		'strictMode' => NULL,
+		'showBar' => NULL,
 		'maxLen' => NULL,
 		'maxDepth' => NULL,
 		'showLocation' => NULL,
@@ -67,9 +68,10 @@ class TracyExtension extends Nette\DI\CompilerExtension
 		unset($options['bar'], $options['blueScreen']);
 		foreach ($options as $key => $value) {
 			if ($value !== NULL) {
+				$key = ($key === 'fromEmail' ? 'getLogger()->' : '$') . $key;
 				$initialize->addBody($container->formatPhp(
-					'Tracy\Debugger::$? = ?;',
-					Nette\DI\Compiler::filterArguments(array($key, $value))
+					'Tracy\Debugger::' . $key . ' = ?;',
+					Nette\DI\Compiler::filterArguments(array($value))
 				));
 			}
 		}
@@ -80,8 +82,8 @@ class TracyExtension extends Nette\DI\CompilerExtension
 					'$this->getService(?)->addPanel(?);',
 					Nette\DI\Compiler::filterArguments(array(
 						$this->prefix('bar'),
-						is_string($item) ? new Nette\DI\Statement($item) : $item)
-					)
+						is_string($item) ? new Nette\DI\Statement($item) : $item,
+					))
 				));
 			}
 		}

@@ -1,5 +1,5 @@
 /**
- * This file is part of the Tracy (http://tracy.nette.org)
+ * This file is part of the Tracy (https://tracy.nette.org)
  */
 
 (function(){
@@ -141,10 +141,15 @@
 			+ '<\/script><body id="tracy-debug">'
 		);
 		doc.body.innerHTML = '<div class="tracy-panel tracy-mode-window" id="' + this.id + '">' + this.elem.innerHTML + '<\/div>';
-		var winPanel = win.Tracy.Debug.getPanel(this.id);
 		win.Tracy.Dumper.init();
 		if (this.elem.querySelector('h1')) {
 			doc.title = this.elem.querySelector('h1').innerHTML;
+		}
+
+		for (var i = 0, scripts = doc.body.getElementsByTagName('script'); i < scripts.length; i++) {
+			(win.execScript || function(data) {
+				win['eval'].call(win, data);
+			})(scripts[i].innerHTML);
 		}
 
 		var _this = this;
@@ -338,6 +343,9 @@
 		options = options || {};
 
 		var onmousemove = function(e) {
+			if (e.buttons === 0) {
+				return onmouseup(e);
+			}
 			if (!started) {
 				if (options.draggedClass) {
 					elem.classList.add(options.draggedClass);
@@ -397,7 +405,7 @@
 	// returns total offset for element
 	function getOffset(elem) {
 		var res = {left: elem.offsetLeft, top: elem.offsetTop};
-		while (elem = elem.offsetParent) {
+		while (elem = elem.offsetParent) { // eslint-disable-line
 			res.left += elem.offsetLeft; res.top += elem.offsetTop;
 		}
 		return res;

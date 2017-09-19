@@ -1,14 +1,7 @@
 /*!
  * tabcomplete
- * Lightweight tab completion for inputs and textareas
- *
- * Source:
- * https://github.com/erming/tabcomplete
- *
- * Copyright (c) 2014 Mattias Erming <mattias@mattiaserming.com>
- * Licensed under the MIT License.
- *
- * Version 1.3.1
+ * http://github.com/erming/tabcomplete
+ * v1.5.0-fix
  */
 (function($) {
 	var keys = {
@@ -16,6 +9,17 @@
 		tab: 9,
 		up: 38,
 		down: 40
+	};
+
+	$.tabcomplete = {};
+	$.tabcomplete.defaultOptions = {
+		after: "",
+		arrowKeys: false,    // Allow the use of <up> and <down> keys to iterate
+		hint: "placeholder", // "placeholder", "select", false
+		match: match,
+		caseSensitive: false,
+		minLength: 1,
+		wrapInput: true
 	};
 
 	$.fn.tab = // Alias
@@ -33,13 +37,10 @@
 		}
 
 		// Set default options.
-		options = $.extend({
-			after: "",
-			arrowKeys: false,
-			caseSensitive: false,
-			hint: "placeholder",
-			minLength: 1
-		}, options);
+		this.options = options = $.extend(
+			$.tabcomplete.defaultOptions,
+			options
+		);
 
 		// Remove any leftovers.
 		// This allows us to override the plugin if necessary.
@@ -70,21 +71,13 @@
 			var word = input.split(/ |\n/).pop();
 
 			// Reset iteration.
-			i = -1;
-			last = "";
-			words = [];
+			reset();
 
 			// Check for matches if the current word is the last word.
 			if (self[0].selectionStart == input.length
 				&& word.length) {
-				if (typeof args === "function") {
-					// If the user supplies a function, invoke it
-					// and keep the result.
-					words = args(word);
-				} else {
-					// Otherwise, call the .match() function.
-					words = match(word, args, options.caseSensitive);
-				}
+				// Call the match() function to filter the words.
+				words = options.match(word, args, options.caseSensitive);
 
 				// Append 'after' to each word.
 				if (options.after) {
@@ -116,9 +109,6 @@
 			if (key == keys.tab
 				|| (options.arrowKeys && (key == keys.up || key == keys.down))) {
 
-				// Don't lose focus on tab click.
-				e.preventDefault();
-
 				// Iterate the matches with tab and the up and down keys by incrementing
 				// or decrementing the 'i' variable.
 				if (key != keys.up) {
@@ -135,11 +125,24 @@
 
 				// Get next match.
 				var word = words[i % words.length];
+				var value = self.val();
 				if (!word) {
+					if (key == keys.tab) {
+						// Don't lose focus on tab click.
+						e.preventDefault();
+
+						var pos = self[0].selectionStart;
+						if (pos === self[0].selectionEnd) {
+							self.val(value.substr(0, pos) + "\t" + value.substr(pos));
+							self[0].selectionStart = self[0].selectionEnd = pos + 1;
+							hint.call(self, "");
+						}
+					}
 					return;
 				}
 
-				var value = self.val();
+				e.preventDefault();
+
 				last = last || value.split(/ |\n/).pop();
 
 				// Return if the 'minLength' requirement isn't met.
@@ -148,7 +151,7 @@
 				}
 
 				// Update element with the completed text.
-				var text = value.substr(0, self[0].selectionStart - last.length) + word;
+				var text = options.hint == "select" ? value : value.substr(0, self[0].selectionStart - last.length) + word;
 				self.val(text);
 
 				// Put the cursor at the end after completion.
@@ -176,12 +179,28 @@
 				// Reset iteration.
 				i = -1;
 				last = "";
+			} else if (options.hint) {
+				reset();
+				hint.call(self, "");
 			}
 		});
 
 		if (options.hint) {
 			// If enabled, turn on hinting.
 			hint.call(this, "");
+		}
+
+		this.on("mousedown.tabcomplete", function() {
+			reset();
+			if (options.hint) {
+				hint.call(self, "");
+			}
+		});
+
+		function reset() {
+			i = -1;
+			last = "";
+			words = [];
 		}
 
 		return this;
@@ -217,9 +236,15 @@
 		// Lets create a clone of the input if it does
 		// not already exist.
 		if (!clone.length) {
-			input.wrap(
-				$("<div>").css({position: "relative"})
-			);
+			if (input.options.wrapInput) {
+				input.wrap(
+					$("<div>").css({
+						position: "relative",
+						height: input.css("height"),
+						display: input.css("display") === "block" ? "block" : "inline-block"
+					})
+				);
+			}
 			clone = input
 				.clone()
 				.attr("tabindex", -1)
@@ -228,6 +253,16 @@
 				.insertBefore(input);
 			clone.css({
 				position: "absolute",
+				borderColor: "transparent"
+			});
+			input.on("scroll.tabcomplete", function() {
+				clone.scrollTop(input.scrollTop()).scrollLeft(input.scrollLeft());
+			});
+			input.on("mousemove.tabcomplete mouseup.tabcomplete", function() {
+				clone.css({width: input.css("width"), height: input.css("height")});
+				if (input.options.wrapInput) {
+					clone.parent().css({height: input.css("height")});
+				}
 			});
 		}
 
@@ -237,7 +272,7 @@
 			hint = value + word.substr(value.split(/ |\n/).pop().length);
 		}
 
-		clone.val(hint);
+		clone.val(hint).scrollTop(input.scrollTop()).scrollLeft(input.scrollLeft());
 	}
 
 	// Hint by selecting part of the suggested word.

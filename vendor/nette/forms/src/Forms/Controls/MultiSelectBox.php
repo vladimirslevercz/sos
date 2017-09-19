@@ -1,8 +1,8 @@
 <?php
 
 /**
- * This file is part of the Nette Framework (http://nette.org)
- * Copyright (c) 2004 David Grudl (http://davidgrudl.com)
+ * This file is part of the Nette Framework (https://nette.org)
+ * Copyright (c) 2004 David Grudl (https://davidgrudl.com)
  */
 
 namespace Nette\Forms\Controls;
@@ -12,8 +12,6 @@ use Nette;
 
 /**
  * Select box control that allows multiple items selection.
- *
- * @author     David Grudl
  */
 class MultiSelectBox extends MultiChoiceControl
 {
@@ -23,7 +21,7 @@ class MultiSelectBox extends MultiChoiceControl
 
 	/**
 	 * Sets options and option groups from which to choose.
-	 * @return self
+	 * @return static
 	 */
 	public function setItems(array $items, $useKeys = TRUE)
 	{
@@ -61,7 +59,7 @@ class MultiSelectBox extends MultiChoiceControl
 			$items,
 			array(
 				'selected?' => $this->value,
-				'disabled:' => is_array($this->disabled) ? $this->disabled : NULL
+				'disabled:' => is_array($this->disabled) ? $this->disabled : NULL,
 			)
 		)->addAttributes(parent::getControl()->attrs)->multiple(TRUE);
 	}

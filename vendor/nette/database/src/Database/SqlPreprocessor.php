@@ -1,8 +1,8 @@
 <?php
 
 /**
- * This file is part of the Nette Framework (http://nette.org)
- * Copyright (c) 2004 David Grudl (http://davidgrudl.com)
+ * This file is part of the Nette Framework (https://nette.org)
+ * Copyright (c) 2004 David Grudl (https://davidgrudl.com)
  */
 
 namespace Nette\Database;
@@ -12,8 +12,6 @@ use Nette;
 
 /**
  * SQL preprocessor.
- *
- * @author     David Grudl
  */
 class SqlPreprocessor extends Nette\Object
 {
@@ -50,7 +48,8 @@ class SqlPreprocessor extends Nette\Object
 	public function process($params)
 	{
 		$this->params = $params;
-		$this->counter = 0; $prev = -1;
+		$this->counter = 0;
+		$prev = -1;
 		$this->remaining = array();
 		$this->arrayMode = NULL;
 		$res = array();
@@ -134,16 +133,19 @@ class SqlPreprocessor extends Nette\Object
 				return 'NULL';
 
 			} elseif ($value instanceof Table\IRow) {
-				return $value->getPrimary();
-
-			} elseif ($value instanceof \DateTime || $value instanceof \DateTimeInterface) {
-				return $this->driver->formatDateTime($value);
+				return $this->formatValue($value->getPrimary());
 
 			} elseif ($value instanceof SqlLiteral) {
 				$prep = clone $this;
 				list($res, $params) = $prep->process(array_merge(array($value->__toString()), $value->getParameters()));
 				$this->remaining = array_merge($this->remaining, $params);
 				return $res;
+
+			} elseif ($value instanceof \DateTime || $value instanceof \DateTimeInterface) {
+				return $this->driver->formatDateTime($value);
+
+			} elseif ($value instanceof \DateInterval) {
+				return $this->driver->formatDateInterval($value);
 
 			} elseif (is_object($value) && method_exists($value, '__toString')) {
 				return $this->formatValue((string) $value);
@@ -178,7 +180,7 @@ class SqlPreprocessor extends Nette\Object
 					}
 					foreach ($value as $val) {
 						$vx2 = array();
-							foreach ($val as $v) {
+						foreach ($val as $v) {
 							$vx2[] = $this->formatValue($v);
 						}
 						$vx[] = implode(', ', $vx2);
@@ -205,7 +207,7 @@ class SqlPreprocessor extends Nette\Object
 						$vx[] = $this->delimite($k) . '=' . $this->formatValue($v);
 					}
 				}
-				return $vx ? implode(', ', $vx) : '1=1';
+				return implode(', ', $vx);
 
 			} elseif ($mode === 'and' || $mode === 'or') { // (key [operator] value) AND ...
 				foreach ($value as $k => $v) {

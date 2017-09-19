@@ -29,6 +29,7 @@ session:
 services:
 	- App\Model\UserManager
 	- App\Forms\SignFormFactory
+	- App\Factory\AuthorizatorFactory::create
 	router: App\RouterFactory::createRouter
 	article: App\Model\Article
 	menu: App\Model\Menu

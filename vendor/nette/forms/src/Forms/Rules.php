@@ -1,8 +1,8 @@
 <?php
 
 /**
- * This file is part of the Nette Framework (http://nette.org)
- * Copyright (c) 2004 David Grudl (http://davidgrudl.com)
+ * This file is part of the Nette Framework (https://nette.org)
+ * Copyright (c) 2004 David Grudl (https://davidgrudl.com)
  */
 
 namespace Nette\Forms;
@@ -12,8 +12,6 @@ use Nette;
 
 /**
  * List of validation & condition rules.
- *
- * @author     David Grudl
  */
 class Rules extends Nette\Object implements \IteratorAggregate
 {
@@ -45,7 +43,7 @@ class Rules extends Nette\Object implements \IteratorAggregate
 	/**
 	 * Makes control mandatory.
 	 * @param  mixed  state or error message
-	 * @return self
+	 * @return static
 	 */
 	public function setRequired($value = TRUE)
 	{
@@ -73,10 +71,13 @@ class Rules extends Nette\Object implements \IteratorAggregate
 	 * @param  mixed      rule type
 	 * @param  string     message to display for invalid data
 	 * @param  mixed      optional rule arguments
-	 * @return self
+	 * @return static
 	 */
 	public function addRule($validator, $message = NULL, $arg = NULL)
 	{
+		if ($validator === Form::VALID || $validator === ~Form::VALID) {
+			throw new Nette\InvalidArgumentException('You cannot use Form::VALID in the addRule method.');
+		}
 		$rule = new Rule;
 		$rule->control = $this->control;
 		$rule->validator = $validator;
@@ -96,10 +97,13 @@ class Rules extends Nette\Object implements \IteratorAggregate
 	 * Adds a validation condition and returns new branch.
 	 * @param  mixed      condition type
 	 * @param  mixed      optional condition arguments
-	 * @return Rules      new branch
+	 * @return static       new branch
 	 */
 	public function addCondition($validator, $arg = NULL)
 	{
+		if ($validator === Form::VALID || $validator === ~Form::VALID) {
+			throw new Nette\InvalidArgumentException('You cannot use Form::VALID in the addCondition method.');
+		}
 		return $this->addConditionOn($this->control, $validator, $arg);
 	}
 
@@ -109,7 +113,7 @@ class Rules extends Nette\Object implements \IteratorAggregate
 	 * @param  IControl form control
 	 * @param  mixed      condition type
 	 * @param  mixed      optional condition arguments
-	 * @return Rules      new branch
+	 * @return static     new branch
 	 */
 	public function addConditionOn(IControl $control, $validator, $arg = NULL)
 	{
@@ -128,7 +132,7 @@ class Rules extends Nette\Object implements \IteratorAggregate
 
 	/**
 	 * Adds a else statement.
-	 * @return Rules      else branch
+	 * @return static      else branch
 	 */
 	public function elseCondition()
 	{
@@ -154,15 +158,15 @@ class Rules extends Nette\Object implements \IteratorAggregate
 	/**
 	 * Adds a filter callback.
 	 * @param  callable
-	 * @return self
+	 * @return static
 	 */
 	public function addFilter($filter)
 	{
 		Nette\Utils\Callback::check($filter);
 		$this->rules[] = $rule = new Rule;
 		$rule->control = $this->control;
-		$rule->validator = function($control) use ($filter) {
-			$control->setValue( call_user_func($filter, $control->getValue()) );
+		$rule->validator = function (IControl $control) use ($filter) {
+			$control->setValue(call_user_func($filter, $control->getValue()));
 			return TRUE;
 		};
 		return $this;
@@ -173,7 +177,7 @@ class Rules extends Nette\Object implements \IteratorAggregate
 	 * Toggles HTML element visibility.
 	 * @param  string     element id
 	 * @param  bool       hide element?
-	 * @return self
+	 * @return static
 	 */
 	public function toggle($id, $hide = TRUE)
 	{

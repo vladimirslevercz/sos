@@ -20,7 +20,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
 		$this->template->loggedIn = $this->getUser()->isLoggedIn();
 		$this->template->nuser = $this->user;
 
-		if ($this->user->getIdentity()) {
+		if ($this->getUser()->isInRole('admin') && $this->user->getIdentity()) {
 			$this->template->nuserEmail = $this->user->getIdentity()->data['email'];
 		} else {
 			$this->template->nuserEmail = '';

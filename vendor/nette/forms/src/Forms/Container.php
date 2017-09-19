@@ -1,8 +1,8 @@
 <?php
 
 /**
- * This file is part of the Nette Framework (http://nette.org)
- * Copyright (c) 2004 David Grudl (http://davidgrudl.com)
+ * This file is part of the Nette Framework (https://nette.org)
+ * Copyright (c) 2004 David Grudl (https://davidgrudl.com)
  */
 
 namespace Nette\Forms;
@@ -13,18 +13,13 @@ use Nette;
 /**
  * Container for form controls.
  *
- * @author     David Grudl
- *
- * @property-write $defaults
  * @property   Nette\Utils\ArrayHash $values
- * @property-read bool $valid
- * @property   ControlGroup $currentGroup
  * @property-read \ArrayIterator $controls
  * @property-read Form $form
  */
 class Container extends Nette\ComponentModel\Container implements \ArrayAccess
 {
-	/** @var callable[]  function(Container $sender); Occurs when the form is validated */
+	/** @var callable[]  function (Container $sender); Occurs when the form is validated */
 	public $onValidate;
 
 	/** @var ControlGroup */
@@ -41,7 +36,7 @@ class Container extends Nette\ComponentModel\Container implements \ArrayAccess
 	 * Fill-in with default values.
 	 * @param  array|\Traversable  values used to fill the form
 	 * @param  bool     erase other default values?
-	 * @return self
+	 * @return static
 	 */
 	public function setDefaults($values, $erase = FALSE)
 	{
@@ -57,7 +52,8 @@ class Container extends Nette\ComponentModel\Container implements \ArrayAccess
 	 * Fill-in with values.
 	 * @param  array|\Traversable  values used to fill the form
 	 * @param  bool     erase other controls?
-	 * @return self
+	 * @return static
+	 * @internal
 	 */
 	public function setValues($values, $erase = FALSE)
 	{
@@ -77,7 +73,7 @@ class Container extends Nette\ComponentModel\Container implements \ArrayAccess
 					$control->setValue(NULL);
 				}
 
-			} elseif ($control instanceof Container) {
+			} elseif ($control instanceof self) {
 				if (array_key_exists($name, $values)) {
 					$control->setValues($values[$name], $erase);
 
@@ -102,7 +98,7 @@ class Container extends Nette\ComponentModel\Container implements \ArrayAccess
 			if ($control instanceof IControl && !$control->isOmitted()) {
 				$values[$name] = $control->getValue();
 
-			} elseif ($control instanceof Container) {
+			} elseif ($control instanceof self) {
 				$values[$name] = $control->getValues($asArray);
 			}
 		}
@@ -137,12 +133,19 @@ class Container extends Nette\ComponentModel\Container implements \ArrayAccess
 	public function validate(array $controls = NULL)
 	{
 		foreach ($controls === NULL ? $this->getComponents() : $controls as $control) {
-			$control->validate();
+			if ($control instanceof IControl || $control instanceof self) {
+				$control->validate();
+			}
 		}
-		foreach ($this->onValidate ?: array() as $handler) {
-			$params = Nette\Utils\Callback::toReflection($handler)->getParameters();
-			$values = isset($params[1]) ? $this->getValues($params[1]->isArray()) : NULL;
-			Nette\Utils\Callback::invoke($handler, $this, $values);
+		if ($this->onValidate !== NULL) {
+			if (!is_array($this->onValidate) && !$this->onValidate instanceof \Traversable) {
+				throw new Nette\UnexpectedValueException('Property Form::$onValidate must be array or Traversable, ' . gettype($this->onValidate) . ' given.');
+			}
+			foreach ($this->onValidate as $handler) {
+				$params = Nette\Utils\Callback::toReflection($handler)->getParameters();
+				$values = isset($params[1]) ? $this->getValues($params[1]->isArray()) : NULL;
+				Nette\Utils\Callback::invoke($handler, $this, $values);
+			}
 		}
 		$this->validated = TRUE;
 	}
@@ -166,7 +169,7 @@ class Container extends Nette\ComponentModel\Container implements \ArrayAccess
 
 
 	/**
-	 * @return self
+	 * @return static
 	 */
 	public function setCurrentGroup(ControlGroup $group = NULL)
 	{
@@ -190,7 +193,7 @@ class Container extends Nette\ComponentModel\Container implements \ArrayAccess
 	 * @param  Nette\ComponentModel\IComponent
 	 * @param  string
 	 * @param  string
-	 * @return self
+	 * @return static
 	 * @throws Nette\InvalidStateException
 	 */
 	public function addComponent(Nette\ComponentModel\IComponent $component, $name, $insertBefore = NULL)
@@ -238,7 +241,7 @@ class Container extends Nette\ComponentModel\Container implements \ArrayAccess
 	public function addText($name, $label = NULL, $cols = NULL, $maxLength = NULL)
 	{
 		$control = new Controls\TextInput($label, $maxLength);
-		$control->setAttribute('size', $cols);
+		$control->setHtmlAttribute('size', $cols);
 		return $this[$name] = $control;
 	}
 
@@ -254,8 +257,8 @@ class Container extends Nette\ComponentModel\Container implements \ArrayAccess
 	public function addPassword($name, $label = NULL, $cols = NULL, $maxLength = NULL)
 	{
 		$control = new Controls\TextInput($label, $maxLength);
-		$control->setAttribute('size', $cols);
-		return $this[$name] = $control->setType('password');
+		$control->setHtmlAttribute('size', $cols);
+		return $this[$name] = $control->setHtmlType('password');
 	}
 
 
@@ -270,7 +273,7 @@ class Container extends Nette\ComponentModel\Container implements \ArrayAccess
 	public function addTextArea($name, $label = NULL, $cols = NULL, $rows = NULL)
 	{
 		$control = new Controls\TextArea($label);
-		$control->setAttribute('cols', $cols)->setAttribute('rows', $rows);
+		$control->setHtmlAttribute('cols', $cols)->setHtmlAttribute('rows', $rows);
 		return $this[$name] = $control;
 	}
 
@@ -361,7 +364,7 @@ class Container extends Nette\ComponentModel\Container implements \ArrayAccess
 	{
 		$control = new Controls\SelectBox($label, $items);
 		if ($size > 1) {
-			$control->setAttribute('size', (int) $size);
+			$control->setHtmlAttribute('size', (int) $size);
 		}
 		return $this[$name] = $control;
 	}
@@ -379,7 +382,7 @@ class Container extends Nette\ComponentModel\Container implements \ArrayAccess
 	{
 		$control = new Controls\MultiSelectBox($label, $items);
 		if ($size > 1) {
-			$control->setAttribute('size', (int) $size);
+			$control->setHtmlAttribute('size', (int) $size);
 		}
 		return $this[$name] = $control;
 	}
@@ -425,11 +428,11 @@ class Container extends Nette\ComponentModel\Container implements \ArrayAccess
 	/**
 	 * Adds naming container to the form.
 	 * @param  string  name
-	 * @return Container
+	 * @return self
 	 */
 	public function addContainer($name)
 	{
-		$control = new Container;
+		$control = new self;
 		$control->currentGroup = $this->currentGroup;
 		return $this[$name] = $control;
 	}

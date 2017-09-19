@@ -1,23 +1,19 @@
 <?php
 
 /**
- * This file is part of the Nette Framework (http://nette.org)
- * Copyright (c) 2004 David Grudl (http://davidgrudl.com)
+ * This file is part of the Nette Framework (https://nette.org)
+ * Copyright (c) 2004 David Grudl (https://davidgrudl.com)
  */
 
 namespace Nette\Forms\Controls;
 
-use Nette,
-	Nette\Forms\Form,
-	Nette\Utils\Strings;
+use Nette;
+use Nette\Forms\Form;
+use Nette\Utils\Strings;
 
 
 /**
  * Implements the basic functionality common to text input controls.
- *
- * @author     David Grudl
- *
- * @property   string $emptyValue
  */
 abstract class TextBase extends BaseControl
 {
@@ -31,7 +27,8 @@ abstract class TextBase extends BaseControl
 	/**
 	 * Sets control's value.
 	 * @param  string
-	 * @return self
+	 * @return static
+	 * @internal
 	 */
 	public function setValue($value)
 	{
@@ -58,7 +55,7 @@ abstract class TextBase extends BaseControl
 	/**
 	 * Sets the special value which is treated as empty string.
 	 * @param  string
-	 * @return self
+	 * @return static
 	 */
 	public function setEmptyValue($value)
 	{
@@ -80,7 +77,7 @@ abstract class TextBase extends BaseControl
 	/**
 	 * Sets the maximum number of allowed characters.
 	 * @param  int
-	 * @return self
+	 * @return static
 	 */
 	public function setMaxLength($length)
 	{
@@ -92,7 +89,7 @@ abstract class TextBase extends BaseControl
 	/**
 	 * Appends input string filter callback.
 	 * @param  callable
-	 * @return self
+	 * @return static
 	 */
 	public function addFilter($filter)
 	{

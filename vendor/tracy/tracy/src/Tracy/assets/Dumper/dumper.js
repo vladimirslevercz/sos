@@ -1,5 +1,5 @@
 /**
- * This file is part of the Tracy (http://tracy.nette.org)
+ * This file is part of the Tracy (https://tracy.nette.org)
  */
 
 (function() {
@@ -44,7 +44,7 @@
 			}
 
 			// enables <a class="tracy-toggle" href="#"> or <span data-tracy-ref="#"> toggling
-			if (link = closest(e.target, '.tracy-toggle')) {
+			if (link = closest(e.target, '.tracy-toggle')) { // eslint-disable-line
 				var collapsed = link.classList.contains('tracy-collapsed'),
 					ref = link.getAttribute('data-tracy-ref') || link.getAttribute('href', 2),
 					dest = link;
@@ -69,11 +69,11 @@
 
 	var build = function(data, repository, collapsed, parentIds) {
 		var type = data === null ? 'null' : typeof data,
-			collapseCount = typeof collapsed === 'undefined' ? COLLAPSE_COUNT : COLLAPSE_COUNT_TOP;
+			collapseCount = typeof collapsed === 'undefined' ? COLLAPSE_COUNT_TOP : COLLAPSE_COUNT;
 
 		if (type === 'null' || type === 'string' || type === 'number' || type === 'boolean') {
 			data = type === 'string' ? '"' + data + '"' : (data + '').toUpperCase();
-			return createEl(null, [], [
+			return createEl(null, null, [
 				createEl(
 					'span',
 					{'class': 'tracy-dump-' + type.replace('ean', '')},
@@ -82,7 +82,8 @@
 			]);
 
 		} else if (Array.isArray(data)) {
-			return buildStruct([
+			return buildStruct(
+				[
 					createEl('span', {'class': 'tracy-dump-array'}, ['array']),
 					' (' + (data[0] && data.length || '') + ')'
 				],
@@ -93,9 +94,14 @@
 				parentIds
 			);
 
+		} else if (type === 'object' && data.number) {
+			return createEl(null, null, [
+				createEl('span', {'class': 'tracy-dump-number'}, [data.number + '\n'])
+			]);
+
 		} else if (type === 'object' && data.type) {
-			return createEl(null, [], [
-				createEl('span', [], [data.type + '\n'])
+			return createEl(null, null, [
+				createEl('span', null, [data.type + '\n'])
 			]);
 
 		} else if (type === 'object') {
@@ -106,10 +112,11 @@
 				throw new UnknownEntityException;
 			}
 			parentIds = parentIds || [];
-			recursive = parentIds.indexOf(id) > -1;
+			var recursive = parentIds.indexOf(id) > -1;
 			parentIds.push(id);
 
-			return buildStruct([
+			return buildStruct(
+				[
 					createEl('span', {
 						'class': data.object ? 'tracy-dump-object' : 'tracy-dump-resource',
 						title: object.editor ? 'Declared in file ' + object.editor.file + ' on line ' + object.editor.line : null,
@@ -133,10 +140,10 @@
 
 		if (!items || !items.length) {
 			span.push(!items || items.length ? ellipsis + '\n' : '\n');
-			return createEl(null, [], span);
+			return createEl(null, null, span);
 		}
 
-		res = createEl(null, [], [
+		res = createEl(null, null, [
 			toggle = createEl('span', {'class': collapsed ? 'tracy-toggle tracy-collapsed' : 'tracy-toggle'}, span),
 			'\n',
 			div = createEl('div', {'class': collapsed ? 'tracy-collapsed' : ''})
@@ -158,12 +165,13 @@
 		if (!(el instanceof Node)) {
 			el = el ? document.createElement(el) : document.createDocumentFragment();
 		}
-		for (var id in attrs || []) {
+		for (var id in attrs || {}) {
 			if (attrs[id] !== null) {
 				el.setAttribute(id, attrs[id]);
 			}
 		}
-		for (id in content || []) {
+		content = content || [];
+		for (id = 0; id < content.length; id++) {
 			var child = content[id];
 			if (child !== null) {
 				el.appendChild(child instanceof Node ? child : document.createTextNode(child));
@@ -174,9 +182,9 @@
 
 
 	var createItems = function(el, items, repository, parentIds) {
-		for (var i in items) {
+		for (var i = 0; i < items.length; i++) {
 			var vis = items[i][2];
-			createEl(el, [], [
+			createEl(el, null, [
 				createEl('span', {'class': 'tracy-dump-key'}, [items[i][0]]),
 				vis ? ' ' : null,
 				vis ? createEl('span', {'class': 'tracy-dump-visibility'}, [vis === 1 ? 'protected' : 'private']) : null,

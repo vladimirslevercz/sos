@@ -23,6 +23,14 @@ class ArticlePresenter extends BasePresenter
 	 */
 	public $article;
 
+    public function startup()
+    {
+        parent::startup();
+        if (!$this->user->isAllowed('article', 'edit')) {
+            $this->flashMessage('Na tuto akci nemáte oprávnění.');
+            $this->redirect('Homepage:default');
+        }
+    }
 
 	public function renderDefault()
 	{

@@ -1,8 +1,8 @@
 <?php
 
 /**
- * This file is part of the Nette Framework (http://nette.org)
- * Copyright (c) 2004 David Grudl (http://davidgrudl.com)
+ * This file is part of the Nette Framework (https://nette.org)
+ * Copyright (c) 2004 David Grudl (https://davidgrudl.com)
  */
 
 namespace Nette\Utils;
@@ -12,8 +12,6 @@ use Nette;
 
 /**
  * Paginating math.
- *
- * @author     David Grudl
  *
  * @property   int $page
  * @property-read int $firstPage
@@ -46,7 +44,7 @@ class Paginator extends Nette\Object
 	/**
 	 * Sets current page number.
 	 * @param  int
-	 * @return self
+	 * @return static
 	 */
 	public function setPage($page)
 	{
@@ -88,7 +86,7 @@ class Paginator extends Nette\Object
 	/**
 	 * Sets first page (base) number.
 	 * @param  int
-	 * @return self
+	 * @return static
 	 */
 	public function setBase($base)
 	{
@@ -151,7 +149,7 @@ class Paginator extends Nette\Object
 	/**
 	 * Sets the number of items to display on a single page.
 	 * @param  int
-	 * @return self
+	 * @return static
 	 */
 	public function setItemsPerPage($itemsPerPage)
 	{
@@ -173,7 +171,7 @@ class Paginator extends Nette\Object
 	/**
 	 * Sets the total number of items.
 	 * @param  int (or NULL as infinity)
-	 * @return self
+	 * @return static
 	 */
 	public function setItemCount($itemCount)
 	{

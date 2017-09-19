@@ -1,8 +1,8 @@
 <?php
 
 /**
- * This file is part of the Nette Framework (http://nette.org)
- * Copyright (c) 2004 David Grudl (http://davidgrudl.com)
+ * This file is part of the Nette Framework (https://nette.org)
+ * Copyright (c) 2004 David Grudl (https://davidgrudl.com)
  */
 
 namespace Nette\Forms\Controls;
@@ -13,17 +13,14 @@ use Nette;
 /**
  * Submittable button control.
  *
- * @author     David Grudl
- *
  * @property-read bool $submittedBy
- * @property   mixed $validationScope
  */
 class SubmitButton extends Button implements Nette\Forms\ISubmitterControl
 {
-	/** @var callable[]  function(SubmitButton $sender); Occurs when the button is clicked and form is successfully validated */
+	/** @var callable[]  function (SubmitButton $sender); Occurs when the button is clicked and form is successfully validated */
 	public $onClick;
 
-	/** @var callable[]  function(SubmitButton $sender); Occurs when the button is clicked and form is not validated */
+	/** @var callable[]  function (SubmitButton $sender); Occurs when the button is clicked and form is not validated */
 	public $onInvalidClick;
 
 	/** @var array */
@@ -66,7 +63,7 @@ class SubmitButton extends Button implements Nette\Forms\ISubmitterControl
 
 	/**
 	 * Sets the validation scope. Clicking the button validates only the controls within the specified scope.
-	 * @return self
+	 * @return static
 	 */
 	public function setValidationScope(/*array*/$scope = NULL)
 	{
