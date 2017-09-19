@@ -18,22 +18,39 @@ class ArticlePresenter extends BasePresenter
 	 * @var Model\Menu
 	 * @inject
 	 */
-	public $menu;
+	public $menuRepo;
 
 	/**
 	 * @var Model\Article
 	 * @inject
 	 */
-	public $article;
+	public $articleRepo;
+
+	private $article, $menu;
 
 	public function renderDefault()
 	{
+	}
+
+    public function actionArticle($id)
+    {
+        $this->article = $this->articleRepo->get($id);
+        if (!$this->article) {
+            $this->error('Článek nelze otevřít', 404);
+        }
+
+        if ($this->article->secret) {
+            if (!$this->user->isLoggedIn() || !$this->user->isAllowed('article', 'readSecret')) {
+                $this->flashMessage('Tento článek je tajný, je nutné se přihlásit.');
+                $this->redirect(':Admin:Sign:in');
+            }
+        }
 
 	}
 
 	public function renderShow($id) {
-		$this->menu = new Model\Menu($this->getDatabase());
-		$menuToOpen = $selectedMenu = $this->menu->get($id);
+		$this->menuRepo = new Model\Menu($this->getDatabase());
+		$menuToOpen = $selectedMenu = $this->menuRepo->get($id);
 
 		$selectedSubMenu = null;
 		if ($selectedMenu->menu) {
@@ -56,12 +73,9 @@ class ArticlePresenter extends BasePresenter
 		$this->template->selectedSubMenu = $selectedSubMenu;
 	}
 
-	public function renderArticle($id) {
-		$article = $this->article->get($id);
-		if (!$article) {
-			$this->error('Článek nelze otevřít', 404);
-		}
-		$this->template->article = $article;
+	public function renderArticle($id)
+    {
+        $this->template->article = $this->article;
 	}
 
 }

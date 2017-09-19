@@ -27,7 +27,7 @@ class AuthorizatorFactory
         $acl->addResource('user');
 
 
-        $acl->allow('guest', 'article', ['read']);
+        $acl->allow('guest', 'article', ['readSecret']);
 
         $acl->allow('admin');
 

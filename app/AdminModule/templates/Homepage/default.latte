@@ -1,9 +1,40 @@
 {block content}
 
-<h1>Dashboard</h1>
+<h1 xmlns:n="http://www.w3.org/1999/xhtml">Dashboard</h1>
 
 <p>Welcome back.</p>
 <p>Pro editaci či správu webu si vyber položku z horního meníčka.</p>
 
-
+{if $allowedReadSecretArticles}
+<h2>Tajné články</h2>
+	{if count($secretArticles)}
+		<table class="table table-bordered table-responsive">
+			<thead>
+			<tr>
+				<th>Název</th>
+				<th>Vytvořeno</th>
+				<th>Akce</th>
+			</tr>
+			</thead>
+			<tbody>
+			{foreach $secretArticles as $article}
+				<tr>
+					<td>
+						<a n:href=":Front:Article:article $article->id" target="_blank">{$article->name}</a>
+					</td>
+					<td>
+						{$article->created_at}
+					</td>
+					<td>
+						<a n:if="$allowedEditArticles" n:href="Article:edit" class="btn btn-warning">Upravit</a>
+						<a n:href=":Front:Article:article $article->id" class="btn btn-warning" target="_blank">Zobrazit</a>
+					</td>
+				</tr>
+			{/foreach}
+			</tbody>
+		</table>
+	{else}
+		<p>Žádné tajné články nejsou dostupné.</p>
+	{/if}
+{/if}
 {/block}

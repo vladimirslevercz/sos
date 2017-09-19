@@ -17,11 +17,11 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
 	 * @var Model\Menu
 	 * @inject
 	 */
-	public $menu;
+	public $menuRepo;
 
 	public function beforeRender()
 	{
-		$this->template->menus = $this->menu->where('menu_id', null);
+		$this->template->menus = $this->menuRepo->where('menu_id', null);
 	}
 
 	protected function getDatabase() {

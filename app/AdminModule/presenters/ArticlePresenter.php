@@ -66,6 +66,8 @@ class ArticlePresenter extends BasePresenter
 		$form->addTextArea('text', 'Článek:')
 			->setAttribute('class', 'tinyMCE');
 
+		$form->addCheckbox('secret', 'Tajný:');
+
 		$form->addSubmit('save', 'Uložit')
 			->setAttribute('class', 'btn btn-primary');
 
@@ -82,6 +84,7 @@ class ArticlePresenter extends BasePresenter
 			'user_id' => $this->user->id,
 			'annotation' => $values['annotation'],
 			'text' => $values['text'],
+            'secret' => $values['secret']
 		];
 
 		$articleId = $this->getParameter('id');
