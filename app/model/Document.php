@@ -56,7 +56,8 @@ class Document extends \Nette\Database\Table\Selection
         $document = $this->insert( [
             'path' => $filePath,
             'user_id' => $this->user->getId(),
-            'nice_name' => $niceName
+            'nice_name' => $niceName,
+            'private' => $private,
         ]);
 
         $fileUpload->move(self::SAVE_DIR . $filePath);

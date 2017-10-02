@@ -1,22 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="351b827f-2a2b-4d1e-ae9e-6c70c301ef94" name="Default" comment="Zohlednění aktuálních práv uživatele v navigaci administrace.">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/AdminModule/presenters/DocumentPresenter.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/AdminModule/templates/Document/create.latte" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/AdminModule/templates/Document/default.latte" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/AdminModule/templates/Document/edit.latte" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/model/Document.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+    <list default="true" id="351b827f-2a2b-4d1e-ae9e-6c70c301ef94" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/AdminModule/presenters/HomepagePresenter.php" afterPath="$PROJECT_DIR$/app/AdminModule/presenters/HomepagePresenter.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/AdminModule/templates/@layout.latte" afterPath="$PROJECT_DIR$/app/AdminModule/templates/@layout.latte" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/AdminModule/presenters/DocumentPresenter.php" afterPath="$PROJECT_DIR$/app/AdminModule/presenters/DocumentPresenter.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/AdminModule/templates/Document/default.latte" afterPath="$PROJECT_DIR$/app/AdminModule/templates/Document/default.latte" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/AdminModule/templates/Homepage/default.latte" afterPath="$PROJECT_DIR$/app/AdminModule/templates/Homepage/default.latte" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/AdminModule/templates/navigation.inc" afterPath="$PROJECT_DIR$/app/AdminModule/templates/navigation.inc" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Factory/AuthorizatorFactory.php" afterPath="$PROJECT_DIR$/app/Factory/AuthorizatorFactory.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/bootstrap.php" afterPath="$PROJECT_DIR$/app/bootstrap.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/config.neon" afterPath="$PROJECT_DIR$/app/config/config.neon" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/model/File.php" afterPath="$PROJECT_DIR$/app/model/File.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/model/Document.php" afterPath="$PROJECT_DIR$/app/model/Document.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/css/admin.css" afterPath="$PROJECT_DIR$/www/css/admin.css" />
     </list>
     <ignored path="sos.iws" />
@@ -48,41 +39,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="default.latte" pinned="false" current-in-tab="true">
+      <file leaf-file-name="default.latte" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/AdminModule/templates/Homepage/default.latte">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="498">
-              <caret line="38" column="30" lean-forward="true" selection-start-line="38" selection-start-column="30" selection-end-line="38" selection-end-column="30" />
+            <state relative-caret-position="698">
+              <caret line="109" column="32" lean-forward="true" selection-start-line="109" selection-start-column="32" selection-end-line="109" selection-end-column="32" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="default.latte" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/AdminModule/templates/Document/default.latte">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="429">
-              <caret line="60" column="57" lean-forward="false" selection-start-line="60" selection-start-column="57" selection-end-line="60" selection-end-column="57" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="@layout.latte" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/AdminModule/templates/@layout.latte">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="356">
-              <caret line="25" column="52" lean-forward="false" selection-start-line="25" selection-start-column="52" selection-end-line="25" selection-end-column="52" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="admin.css" pinned="false" current-in-tab="false">
+      <file leaf-file-name="admin.css" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/css/admin.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="465">
-              <caret line="42" column="21" lean-forward="false" selection-start-line="42" selection-start-column="20" selection-end-line="42" selection-end-column="21" />
+            <state relative-caret-position="345">
+              <caret line="34" column="0" lean-forward="true" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Document.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/model/Document.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="685">
+              <caret line="59" column="34" lean-forward="false" selection-start-line="59" selection-start-column="34" selection-end-line="59" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -91,18 +72,18 @@
       <file leaf-file-name="DocumentPresenter.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/AdminModule/presenters/DocumentPresenter.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="517">
-              <caret line="48" column="45" lean-forward="false" selection-start-line="48" selection-start-column="45" selection-end-line="48" selection-end-column="45" />
+            <state relative-caret-position="105">
+              <caret line="164" column="0" lean-forward="true" selection-start-line="164" selection-start-column="0" selection-end-line="164" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HomepagePresenter.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/AdminModule/presenters/HomepagePresenter.php">
+      <file leaf-file-name="default.latte" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/AdminModule/templates/Document/default.latte">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="615">
-              <caret line="45" column="24" lean-forward="false" selection-start-line="45" selection-start-column="24" selection-end-line="45" selection-end-column="24" />
+            <state relative-caret-position="644">
+              <caret line="81" column="26" lean-forward="false" selection-start-line="81" selection-start-column="26" selection-end-line="81" selection-end-column="26" />
               <folding />
             </state>
           </provider>
@@ -121,6 +102,7 @@
     <findStrings>
       <find>acl</find>
       <find>new Permission</find>
+      <find>tra</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -129,7 +111,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/model/Ticket.php" />
         <option value="$PROJECT_DIR$/app/AdminModule/presenters/RegisterPresenter.php" />
         <option value="$PROJECT_DIR$/app/FrontModule/templates/Article/show.latte" />
         <option value="$PROJECT_DIR$/app/FrontModule/presenters/BasePresenter.php" />
@@ -169,17 +150,18 @@
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/app/AdminModule/templates/Document/edit.latte" />
         <option value="$PROJECT_DIR$/app/AdminModule/templates/Document/create.latte" />
-        <option value="$PROJECT_DIR$/app/config/config.neon" />
         <option value="$PROJECT_DIR$/app/AdminModule/templates/navigation.inc" />
         <option value="$PROJECT_DIR$/app/Factory/AuthorizatorFactory.php" />
-        <option value="$PROJECT_DIR$/app/model/Document.php" />
         <option value="$PROJECT_DIR$/app/AdminModule/templates/Article/default.latte" />
-        <option value="$PROJECT_DIR$/app/AdminModule/presenters/DocumentPresenter.php" />
         <option value="$PROJECT_DIR$/app/AdminModule/presenters/HomepagePresenter.php" />
-        <option value="$PROJECT_DIR$/app/AdminModule/templates/Document/default.latte" />
         <option value="$PROJECT_DIR$/app/AdminModule/templates/@layout.latte" />
-        <option value="$PROJECT_DIR$/www/css/admin.css" />
+        <option value="&lt;a540b901-4034-4c70-bea6-72063ca87866&gt;/app/config/config.neon" />
+        <option value="$PROJECT_DIR$/app/config/config.neon" />
         <option value="$PROJECT_DIR$/app/AdminModule/templates/Homepage/default.latte" />
+        <option value="$PROJECT_DIR$/app/model/Document.php" />
+        <option value="$PROJECT_DIR$/app/AdminModule/presenters/DocumentPresenter.php" />
+        <option value="$PROJECT_DIR$/app/AdminModule/templates/Document/default.latte" />
+        <option value="$PROJECT_DIR$/www/css/admin.css" />
       </list>
     </option>
   </component>
@@ -290,7 +272,7 @@
               <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="AdminModule" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="templates" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Article" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Document" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="sos" type="b2602c69:ProjectViewProjectNode" />
@@ -303,6 +285,29 @@
             <path>
               <item name="sos" type="b2602c69:ProjectViewProjectNode" />
               <item name="sos" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="config" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="sos" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sos" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Factory" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="sos" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sos" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="model" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="sos" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sos" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="log" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="sos" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sos" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="www" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
@@ -310,6 +315,12 @@
               <item name="sos" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="www" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="content" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="sos" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sos" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="www" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="css" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
           </expand>
           <select />
@@ -422,7 +433,7 @@
       <workItem from="1505978899367" duration="77000" />
       <workItem from="1506934626905" duration="6332000" />
       <workItem from="1506944772840" duration="27000" />
-      <workItem from="1506944809841" duration="7886000" />
+      <workItem from="1506944809841" duration="9161000" />
     </task>
     <task id="LOCAL-00001" summary="[ADD] Admin article, menu">
       <created>1437300843203</created>
@@ -613,11 +624,18 @@
       <option name="project" value="LOCAL" />
       <updated>1506935591515</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Přidání funkce dokumentů včetně nastavení práv pro návštěvníky.">
+      <created>1506954315813</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1506954315813</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="25358000" />
+    <option name="totallyTimeSpent" value="26633000" />
   </component>
   <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
@@ -634,7 +652,8 @@
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32889965" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32769045" sideWeight="0.5028612" order="11" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32769045" sideWeight="0.49713877" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3688029" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32769045" sideWeight="0.49713877" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32889965" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297568" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -651,7 +670,6 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3688029" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
@@ -724,7 +742,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="[ADD] admin pictures, events and so many things" />
     <MESSAGE value="[ADD] events" />
     <MESSAGE value="[ADD] events detail" />
     <MESSAGE value="[improve] events detail" />
@@ -749,7 +766,8 @@
     <MESSAGE value="Clear repository" />
     <MESSAGE value="Fix secret article under menu." />
     <MESSAGE value="Zohlednění aktuálních práv uživatele v navigaci administrace." />
-    <option name="LAST_COMMIT_MESSAGE" value="Zohlednění aktuálních práv uživatele v navigaci administrace." />
+    <MESSAGE value="Přidání funkce dokumentů včetně nastavení práv pro návštěvníky." />
+    <option name="LAST_COMMIT_MESSAGE" value="Přidání funkce dokumentů včetně nastavení práv pro návštěvníky." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1015,14 +1033,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/FrontModule/templates/Document/show.latte" />
-    <entry file="file://$PROJECT_DIR$/app/config/config.neon">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="34" column="32" lean-forward="false" selection-start-line="34" selection-start-column="32" selection-end-line="34" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/FrontModule/templates/Article/article.latte">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1071,16 +1081,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/model/Document.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="31" column="37" lean-forward="true" selection-start-line="31" selection-start-column="37" selection-end-line="31" selection-end-column="37" />
-          <folding>
-            <element signature="e#28#63#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/AdminModule/templates/Document/edit.latte">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -1097,26 +1097,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/AdminModule/presenters/DocumentPresenter.php">
+    <entry file="file://$PROJECT_DIR$/app/config/config.neon">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="517">
-          <caret line="48" column="45" lean-forward="false" selection-start-line="48" selection-start-column="45" selection-end-line="48" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/AdminModule/presenters/HomepagePresenter.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="615">
-          <caret line="45" column="24" lean-forward="false" selection-start-line="45" selection-start-column="24" selection-end-line="45" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/AdminModule/templates/Document/default.latte">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="429">
-          <caret line="60" column="57" lean-forward="false" selection-start-line="60" selection-start-column="57" selection-end-line="60" selection-end-column="57" />
+        <state relative-caret-position="75">
+          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1129,18 +1113,50 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/css/admin.css">
+    <entry file="file://$PROJECT_DIR$/app/AdminModule/presenters/HomepagePresenter.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="42" column="21" lean-forward="false" selection-start-line="42" selection-start-column="20" selection-end-line="42" selection-end-column="21" />
+        <state relative-caret-position="615">
+          <caret line="45" column="24" lean-forward="false" selection-start-line="45" selection-start-column="24" selection-end-line="45" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/model/Document.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="685">
+          <caret line="59" column="34" lean-forward="false" selection-start-line="59" selection-start-column="34" selection-end-line="59" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/AdminModule/presenters/DocumentPresenter.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="164" column="0" lean-forward="true" selection-start-line="164" selection-start-column="0" selection-end-line="164" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/AdminModule/templates/Homepage/default.latte">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="498">
-          <caret line="38" column="30" lean-forward="true" selection-start-line="38" selection-start-column="30" selection-end-line="38" selection-end-column="30" />
+        <state relative-caret-position="698">
+          <caret line="109" column="32" lean-forward="true" selection-start-line="109" selection-start-column="32" selection-end-line="109" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/AdminModule/templates/Document/default.latte">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="644">
+          <caret line="81" column="26" lean-forward="false" selection-start-line="81" selection-start-column="26" selection-end-line="81" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/css/admin.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="34" column="0" lean-forward="true" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
           <folding />
         </state>
       </provider>

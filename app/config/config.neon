@@ -4,14 +4,6 @@
 #
 parameters:
 
-
-database:
-	dsn: 'mysql:host=wm94.wedos.net;dbname=d107931_sos'
-	user: w107931_sos
-	password: BlaBru.2014
-	options:
-		lazy: yes
-
 php:
 	date.timezone: Europe/Prague
 

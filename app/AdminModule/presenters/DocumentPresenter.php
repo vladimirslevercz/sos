@@ -95,8 +95,12 @@ class DocumentPresenter extends BasePresenter
 	public function documentFormSucceeded(UI\Form $form, $values)
 	{
 	    if ($this->user->isAllowed('document', 'create')) {
-            $document = $this->documentRepo->saveFile($values['document'], $values['name'], $values['private']);
-            $this->flashMessage('Dokument vložen do databáze.', 'success');
+	        try {
+                $document = $this->documentRepo->saveFile($values['document'], $values['name'], $values['private']);
+                $this->flashMessage('Dokument vložen do databáze.', 'success');
+            } catch (\InvalidArgumentException $e) {
+                $this->flashMessage('Dokument nelze uložit: '.$e->getMessage(), 'danger');
+            }
         } else {
             $this->flashMessage('Na tuto akci nemáte dostatečná oprávnění.', 'warning');
         }
@@ -145,7 +149,7 @@ class DocumentPresenter extends BasePresenter
         if ($this->can($id, 'delete')) {
             $document = $this->documentRepo->get($id);
             $this->documentRepo->deleteFile($document);
-            $this->documentRepo->delete();
+            $document->delete();
             $this->flashMessage('Dokument odstraněn.', 'success');
         } else {
             $this->flashMessage('Na tuto akci nemáte oprávnění.', 'warning');
@@ -180,7 +184,7 @@ class DocumentPresenter extends BasePresenter
         $filepath = Model\Document::SAVE_DIR . $document->path;
 
         $fileDownloadName = Nette\Utils\Strings::webalize(pathinfo($document->nice_name)['filename']).'.'
-            .pathinfo($document->nice_name)['extension'];
+            .pathinfo($document->path)['extension'];
 
         if(!file_exists($filepath)) {
             $this->flashMessage('Dokument nelze načíct, soubor nebyl nalezen.','danger');

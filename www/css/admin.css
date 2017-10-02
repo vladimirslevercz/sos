@@ -56,3 +56,7 @@ img.preview-image-small {
 tr.private {
     background-color: #e4faff;
 }
+
+h1 {
+    font-weight: bolder;
+}
