@@ -16,20 +16,20 @@
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse" id="main-navbar-collapse-1">
 			<ul class="nav navbar-nav">
-				<li><a n:href="Article:default">Články</a></li>
-				<li><a n:href="Menu:default">Meníčko</a></li>
+				<li n:if="$nuser->isAllowed('article', 'edit')"><a n:href="Article:default">Články</a></li>
+				<li n:if="$nuser->isAllowed('menu', 'edit')"><a n:href="Menu:default">Meníčko</a></li>
 
-				<li class="dropdown">
+				<li n:if="$nuser->isAllowed('event', 'edit')" class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Události <span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a n:href="Event:default">Události</a></li>
-						<li><a n:href="Ticket:default">Vstupenky</a></li>
-						<li><a n:href="Registration:default">Registrace</a></li>
-						<li><a n:href="Newsletter:default">Newsletter</a></li>
+						<li n:if="$nuser->isAllowed('event', 'edit')"><a n:href="Event:default">Události</a></li>
+						<li n:if="$nuser->isAllowed('ticket', 'edit')"><a n:href="Ticket:default">Vstupenky</a></li>
+						<li n:if="$nuser->isAllowed('registration', 'edit')"><a n:href="Registration:default">Registrace</a></li>
+						<li n:if="$nuser->isAllowed('newsletter', 'edit')"><a n:href="Newsletter:default">Newsletter</a></li>
 					</ul>
 				</li>
 
-                <li><a n:href="User:default">Uživatelé</a></li>
+                <li n:if="$nuser->isAllowed('user', 'edit')"><a n:href="User:default">Uživatelé</a></li>
 
                 <li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Ext. nástroje <span class="caret"></span></a>

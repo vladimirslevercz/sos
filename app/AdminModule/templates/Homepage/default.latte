@@ -26,8 +26,9 @@
 						{$article->created_at}
 					</td>
 					<td>
-						<a n:if="$allowedEditArticles" n:href="Article:edit $article->id" class="btn btn-warning">Upravit</a>
 						<a n:href=":Front:Article:article $article->id" class="btn btn-info" target="_blank">Zobrazit</a>
+						<a n:if="$allowedEditArticles" n:href="Article:edit $article->id" class="btn btn-warning">Upravit</a>
+						<a n:if="$allowedEditArticles" n:href="Article:delete $article->id" class="btn btn-danger">Smazat</a>
 					</td>
 				</tr>
 			{/foreach}
