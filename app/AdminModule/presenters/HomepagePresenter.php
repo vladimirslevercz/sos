@@ -16,6 +16,9 @@ class HomepagePresenter extends BasePresenter
     /** @var Model\Article @inject */
     public $articleRepo;
 
+    /** @var Model\Document @inject */
+    public $documentRepo;
+
     private $secretArticles;
 
 	public function actionDefault() {
@@ -37,6 +40,10 @@ class HomepagePresenter extends BasePresenter
 	    $this->template->allowedReadSecretArticles = $this->user->isAllowed('article','readSecret');
 	    $this->template->allowedEditArticles = $this->user->isAllowed('article','edit');
         $this->template->secretArticles = $this->secretArticles;
+        $this->template->documents = $this->documentRepo
+            ->where('private = ?', false)
+            ->order('created_at DESC')
+            ->limit(10);
 	}
 
 }

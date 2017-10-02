@@ -32,6 +32,7 @@ services:
 	- App\Factory\AuthorizatorFactory::create
 	router: App\RouterFactory::createRouter
 	article: App\Model\Article
+	document: App\Model\Document
 	menu: App\Model\Menu
 	event: App\Model\Event
 	ticket: App\Model\Ticket

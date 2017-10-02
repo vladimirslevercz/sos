@@ -5,37 +5,116 @@
 <p>Welcome back.</p>
 <p>Pro editaci či správu webu si vyber položku z horního meníčka.</p>
 
-{if $allowedReadSecretArticles}
-<h2>Tajné články</h2>
-	{if count($secretArticles)}
-		<table class="table table-bordered table-responsive">
-			<thead>
-			<tr>
-				<th>Název</th>
-				<th>Vytvořeno</th>
-				<th>Akce</th>
-			</tr>
-			</thead>
-			<tbody>
-			{foreach $secretArticles as $article}
-				<tr>
-					<td>
-						<a n:href=":Front:Article:article $article->id" target="_blank">{$article->name}</a>
-					</td>
-					<td>
-						{$article->created_at}
-					</td>
-					<td>
-						<a n:href=":Front:Article:article $article->id" class="btn btn-info" target="_blank">Zobrazit</a>
-						<a n:if="$allowedEditArticles" n:href="Article:edit $article->id" class="btn btn-warning">Upravit</a>
-						<a n:if="$allowedEditArticles" n:href="Article:delete $article->id" class="btn btn-danger">Smazat</a>
-					</td>
-				</tr>
-			{/foreach}
-			</tbody>
-		</table>
-	{else}
-		<p>Žádné tajné články nejsou dostupné.</p>
-	{/if}
-{/if}
+<div class="row">
+	<div n:if="$allowedReadSecretArticles" class="col-xs-12 col-md-8">
+		<h2>Tajné články</h2>
+		{if count($secretArticles)}
+			{if $nuser->isAllowed('article', 'edit')}
+				<table class="table table-bordered table-responsive">
+					<thead>
+					<tr>
+						<th>Název</th>
+						<th>Vytvořeno</th>
+						<th>Akce</th>
+					</tr>
+					</thead>
+					<tbody>
+					{foreach $secretArticles as $article}
+						<tr>
+							<td>
+								<a n:href=":Front:Article:article $article->id" target="_blank">{$article->name}</a>
+							</td>
+							<td>
+								{$article->created_at}
+							</td>
+							<td>
+								<a n:if="$allowedEditArticles" n:href="Article:edit $article->id" class="btn btn-warning" title="Upravit">
+									<i class="glyphicon glyphicon-pencil"></i>
+								</a>
+								<a n:if="$allowedEditArticles" n:href="Article:delete $article->id" class="btn btn-danger" title="Smazat">
+									<i class="glyphicon glyphicon-trash"></i>
+								</a>
+							</td>
+						</tr>
+					{/foreach}
+					</tbody>
+				</table>
+			{else}
+				<table class="table table-bordered table-responsive">
+					<tbody>
+					{foreach $secretArticles as $article}
+						<tr>
+							<td>
+								<a n:href=":Front:Article:article $article->id" target="_blank">{$article->name}</a>
+							</td>
+							<td>
+								{$article->created_at}
+							</td>
+						</tr>
+					{/foreach}
+					</tbody>
+				</table>
+			{/if}
+		{else}
+			<p>Žádné tajné články nejsou dostupné.</p>
+		{/if}
+	</div>
+	<div n:if="$nuser->isAllowed('document', 'read')" class="col-xs-12 col-md-4">
+		<span class="pull-right">
+			<a n:if="$nuser->isAllowed('document', 'create')" n:href="Document:create" title="Přidat dokument" class="btn btn-success">
+				+<i class="glyphicon glyphicon-file"></i>
+			</a>
+			<a n:if="$nuser->isAllowed('document', 'list')" n:href="Document:default" title="" class="btn btn-info">
+				<i class="glyphicon glyphicon-arrow-right"></i>
+			</a>
+		</span>
+		<h2>Dokumenty</h2>
+		{if count($documents)}
+			{if $nuser->isAllowed('document', 'edit')}
+				<table class="table table-bordered table-responsive">
+					<thead>
+					<tr>
+						<th>Název</th>
+						<th>Vytvořeno</th>
+						<th>Akce</th>
+					</tr>
+					</thead>
+					<tbody>
+					{foreach $documents as $document}
+						<tr>
+							<td>
+								<a n:href="Document:download $document->id" target="_blank">{$document->nice_name}</a>
+							</td>
+							<td>
+								<span class="pull-left small">{$document->created_at}</span>
+							</td>
+							<td>
+								<a n:if="$nuser->isAllowed('document', 'delete')" n:href="Document:delete $document->id" class="btn btn-danger" title="Smazat">
+									<i class="glyphicon glyphicon-trash">
+								</a>
+							</td>
+						</tr>
+					{/foreach}
+					</tbody>
+				</table>
+			{else}
+				<table class="table table-bordered table-responsive">
+					<tbody>
+					{foreach $documents as $document}
+						<tr>
+							<td>
+								<a n:href="Document:download $document->id" target="_blank">{$document->nice_name}</a>
+							</td>
+							<td>
+								<span class="pull-left small">{$document->created_at}</span>
+							</td>
+						</tr>
+					{/foreach}
+					</tbody>
+				</table>
+			{/if}
+		{else}
+			<p>Žádné dokumenty nejsou dostupné.</p>
+		{/if}
+	</div>
 {/block}

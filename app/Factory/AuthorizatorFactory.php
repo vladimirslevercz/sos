@@ -25,9 +25,11 @@ class AuthorizatorFactory
         $acl->addResource('registration');
         $acl->addResource('ticket');
         $acl->addResource('user');
+        $acl->addResource('document');
 
 
         $acl->allow('guest', 'article', ['readSecret', 'read']);
+        $acl->allow('guest', 'document', ['read', 'show', 'list', 'create']);
 
         $acl->allow('admin');
 

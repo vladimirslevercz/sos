@@ -1,0 +1,86 @@
+{**
+ * Listing event
+ * @var $event database connection to events
+ *}
+{block content}
+
+<h1 n:block=title>Dokumenty</h1>
+
+    <div>
+        <p>
+            Například Dokument aplikace Word nebo PDF.
+        </p>
+    </div>
+
+    <div class="pull-right">
+        <a n:href="create" class="btn btn-success">Nahrát dokument</a>
+    </div>
+
+	<h2>Moje dokumenty</h2>
+{if count($myDocuments)}
+    <table class="table table-bordered table-responsive">
+        <thead>
+		<tr>
+            <th>Název</th>
+            <th>Vytvořeno</th>
+
+            <th>Akce</th>
+		</tr>
+        </thead>
+        <tbody>
+            {foreach $myDocuments as $d}
+            <tr{if $d->private} class="private"{/if}>
+                <td>
+					<a n:href="download $d->id" target="_blank">
+                   		{$d->nice_name}
+					</a>
+					<i n:if="$d->private" title="Soukromý dokument" class="glyphicon glyphicon-eye-close pull-right"></i>
+                </td>
+                <td>
+                    {$d->created_at->format('j.n.Y H:i')}
+					<span n:if="$d->user_id" class="pull-right small">{$d->user->email}</span>
+                </td>
+                <td>
+					<a n:href="download $d->id" class="btn btn-info"><i class="glyphicon glyphicon-download" title="Stáhnout"></i></a>
+                    <a n:href="edit $d->id" class="btn btn-warning">Přejmenovat</a>
+                    <a n:href="delete $d->id" class="btn btn-danger">Smazat</a>
+                </td>
+            </tr>
+            {/foreach}
+        </tbody>
+    </table>
+{else}
+    <p>Žádné dokumenty.</p>
+{/if}
+
+	<h2>Cizí dokumenty</h2>
+	{if count($foreignDocuments)}
+		<table class="table table-bordered table-responsive">
+			<tbody>
+			{foreach $foreignDocuments as $d}
+				<tr {if $d->private} class="private"{/if}>
+					<td>
+						<a n:href="download $d->id" target="_blank">
+							{$d->nice_name}
+						</a>
+						<i n:if="$d->private" title="Soukromý dokument" class="glyphicon glyphicon-eye-close pull-right"></i>
+					</td>
+					<td>
+						{$d->created_at->format('j.n.Y H:i')}
+						<span n:if="$d->user_id" class="pull-right small">{$d->user->email}</span>
+					</td>
+					<td>
+						<a n:href="download $d->id" class="btn btn-info"><i class="glyphicon glyphicon-download" title="Stáhnout"></i></a>
+						<a n:if="$nuser->isAllowed('document', 'editForeign')" n:href="edit $d->id" class="btn btn-warning">Přejmenovat</a>
+						<a n:if="$nuser->isAllowed('document', 'editForeign')" n:href="delete $d->id" class="btn btn-danger">Smazat</a>
+					</td>
+				</tr>
+			{/foreach}
+			</tbody>
+		</table>
+	{else}
+		<p>Žádné články.</p>
+	{/if}
+
+
+{/block}

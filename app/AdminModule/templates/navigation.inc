@@ -18,6 +18,7 @@
 			<ul class="nav navbar-nav">
 				<li n:if="$nuser->isAllowed('article', 'edit')"><a n:href="Article:default">Články</a></li>
 				<li n:if="$nuser->isAllowed('menu', 'edit')"><a n:href="Menu:default">Meníčko</a></li>
+				<li n:if="$nuser->isAllowed('document', 'show')"><a n:href="Document:default">Dokumenty</a></li>
 
 				<li n:if="$nuser->isAllowed('event', 'edit')" class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Události <span class="caret"></span></a>

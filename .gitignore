@@ -5,3 +5,4 @@ temp
 app/config/config.local.neon
 www/content
 www/vendor
+www/content/*/.placeHolder
