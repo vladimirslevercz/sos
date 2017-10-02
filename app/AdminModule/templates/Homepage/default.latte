@@ -2,8 +2,7 @@
 
 <h1 xmlns:n="http://www.w3.org/1999/xhtml">Dashboard</h1>
 
-<p>Welcome back.</p>
-<p>Pro editaci či správu webu si vyber položku z horního meníčka.</p>
+<p n:if="$nuser->isAllowed('article', 'edit')">Pro editaci či správu webu si vyber položku z navigace.</p>
 
 <div class="row">
 	<div n:if="$allowedReadSecretArticles" class="col-xs-12 col-md-8">
