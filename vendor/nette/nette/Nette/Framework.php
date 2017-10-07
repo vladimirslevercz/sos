@@ -15,8 +15,8 @@ class Framework
 {
 
 	const NAME = 'Nette Framework',
-		VERSION = '2.3.10',
-		VERSION_ID = 20310,
-		REVISION = 'released on 2016-04-13';
+		VERSION = '2.4',
+		VERSION_ID = 20400,
+		REVISION = '';
 
 }

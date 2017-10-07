@@ -7,8 +7,8 @@
 
 namespace Nette\Templating;
 
-use Nette;
 use Latte;
+use Nette;
 use Nette\Utils\Strings;
 
 
@@ -35,6 +35,7 @@ class Helpers extends Latte\Runtime\Filters
 	 */
 	public static function loader($helper)
 	{
+		trigger_error(__CLASS__ . ' is deprecated.', E_USER_DEPRECATED);
 		if (method_exists(__CLASS__, $helper)) {
 			return array(__CLASS__, $helper);
 		} elseif (isset(self::$helpers[$helper])) {
@@ -50,10 +51,10 @@ class Helpers extends Latte\Runtime\Filters
 	 * @param  string
 	 * @return Nette\Utils\DateTime
 	 */
-	public static function modifyDate($time, $delta, $unit = NULL)
+	public static function modifyDate($time, $delta, $unit = null)
 	{
-		return $time == NULL // intentionally ==
-			? NULL
+		return $time == null // intentionally ==
+			? null
 			: Nette\Utils\DateTime::from($time)->modify($delta . $unit);
 	}
 
@@ -84,5 +85,4 @@ class Helpers extends Latte\Runtime\Filters
 	{
 		return Latte\Helpers::optimizePhp($source, $lineLength);
 	}
-
 }

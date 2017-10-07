@@ -37,24 +37,24 @@ class Debugger extends Tracy\Debugger
 	/**
 	 * Enables displaying or logging errors and exceptions.
 	 * @param  mixed         production, development mode, autodetection or IP address(es) whitelist.
-	 * @param  string        error log directory; enables logging in production mode, FALSE means that logging is disabled
+	 * @param  string        error log directory; enables logging in production mode, false means that logging is disabled
 	 * @param  string        administrator email; enables email sending in production mode
 	 * @return void
 	 */
-	public static function enable($mode = NULL, $logDirectory = NULL, $email = NULL)
+	public static function enable($mode = null, $logDirectory = null, $email = null)
 	{
+		trigger_error(__CLASS__ . ' is deprecated, use Tracy\Debugger.', E_USER_DEPRECATED);
 		parent::enable($mode, $logDirectory, $email);
 		self::$blueScreen = self::getBlueScreen();
 		self::$bar = self::getBar();
 		self::$logger = self::getLogger();
 		self::$fireLogger = self::getFireLogger();
-		self::$consoleColors = & Tracy\Dumper::$terminalColors;
+		self::$consoleColors = &Tracy\Dumper::$terminalColors;
 	}
 
 
-	public static function addPanel(IBarPanel $panel, $id = NULL)
+	public static function addPanel(IBarPanel $panel, $id = null)
 	{
 		return self::getBar()->addPanel($panel, $id);
 	}
-
 }

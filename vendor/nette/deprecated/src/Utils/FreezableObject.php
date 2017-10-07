@@ -14,7 +14,7 @@ namespace Nette;
 abstract class FreezableObject extends Object implements IFreezable
 {
 	/** @var bool */
-	private $frozen = FALSE;
+	private $frozen = false;
 
 
 	/**
@@ -23,7 +23,7 @@ abstract class FreezableObject extends Object implements IFreezable
 	 */
 	public function freeze()
 	{
-		$this->frozen = TRUE;
+		$this->frozen = true;
 	}
 
 
@@ -43,7 +43,7 @@ abstract class FreezableObject extends Object implements IFreezable
 	 */
 	public function __clone()
 	{
-		$this->frozen = FALSE;
+		$this->frozen = false;
 	}
 
 
@@ -52,10 +52,10 @@ abstract class FreezableObject extends Object implements IFreezable
 	 */
 	protected function updating()
 	{
+		trigger_error(__CLASS__ . ' is deprecated.', E_USER_DEPRECATED);
 		if ($this->frozen) {
 			$class = get_class($this);
 			throw new InvalidStateException("Cannot modify a frozen object $class.");
 		}
 	}
-
 }
